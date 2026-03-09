@@ -1,0 +1,74 @@
+<section id="portafolio" class="relative py-24 lg:py-32" aria-labelledby="portfolio-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-[1px] bg-lm-silver"></div>
+                    <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Nuestro trabajo</span>
+                </div>
+                <h2 id="portfolio-title"
+                    class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                    PORTAFOLIO<span class="text-lm-graphite">.</span>
+                </h2>
+            </div>
+            <p class="text-lm-silver text-lg max-w-md leading-relaxed lg:text-right">
+                Proyectos que hablan por sí mismos. Cada uno es un reto que convertimos en éxito.
+            </p>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @for (project of projects; track project.title; let i = $index) {
+            <article class="group relative overflow-hidden cursor-pointer"
+                [class.lg:col-span-2]="project.size === 'large'"
+                [class.lg:row-span-2]="project.size === 'large' && i === 0">
+                <div class="relative aspect-[16/10] bg-gradient-to-br overflow-hidden"
+                    [class]="'bg-gradient-to-br ' + project.gradient">
+                    @if (project.image) {
+                    <img [src]="project.image" [alt]="project.title"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700">
+                    }
+
+                    <!-- Abstract project visuals -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span
+                            class="font-display text-[6rem] sm:text-[8rem] font-800 text-lm-white/[0.03] leading-none select-none">
+                            {{ project.title.charAt(0) }}{{ project.title.split(' ')[1]?.charAt(0) || '' }}
+                        </span>
+                    </div>
+
+                    <!-- Decorative elements -->
+                    <div
+                        class="absolute top-6 left-6 w-6 h-6 border border-lm-white/10 rotate-45 group-hover:rotate-[135deg] transition-transform duration-700">
+                    </div>
+                    <div
+                        class="absolute bottom-6 right-6 w-3 h-3 bg-lm-white/10 rotate-45 group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <!-- Hover overlay -->
+                    <div
+                        class="absolute inset-0 bg-lm-black/0 group-hover:bg-lm-black/70 transition-all duration-500 flex items-end">
+                        <div
+                            class="p-6 lg:p-8 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                            <span class="text-xs text-lm-silver tracking-[0.2em] uppercase mb-2 block">{{
+                                project.category }}</span>
+                            <h3 class="font-display text-xl lg:text-2xl font-700 text-lm-white tracking-[-0.02em]">{{
+                                project.title }}</h3>
+                            <div class="flex items-center gap-2 mt-4 text-lm-silver">
+                                <span class="text-xs tracking-[0.15em] uppercase">Ver proyecto</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M7 7h10v10" />
+                                    <path d="M7 17 17 7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            }
+        </div>
+    </div>
+</section>

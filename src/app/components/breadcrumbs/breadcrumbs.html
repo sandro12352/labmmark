@@ -1,0 +1,18 @@
+@if (showBreadcrumbs) {
+<nav aria-label="Migas de pan" class="bg-lm-charcoal/50 border-b border-lm-graphite/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-3">
+        <ol class="flex items-center gap-2 text-xs">
+            @for (bc of breadcrumbs; track bc.url; let last = $last) {
+            <li class="flex items-center gap-2">
+                @if (!last) {
+                <a [href]="bc.url" class="text-lm-silver hover:text-lm-white transition-colors">{{ bc.label }}</a>
+                <span class="text-lm-graphite">/</span>
+                } @else {
+                <span class="text-lm-white font-600">{{ bc.label }}</span>
+                }
+            </li>
+            }
+        </ol>
+    </div>
+</nav>
+}

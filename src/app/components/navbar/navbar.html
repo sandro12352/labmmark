@@ -1,0 +1,77 @@
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" [class.bg-lm-black]="isScrolled()"
+    [class.bg-transparent]="!isScrolled()" [class.shadow-2xl]="isScrolled()" [class.border-b]="isScrolled()"
+    [class.border-lm-graphite]="isScrolled()" role="navigation" aria-label="Navegación principal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
+                <span
+                    class="font-display text-2xl font-800 tracking-[-0.05em] text-lm-white transition-all duration-300 group-hover:tracking-[0.1em]">
+                    LA<span class="text-lm-silver">B</span>MARK
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-1">
+                @for (link of navLinks; track link.label) {
+                <a (click)="scrollTo(link.fragment)"
+                    class="px-4 py-2 text-sm font-medium text-lm-silver hover:text-lm-white transition-all duration-300 cursor-pointer relative group">
+                    {{ link.label }}
+                    <span
+                        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-lm-white transition-all duration-300 group-hover:w-3/4"></span>
+                </a>
+                }
+            </div>
+
+            <!-- CTA Button Desktop -->
+            <a (click)="scrollTo('contacto')"
+                class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-lm-white text-lm-black font-display font-700 text-sm tracking-wide rounded-none hover:bg-lm-accent transition-all duration-300 cursor-pointer hover:tracking-[0.05em]">
+                HABLEMOS
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button (click)="toggleMenu()" class="md:hidden p-2 text-lm-white hover:text-lm-accent transition-colors"
+                [attr.aria-expanded]="mobileMenuOpen()" aria-label="Abrir menú">
+                @if (!mobileMenuOpen()) {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" x2="21" y1="6" y2="6" />
+                    <line x1="3" x2="21" y1="12" y2="12" />
+                    <line x1="3" x2="21" y1="18" y2="18" />
+                </svg>
+                } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+                }
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (mobileMenuOpen()) {
+    <div class="md:hidden bg-lm-black/98 backdrop-blur-xl border-t border-lm-graphite animate-fade-in">
+        <div class="px-6 py-8 space-y-1">
+            @for (link of navLinks; track link.label) {
+            <a (click)="scrollTo(link.fragment)"
+                class="block px-4 py-3 text-lg font-display font-600 text-lm-silver hover:text-lm-white hover:pl-6 transition-all duration-300 cursor-pointer border-b border-lm-graphite/30">
+                {{ link.label }}
+            </a>
+            }
+            <div class="pt-4">
+                <a (click)="scrollTo('contacto')"
+                    class="block w-full text-center px-6 py-3 bg-lm-white text-lm-black font-display font-700 text-sm tracking-wide cursor-pointer hover:bg-lm-accent transition-all duration-300">
+                    HABLEMOS
+                </a>
+            </div>
+        </div>
+    </div>
+    }
+</nav>

@@ -1,0 +1,79 @@
+<section id="nosotros" class="relative py-24 lg:py-32 bg-lm-charcoal" aria-labelledby="about-title">
+    <!-- Decorative corner -->
+    <div class="absolute top-0 right-0 w-32 h-32 border-t border-r border-lm-graphite/30"></div>
+    <div class="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-lm-graphite/30"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <!-- Left: Text -->
+            <div class="space-y-8 animate-fade-in-up">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="w-12 h-px bg-lm-silver font-widest"></div>
+                    <span class="text-xs text-lm-silver tracking-widest uppercase font-body">Quiénes somos</span>
+                </div>
+
+                <h2 id="about-title"
+                    class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight text-lm-white leading-[1.1]">
+                    NO SOMOS UNA<br>
+                    AGENCIA<br>
+                    <span class="text-lm-silver">CONVENCIONAL</span><span class="text-lm-graphite">.</span>
+                </h2>
+
+                <div class="space-y-4">
+                    <p class="text-lm-silver text-base lg:text-lg leading-relaxed">
+                        En <strong class="text-lm-white font-600">LABMARK</strong> fusionamos creatividad e inteligencia
+                        de datos para construir marcas que trascienden. No seguimos tendencias — las definimos.
+                    </p>
+                    <p class="text-lm-silver text-base lg:text-lg leading-relaxed">
+                        Nuestro equipo multidisciplinario combina diseñadores, estrategas digitales, creadores de
+                        contenido y especialistas en performance para ofrecer soluciones integrales que generan
+                        resultados medibles.
+                    </p>
+                </div>
+
+                <!-- Separator -->
+                <div class="w-full h-px bg-lm-graphite"></div>
+
+                <!-- Stats Row -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                    @for (stat of stats; track stat.label) {
+                    <div class="text-center sm:text-left">
+                        <span class="block font-display text-3xl font-800 text-lm-white">{{ stat.value }}</span>
+                        <span class="block text-xs text-lm-silver mt-1 tracking-widest uppercase">{{ stat.label
+                            }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Right: Visual -->
+            <div class="relative animate-scale-in delay-300">
+                <!-- Main visual block -->
+                <div
+                    class="relative aspect-4/5 bg-lm-black overflow-hidden group border border-lm-graphite/30 shadow-2xl">
+                    <img src="assets/team.png" alt="Equipo creativo de LABMARK trabajando en estudio"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+
+                    <!-- Abstract overlay elements -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span
+                            class="font-display text-[12rem] font-800 text-lm-white/5 leading-none select-none">LM</span>
+                    </div>
+
+                    <!-- Gradient overlay -->
+                    <div class="absolute inset-0 bg-linear-to-t from-lm-charcoal/80 to-transparent"></div>
+
+                    <!-- Corner accent -->
+                    <div class="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-lm-white/30"></div>
+                    <div class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-lm-white/30"></div>
+                </div>
+
+                <!-- Floating label -->
+                <div
+                    class="absolute -bottom-4 -right-4 bg-lm-white text-lm-black px-6 py-3 font-display font-700 text-sm tracking-widest shadow-xl">
+                    DESDE 2021
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
