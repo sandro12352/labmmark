@@ -3,12 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs';
+import { SocialSidebarComponent } from './components/social-sidebar/social-sidebar';
 import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, BreadcrumbsComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, BreadcrumbsComponent, SocialSidebarComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -1,0 +1,19 @@
+<aside class="social-sidebar" aria-label="Redes sociales de LABMARK">
+    <!-- Vertical label -->
+    <span class="social-sidebar__label">SÍGUENOS</span>
+
+    <!-- Divider line -->
+    <div class="social-sidebar__line"></div>
+
+    <!-- Social icons -->
+    <div class="social-sidebar__icons">
+        @for (social of socials; track social.name) {
+        <a [href]="social.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="social.name"
+            class="social-sidebar__icon" [innerHTML]="social.icon">
+        </a>
+        }
+    </div>
+
+    <!-- Bottom decorative line -->
+    <div class="social-sidebar__line"></div>
+</aside>

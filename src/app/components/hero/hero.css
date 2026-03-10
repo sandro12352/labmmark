@@ -2,16 +2,7 @@
     display: block;
 }
 
-.grain-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 128px 128px;
-    animation: grain 8s steps(10) infinite;
-}
+
 
 .hero-gradient-text {
     background: linear-gradient(90deg, #F5F5F5 0%, #A0A0A0 50%, #F5F5F5 100%);
@@ -32,4 +23,93 @@
     50% {
         background-position: -200% 0;
     }
+}
+
+/* ===== 3D Starfield Effect ===== */
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    border-radius: 50%;
+}
+
+/* Three layers of stars with different sizes and speeds */
+.stars-sm {
+    width: 1px;
+    height: 1px;
+    box-shadow:
+        446px 233px #FFF, 1515px 446px #FFF, 1313px 21px #FFF, 1789px 728px #FFF, 1373px 1862px #FFF, 240px 1475px #FFF, 1144px 177px #FFF, 1599px 703px #FFF, 888px 1500px #FFF, 1800px 300px #FFF, 100px 1200px #FFF, 1600px 1400px #FFF, 300px 1800px #FFF, 1400px 200px #FFF, 500px 1600px #FFF, 1200px 500px #FFF, 1900px 1100px #FFF, 600px 1300px #FFF, 1700px 100px #FFF, 200px 900px #FFF, 1500px 1700px #FFF, 400px 400px #FFF, 1100px 1900px #FFF, 700px 1500px #FFF, 1800px 800px #FFF, 900px 300px #FFF, 1300px 1200px #FFF, 800px 1600px #FFF, 1600px 500px #FFF, 500px 1000px #FFF;
+    animation: starsMove 150s linear infinite;
+}
+
+.stars-md {
+    width: 1.5px;
+    height: 1.5px;
+    box-shadow:
+        123px 456px #DDD, 789px 123px #DDD, 456px 789px #DDD, 1500px 300px #DDD, 200px 1500px #DDD, 1000px 1200px #DDD, 500px 200px #DDD, 1800px 1000px #DDD, 400px 1800px #DDD, 1600px 400px #DDD, 1200px 1800px #DDD, 300px 700px #DDD, 1400px 1500px #DDD, 900px 800px #DDD, 100px 400px #DDD, 1900px 500px #DDD, 600px 1600px #DDD, 1700px 1200px #DDD, 1100px 300px #DDD, 800px 1400px #DDD;
+    animation: starsMove 100s linear infinite;
+    opacity: 0.7;
+}
+
+.stars-lg {
+    width: 2px;
+    height: 2px;
+    box-shadow:
+        1000px 1000px #FFF, 200px 200px #FFF, 1500px 800px #FFF, 500px 1400px #FFF, 1200px 200px #FFF, 400px 1100px #FFF, 1800px 1500px #FFF, 900px 500px #FFF, 100px 1800px #FFF, 1600px 300px #FFF;
+    animation: starsMove 70s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0) rotate(0);
+    }
+
+    to {
+        transform: translateY(-2000px) rotate(5deg);
+    }
+}
+
+/* ===== Hero image container ===== */
+.hero-image-container {
+    animation: heroImageFloat 8s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes heroImageFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ===== Scroll down bounce ===== */
+.hero-scroll-bounce {
+    animation: heroScrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes heroScrollBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+}
+
+/* Ensure content is above starfield */
+.relative.z-10 {
+    z-index: 10;
 }

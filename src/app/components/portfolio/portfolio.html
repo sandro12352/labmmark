@@ -21,10 +21,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @for (project of projects; track project.title; let i = $index) {
             <article class="group relative overflow-hidden cursor-pointer"
-                [class.lg:col-span-2]="project.size === 'large'"
-                [class.lg:row-span-2]="project.size === 'large' && i === 0">
-                <div class="relative aspect-[16/10] bg-gradient-to-br overflow-hidden"
-                    [class]="'bg-gradient-to-br ' + project.gradient">
+                [class.lg:col-span-2]="project.size === 'large' && i !== projects.length - 1"
+                [class.lg:col-span-3]="project.size === 'large' && i === projects.length - 1">
+                <div class="relative aspect-[16/10] overflow-hidden" [class]="'bg-linear-to-br ' + project.gradient">
                     @if (project.image) {
                     <img [src]="project.image" [alt]="project.title"
                         class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700">

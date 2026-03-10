@@ -2,7 +2,7 @@
     <!-- Grain overlay -->
     <div class="grain-overlay"></div>
 
-    <!-- Diagonal decorative line -->
+    <!-- Diagonal decorative lines -->
     <div
         class="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-lm-graphite to-transparent transform rotate-12 translate-x-[40vw] opacity-40">
     </div>
@@ -10,12 +10,12 @@
         class="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-transparent via-lm-graphite/30 to-transparent transform -rotate-12 translate-x-[20vw] opacity-30">
     </div>
 
-    <!-- Floating geometric shapes -->
-    <div class="absolute top-20 right-20 w-72 h-72 border border-lm-graphite/20 rotate-45 opacity-20 hidden lg:block">
+    <!-- 3D Starfield Background -->
+    <div class="starfield-container absolute inset-0 pointer-events-none">
+        <div class="stars stars-sm"></div>
+        <div class="stars stars-md"></div>
+        <div class="stars stars-lg"></div>
     </div>
-    <div class="absolute bottom-32 left-16 w-40 h-40 border border-lm-graphite/15 rotate-12 opacity-15 hidden lg:block">
-    </div>
-    <div class="absolute top-1/3 right-1/4 w-3 h-3 bg-lm-silver/30 rotate-45"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0 w-full">
         <div class="grid lg:grid-cols-12 gap-8 items-center">
@@ -75,33 +75,27 @@
                 </div>
             </div>
 
-            <!-- Right side - Abstract stats/identity -->
-            <div class="lg:col-span-5 hidden lg:flex flex-col items-end space-y-8 animate-slide-right delay-300">
-                <!-- Stats blocks -->
-                <div class="grid grid-cols-2 gap-4 w-full max-w-sm">
-                    <div class="border border-lm-graphite p-6 group hover:border-lm-silver transition-all duration-500">
-                        <span
-                            class="block font-display text-4xl font-800 text-lm-white group-hover:text-lm-accent transition-colors">+50</span>
-                        <span class="block text-xs text-lm-silver mt-2 tracking-[0.15em] uppercase">Marcas</span>
+            <!-- Right side - Hero Image -->
+            <div class="lg:col-span-5 hidden lg:flex flex-col items-end space-y-6 animate-slide-right delay-300">
+                <div class="relative w-full max-w-md hero-image-container">
+                    <!-- Decorative frame -->
+                    <div class="absolute -top-3 -left-3 w-20 h-20 border-t border-l border-lm-graphite/40"></div>
+                    <div class="absolute -bottom-3 -right-3 w-20 h-20 border-b border-r border-lm-graphite/40"></div>
+
+                    <!-- Image -->
+                    <div class="relative overflow-hidden">
+                        <img src="assets/hero-image.png" alt="LABMARK - Creatividad Digital"
+                            class="w-full h-auto object-cover grayscale-30 opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
+                        <!-- Subtle overlay gradient -->
+                        <div class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent">
+                        </div>
                     </div>
-                    <div class="border border-lm-graphite p-6 group hover:border-lm-silver transition-all duration-500">
-                        <span
-                            class="block font-display text-4xl font-800 text-lm-white group-hover:text-lm-accent transition-colors">+120</span>
-                        <span class="block text-xs text-lm-silver mt-2 tracking-[0.15em] uppercase">Proyectos</span>
-                    </div>
-                    <div class="border border-lm-graphite p-6 group hover:border-lm-silver transition-all duration-500">
-                        <span
-                            class="block font-display text-4xl font-800 text-lm-white group-hover:text-lm-accent transition-colors">5</span>
-                        <span class="block text-xs text-lm-silver mt-2 tracking-[0.15em] uppercase">Años</span>
-                    </div>
-                    <div class="border border-lm-graphite p-6 group hover:border-lm-silver transition-all duration-500">
-                        <span
-                            class="block font-display text-4xl font-800 text-lm-white group-hover:text-lm-accent transition-colors">98%</span>
-                        <span class="block text-xs text-lm-silver mt-2 tracking-[0.15em] uppercase">Satisfacción</span>
-                    </div>
+
+                    <!-- Floating accent dot -->
+                    <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-lm-white/10 rounded-full hero-float-dot-1"></div>
                 </div>
 
-                <!-- Vertical text -->
+                <!-- Scroll text -->
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-[1px] bg-lm-graphite"></div>
                     <span class="text-xs text-lm-silver tracking-[0.3em] uppercase">Scroll para explorar</span>
@@ -109,6 +103,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Scroll down indicator -->
+    <a href="#servicios"
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 group cursor-pointer animate-fade-in-up delay-700"
+        aria-label="Desplazar hacia abajo">
+        <span
+            class="text-[10px] text-lm-silver/60 tracking-[0.3em] uppercase font-body group-hover:text-lm-silver transition-colors duration-300">Descubre
+            más</span>
+        <div
+            class="w-10 h-10 border border-lm-graphite/50 rounded-full flex items-center justify-center group-hover:border-lm-silver/60 transition-all duration-300 hero-scroll-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                class="text-lm-silver/60 group-hover:text-lm-white transition-colors duration-300">
+                <path d="m6 9 6 6 6-6" />
+            </svg>
+        </div>
+    </a>
 
     <!-- Bottom line -->
     <div
