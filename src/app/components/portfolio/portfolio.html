@@ -22,7 +22,9 @@
             @for (project of projects; track project.title; let i = $index) {
             <article class="group relative overflow-hidden cursor-pointer"
                 [class.lg:col-span-2]="project.size === 'large' && i !== projects.length - 1"
-                [class.lg:col-span-3]="project.size === 'large' && i === projects.length - 1">
+                [class.lg:col-span-3]="project.size === 'large' && i === projects.length - 1"
+                [class.lg:col-span-2]="project.size === 'medium' && i !== projects.length - 1"
+                [class.lg:col-span-3]="project.size === 'medium' && i === projects.length - 1">
                 <div class="relative aspect-[16/10] overflow-hidden" [class]="'bg-linear-to-br ' + project.gradient">
                     @if (project.image) {
                     <img [src]="project.image" [alt]="project.title"

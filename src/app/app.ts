@@ -4,12 +4,13 @@ import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs';
 import { SocialSidebarComponent } from './components/social-sidebar/social-sidebar';
+import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button';
 import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, BreadcrumbsComponent, SocialSidebarComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, BreadcrumbsComponent, SocialSidebarComponent, WhatsappButtonComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
