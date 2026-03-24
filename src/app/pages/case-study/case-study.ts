@@ -1,49 +1,21 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-
-export interface CaseStudyMetric {
-    value: string;
-    label: string;
-}
-
-export interface CaseStudyService {
-    icon: string;
-    name: string;
-    description: string;
-}
-
-export interface CaseStudy {
-    challenge: string;
-    solution: string;
-    results: string;
-    services: CaseStudyService[];
-    metrics: CaseStudyMetric[];
-    testimonial?: {
-        quote: string;
-        author: string;
-        role: string;
-    };
-}
-
-export interface Project {
-    slug: string;
-    title: string;
-    category: string;
-    size: 'large' | 'medium' | 'small';
-    gradient: string;
-    image?: string;
-    caseStudy: CaseStudy;
-}
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Project } from '../../components/portfolio/portfolio';
 
 @Component({
-    selector: 'app-portfolio',
+    selector: 'app-case-study',
     standalone: true,
     imports: [RouterLink],
-    templateUrl: './portfolio.html',
-    styleUrl: './portfolio.css',
+    templateUrl: './case-study.html',
+    styleUrl: './case-study.css',
 })
-export class PortfolioComponent {
-    projects: Project[] = [
+export class CaseStudyComponent implements OnInit {
+    private route = inject(ActivatedRoute);
+    private router = inject(Router);
+
+    project!: Project;
+
+    private allProjects: Project[] = [
         {
             slug: 'martial-core',
             title: 'Martialcore',
@@ -225,4 +197,31 @@ export class PortfolioComponent {
             },
         },
     ];
+
+    ngOnInit() {
+        const slug = this.route.snapshot.paramMap.get('slug');
+        const found = this.allProjects.find(p => p.slug === slug);
+        if (!found) {
+            this.router.navigate(['/']);
+            return;
+        }
+        this.project = found;
+    }
+
+    getServiceIcon(icon: string): string {
+        const icons: Record<string, string> = {
+            'palette': 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+            'meta': 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
+            'google': 'M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z',
+            'package': 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+            'layout': 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
+            'search': 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+            'bar-chart': 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+            'instagram': 'M16 4H8C5.79 4 4 5.79 4 8v8c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V8c0-2.21-1.79-4-4-4zm-4 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3.5-7.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z',
+            'camera': 'M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z M12 17a5 5 0 100-10 5 5 0 000 10z',
+            'trending-up': 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+            'mail': 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+        };
+        return icons[icon] || icons['palette'];
+    }
 }

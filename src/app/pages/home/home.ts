@@ -5,25 +5,28 @@ import { AboutComponent } from '../../components/about/about';
 import { PortfolioComponent } from '../../components/portfolio/portfolio';
 import { TestimonialsComponent } from '../../components/testimonials/testimonials';
 import { ContactComponent } from '../../components/contact/contact';
+import { BrandsCarouselComponent } from '../../components/brands-carousel/brands-carousel';
 
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    imports: [
-        HeroComponent,
-        ServicesComponent,
-        AboutComponent,
-        PortfolioComponent,
-        TestimonialsComponent,
-        ContactComponent,
-    ],
-    template: `
+  selector: 'app-home',
+  standalone: true,
+  imports: [
+    HeroComponent,
+    ServicesComponent,
+    AboutComponent,
+    PortfolioComponent,
+    TestimonialsComponent,
+    BrandsCarouselComponent,
+    ContactComponent,
+  ],
+  template: `
     <main>
       <app-hero />
       <app-services />
       <app-about />
       <app-portfolio />
       <app-testimonials />
+      <app-brands-carousel />
       <app-contact />
     </main>
   `,

@@ -1,22 +1,25 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [],
+    imports: [RouterLink],
     templateUrl: './navbar.html',
     styleUrl: './navbar.css',
 })
 export class NavbarComponent {
+    private router = inject(Router);
+
     isScrolled = signal(false);
     mobileMenuOpen = signal(false);
 
     navLinks = [
-        { label: 'Inicio', path: '/', fragment: '' },
-        { label: 'Servicios', path: '/', fragment: 'servicios' },
-        { label: 'Nosotros', path: '/', fragment: 'nosotros' },
-        { label: 'Portafolio', path: '/', fragment: 'portafolio' },
-        { label: 'Contacto', path: '/', fragment: 'contacto' },
+        { label: 'Inicio', fragment: '' },
+        { label: 'Servicios', fragment: 'servicios' },
+        { label: 'Nosotros', fragment: 'nosotros' },
+        { label: 'Portafolio', fragment: 'portafolio' },
+        { label: 'Contacto', fragment: 'contacto' },
     ];
 
     @HostListener('window:scroll')
@@ -34,13 +37,31 @@ export class NavbarComponent {
 
     scrollTo(fragment: string) {
         this.closeMenu();
-        if (!fragment) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
-        }
-        const el = document.getElementById(fragment);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
+
+        const isHome = this.router.url === '/' || this.router.url.startsWith('/#');
+
+        if (isHome) {
+            if (!fragment) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+            const el = document.getElementById(fragment);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            this.router.navigate(['/'], { fragment: fragment || undefined }).then(() => {
+                setTimeout(() => {
+                    if (!fragment) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const el = document.getElementById(fragment);
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                }, 300);
+            });
         }
     }
 }

@@ -10,7 +10,7 @@ import { SeoService } from './services/seo.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, BreadcrumbsComponent, SocialSidebarComponent, WhatsappButtonComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, SocialSidebarComponent, WhatsappButtonComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

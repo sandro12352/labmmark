@@ -4,10 +4,10 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
-            <a (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
-                <img src="assets/labmark-logo.png" alt="LABMARK Producciones"
-                    class="h-30 w-auto transition-all duration-300 group-hover:opacity-80"
-                    style="filter: invert(1) brightness(1.5); mix-blend-mode: screen;">
+            <a routerLink="/" (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
+                <img src="assets/logotipo.webp" alt="LABMARK Producciones"
+                    class="h-35 w-auto transition-all duration-300 group-hover:opacity-80 pt-2."
+                    style="filter: invert(0) brightness(1.5); mix-blend-mode: screen;">
             </a>
 
             <!-- Desktop Nav -->
@@ -23,7 +23,7 @@
             </div>
 
             <!-- CTA Button Desktop -->
-            <a (click)="scrollTo('contacto')"
+            <a routerLink="/contacto" (click)="scrollTo('contacto')"
                 class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-lm-white text-lm-black font-display font-700 text-sm tracking-wide rounded-none hover:bg-lm-accent transition-all duration-300 cursor-pointer hover:tracking-[0.05em]">
                 HABLEMOS
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"

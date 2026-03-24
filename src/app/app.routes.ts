@@ -37,6 +37,15 @@ export const routes: Routes = [
         },
     },
     {
+        path: 'portafolio/:slug',
+        loadComponent: () => import('./pages/case-study/case-study').then(m => m.CaseStudyComponent),
+        data: {
+            title: 'Caso de Éxito',
+            breadcrumb: 'Caso de Éxito',
+            description: 'Conoce los detalles de nuestro caso de éxito y los resultados obtenidos.',
+        },
+    },
+    {
         path: 'contacto',
         loadComponent: () => import('./pages/home/home').then(m => m.HomeComponent),
         data: {

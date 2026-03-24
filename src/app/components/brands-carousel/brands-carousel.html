@@ -1,0 +1,88 @@
+<section class="relative py-20 lg:py-28 bg-lm-charcoal border-y border-lm-graphite/30 overflow-hidden">
+    <!-- Header -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
+        <div class="text-center">
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <div class="w-12 h-[1px] bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Confían en nosotros</span>
+                <div class="w-12 h-[1px] bg-lm-silver"></div>
+            </div>
+            <h2
+                class="font-display text-3xl sm:text-4xl lg:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                MARCAS QUE IMPULSA<span class="text-lm-silver">MOS</span><span class="text-lm-graphite">.</span>
+            </h2>
+        </div>
+    </div>
+
+    <!-- Carousel Track - Row 1 (left to right) -->
+    <div class="w-full overflow-hidden mb-6">
+        <div class="flex gap-6 w-max animate-scroll-left hover:[animation-play-state:paused]">
+            @for (brand of brands; track brand.name) {
+            <div class="shrink-0">
+                <div
+                    class="flex items-center gap-4 px-10 py-6 border border-lm-graphite/30 bg-lm-black/50 hover:border-lm-silver/30 transition-all duration-500 group">
+                    <span
+                        class="font-display text-2xl font-800 text-lm-graphite group-hover:text-lm-silver transition-colors duration-500">{{
+                        brand.logo }}</span>
+                    <span
+                        class="text-sm text-lm-silver/60 font-body tracking-wide group-hover:text-lm-silver transition-colors duration-500 whitespace-nowrap">{{
+                        brand.name }}</span>
+                </div>
+            </div>
+            }
+            @for (brand of brands; track brand.name + '-dup') {
+            <div class="shrink-0">
+                <div
+                    class="flex items-center gap-4 px-10 py-6 border border-lm-graphite/30 bg-lm-black/50 hover:border-lm-silver/30 transition-all duration-500 group">
+                    <span
+                        class="font-display text-2xl font-800 text-lm-graphite group-hover:text-lm-silver transition-colors duration-500">{{
+                        brand.logo }}</span>
+                    <span
+                        class="text-sm text-lm-silver/60 font-body tracking-wide group-hover:text-lm-silver transition-colors duration-500 whitespace-nowrap">{{
+                        brand.name }}</span>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Carousel Track - Row 2 (right to left) -->
+    <div class="w-full overflow-hidden">
+        <div class="flex gap-6 w-max animate-scroll-right hover:[animation-play-state:paused]">
+            @for (brand of brands; track brand.name) {
+            <div class="shrink-0">
+                <div
+                    class="flex items-center gap-4 px-10 py-6 border border-lm-graphite/30 bg-lm-black/50 hover:border-lm-silver/30 transition-all duration-500 group">
+                    <span
+                        class="font-display text-2xl font-800 text-lm-graphite group-hover:text-lm-silver transition-colors duration-500">{{
+                        brand.logo }}</span>
+                    <span
+                        class="text-sm text-lm-silver/60 font-body tracking-wide group-hover:text-lm-silver transition-colors duration-500 whitespace-nowrap">{{
+                        brand.name }}</span>
+                </div>
+            </div>
+            }
+            @for (brand of brands; track brand.name + '-dup2') {
+            <div class="shrink-0">
+                <div
+                    class="flex items-center gap-4 px-10 py-6 border border-lm-graphite/30 bg-lm-black/50 hover:border-lm-silver/30 transition-all duration-500 group">
+                    <span
+                        class="font-display text-2xl font-800 text-lm-graphite group-hover:text-lm-silver transition-colors duration-500">{{
+                        brand.logo }}</span>
+                    <span
+                        class="text-sm text-lm-silver/60 font-body tracking-wide group-hover:text-lm-silver transition-colors duration-500 whitespace-nowrap">{{
+                        brand.name }}</span>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Fade edges -->
+    <div
+        class="absolute top-0 left-0 w-32 h-full bg-linear-to-r from-lm-charcoal to-transparent z-10 pointer-events-none">
+    </div>
+    <div
+        class="absolute top-0 right-0 w-32 h-full bg-linear-to-l from-lm-charcoal to-transparent z-10 pointer-events-none">
+    </div>
+</section>
