@@ -18,24 +18,24 @@ export class TestimonialsComponent {
     testimonials: Testimonial[] = [
         {
             quote: 'LABMARK transformó completamente nuestra presencia digital. Los resultados superaron nuestras expectativas en los primeros 3 meses.',
-            name: 'Andrea Villanueva',
-            role: 'CEO',
-            company: 'Renacer Cosmetics',
-            initials: 'AV',
+            name: 'Alejandro Villanueva',
+            role: 'Dueño',
+            company: 'Martial Core',
+            initials: 'MC',
         },
         {
             quote: 'Su enfoque estratégico y la calidad del diseño hicieron que nuestra marca se destaque en un mercado saturado. Totalmente recomendables.',
             name: 'Carlos Mendoza',
-            role: 'Director de Marketing',
-            company: 'TechPulse',
-            initials: 'CM',
+            role: 'Dueño',
+            company: 'Tis Martial',
+            initials: 'TM',
         },
         {
             quote: 'El equipo de LABMARK entiende perfectamente las necesidades de cada proyecto. Su creatividad no tiene límites.',
-            name: 'María del Carmen',
-            role: 'Fundadora',
-            company: 'Alma Café',
-            initials: 'MC',
+            name: 'Mario del Carmen',
+            role: 'Fundador',
+            company: 'Grin Perú',
+            initials: 'GP',
         },
     ];
 }

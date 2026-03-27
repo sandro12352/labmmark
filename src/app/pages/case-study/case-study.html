@@ -54,6 +54,33 @@
     </div>
 </section>
 
+<!-- Brand Video -->
+@if (project.caseStudy.videoUrl) {
+<section class="relative py-24 lg:py-32 bg-lm-black">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-[1px] bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Video</span>
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                LA MARCA EN MOVIMIENTO<span class="text-lm-graphite">.</span>
+            </h2>
+        </div>
+
+        <div class="relative w-full aspect-video border border-lm-graphite/30 overflow-hidden">
+            <video
+                [src]="project.caseStudy.videoUrl"
+                class="w-full h-full object-cover"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+        </div>
+    </div>
+</section>
+}
+
 <!-- Challenge / Solution / Results -->
 <section class="relative py-24 lg:py-32 bg-lm-black">
     <div class="absolute top-0 right-0 w-32 h-32 border-t border-r border-lm-graphite/20"></div>
@@ -113,6 +140,37 @@
         </div>
     </div>
 </section>
+
+<!-- Gallery -->
+@if (project.caseStudy.gallery?.length) {
+<section class="relative py-24 lg:py-32 bg-lm-black">
+    <div class="absolute top-0 left-0 w-32 h-32 border-t border-l border-lm-graphite/20"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-16">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-[1px] bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Galería</span>
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                EL PROYECTO EN DETALLE<span class="text-lm-graphite">.</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+            @for (image of project.caseStudy.gallery; track image) {
+            <div
+                class="group relative aspect-[1080/1350] overflow-hidden border border-lm-graphite/30 hover:border-lm-silver/30 transition-colors duration-500">
+                <img [src]="image" [alt]="project.title + ' - galería'"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-lm-black/20 group-hover:bg-transparent transition-colors duration-500">
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+}
 
 <!-- Services Used -->
 <section class="relative py-24 lg:py-32 bg-lm-charcoal">

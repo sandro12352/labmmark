@@ -13,15 +13,12 @@ interface Brand {
 })
 export class BrandsCarouselComponent {
     brands: Brand[] = [
-        { name: 'Renacer Cosmetics', logo: 'RC' },
-        { name: 'TechPulse', logo: 'TP' },
-        { name: 'Alma Café', logo: 'AC' },
-        { name: 'Nova Fitness', logo: 'NF' },
-        { name: 'Urban Living', logo: 'UL' },
-        { name: 'Meridian Bank', logo: 'MB' },
-        { name: 'Solaris Energy', logo: 'SE' },
-        { name: 'Vertex Studio', logo: 'VS' },
-        { name: 'Prism Digital', logo: 'PD' },
-        { name: 'Atlas Group', logo: 'AG' },
+        { name: 'Martialcore', logo: 'brands/martial.webp' },
+        { name: 'Profe Altoque', logo: 'brands/profe.webp' },
+        { name: 'Oigo Salud', logo: 'brands/oigo.webp' },
+        { name: 'Tis Martial', logo: 'brands/tis.webp' },
+        { name: 'Tecnograss', logo: 'brands/tecnograss.webp' },
+        { name: 'Grin Perú', logo: 'brands/grin.webp' },
+
     ];
 }

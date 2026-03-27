@@ -39,11 +39,20 @@ export class CaseStudyComponent implements OnInit {
                     { value: '58K', label: 'Nuevos seguidores' },
                     { value: '-45%', label: 'Costo por adquisición' },
                 ],
+                gallery: [
+                    'assets/martial/martialcore-1.jpeg',
+                    'assets/martial/martialcore-2.jpeg',
+                    'assets/martial/martialcore-3.jpeg',
+                    'assets/martial/martialcore-4.jpeg',
+                    'assets/martial/martialcore-5.jpeg',
+                    'assets/martial/martialcore-6.jpeg',
+                ],
                 testimonial: {
                     quote: 'LABMARK transformó nuestra marca por completo. Los resultados superaron todas nuestras expectativas.',
                     author: 'María González',
                     role: 'CEO, Renacer Cosmetics',
                 },
+                videoUrl: 'assets/martial/video2.mp4',
             },
         },
         {

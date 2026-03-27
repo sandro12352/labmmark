@@ -18,6 +18,8 @@ export interface CaseStudy {
     results: string;
     services: CaseStudyService[];
     metrics: CaseStudyMetric[];
+    gallery?: string[];
+    videoUrl?: string;
     testimonial?: {
         quote: string;
         author: string;
@@ -66,6 +68,14 @@ export class PortfolioComponent {
                     { value: '4.2x', label: 'ROAS en Meta Ads' },
                     { value: '58K', label: 'Nuevos seguidores' },
                     { value: '-45%', label: 'Costo por adquisición' },
+                ],
+                gallery: [
+                    'assets/gallery/martialcore-1.jpg',
+                    'assets/gallery/martialcore-2.jpg',
+                    'assets/gallery/martialcore-3.jpg',
+                    'assets/gallery/martialcore-4.jpg',
+                    'assets/gallery/martialcore-5.jpg',
+                    'assets/gallery/martialcore-6.jpg',
                 ],
                 testimonial: {
                     quote: 'LABMARK transformó nuestra marca por completo. Los resultados superaron todas nuestras expectativas.',
