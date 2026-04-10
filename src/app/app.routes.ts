@@ -20,11 +20,11 @@ export const routes: Routes = [
     },
     {
         path: 'nosotros',
-        loadComponent: () => import('./pages/home/home').then(m => m.HomeComponent),
+        loadComponent: () => import('./pages/nosotros/nosotros').then(m => m.NosotrosComponent),
         data: {
-            title: 'Nosotros',
+            title: 'Nosotros — LABMARK',
             breadcrumb: 'Nosotros',
-            description: 'Conoce al equipo de LABMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden.',
+            description: 'Conoce al equipo de LABMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores, proceso y trayectoria.',
         },
     },
     {

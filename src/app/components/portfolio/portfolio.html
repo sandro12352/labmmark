@@ -20,13 +20,12 @@
         <!-- Portfolio Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @for (project of projects; track project.slug; let i = $index) {
-            <article class="group relative overflow-hidden cursor-pointer"
-                [routerLink]="['/portafolio', project.slug]"
+            <article class="group relative overflow-hidden cursor-pointer" [routerLink]="['/portafolio', project.slug]"
                 [class.lg:col-span-2]="project.size === 'large' && i !== projects.length - 1"
                 [class.lg:col-span-3]="project.size === 'large' && i === projects.length - 1"
                 [class.lg:col-span-2]="project.size === 'medium' && i !== projects.length - 1"
                 [class.lg:col-span-3]="project.size === 'medium' && i === projects.length - 1">
-                <div class="relative aspect-square max-w-[1080px] max-h-[1080px] overflow-hidden"
+                <div class="relative aspect-square max-w-[500px] max-h-[500px] overflow-hidden"
                     [class]="'bg-linear-to-br ' + project.gradient">
                     @if (project.image) {
                     <img [src]="project.image" [alt]="project.title"

@@ -13,7 +13,7 @@
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-1">
                 @for (link of navLinks; track link.label) {
-                <a (click)="scrollTo(link.fragment)"
+                <a (click)="navigateTo(link)"
                     class="px-4 py-2 text-sm font-medium text-lm-silver hover:text-lm-white transition-all duration-300 cursor-pointer relative group">
                     {{ link.label }}
                     <span
@@ -59,7 +59,7 @@
     <div class="md:hidden bg-lm-black/98 backdrop-blur-xl border-t border-lm-graphite animate-fade-in">
         <div class="px-6 py-8 space-y-1">
             @for (link of navLinks; track link.label) {
-            <a (click)="scrollTo(link.fragment)"
+            <a (click)="navigateTo(link)"
                 class="block px-4 py-3 text-lg font-display font-600 text-lm-silver hover:text-lm-white hover:pl-6 transition-all duration-300 cursor-pointer border-b border-lm-graphite/30">
                 {{ link.label }}
             </a>

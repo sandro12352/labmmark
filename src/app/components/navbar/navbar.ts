@@ -14,10 +14,10 @@ export class NavbarComponent {
     isScrolled = signal(false);
     mobileMenuOpen = signal(false);
 
-    navLinks = [
+    navLinks: { label: string; fragment: string; route?: string }[] = [
         { label: 'Inicio', fragment: '' },
         { label: 'Servicios', fragment: 'servicios' },
-        { label: 'Nosotros', fragment: 'nosotros' },
+        { label: 'Nosotros', fragment: 'nosotros', route: '/nosotros' },
         { label: 'Portafolio', fragment: 'portafolio' },
         { label: 'Contacto', fragment: 'contacto' },
     ];
@@ -33,6 +33,19 @@ export class NavbarComponent {
 
     closeMenu() {
         this.mobileMenuOpen.set(false);
+    }
+
+    navigateTo(link: { label: string; fragment: string; route?: string }) {
+        this.closeMenu();
+
+        // If the link has a dedicated route, navigate to it
+        if (link.route) {
+            this.router.navigate([link.route]);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        this.scrollTo(link.fragment);
     }
 
     scrollTo(fragment: string) {
