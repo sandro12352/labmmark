@@ -1,116 +1,71 @@
-<section id="inicio" class="relative min-h-screen flex items-center overflow-hidden lg:py-10"
+<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden"
     aria-label="Sección principal">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+        <source src="assets/videos/hero-video1.mp4" type="video/mp4">
+        <source src="assets/videos/hero-video1.mp4" type="video/webm">
+    </video>
+
+    <!-- Overlay gradient for better text readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-lm-black/40 via-lm-black/30 to-lm-black/50"></div>
+
     <!-- Grain overlay -->
     <div class="grain-overlay"></div>
 
-    <!-- Diagonal decorative lines -->
-    <div
-        class="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-lm-graphite to-transparent transform rotate-12 translate-x-[40vw] opacity-40">
-    </div>
-    <div
-        class="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-transparent via-lm-graphite/30 to-transparent transform -rotate-12 translate-x-[20vw] opacity-30">
-    </div>
+    <!-- Content centered -->
+    <div class="relative z-10 flex flex-col items-center justify-center text-center px-6">
+        <!-- Tag -->
+        <div class="mb-8 animate-fade-in-up">
+            <span
+                class="inline-flex items-center gap-2 px-4 py-1.5 border border-lm-light text-lm-white text-xs font-body tracking-[0.3em] uppercase">
+                <span class="w-2 h-2 bg-lm-white rounded-full animate-pulse"></span>
+                Agencia de Marketing Digital
+            </span>
+        </div>
 
-    <!-- 3D Starfield Background -->
-    <div class="starfield-container absolute inset-0 pointer-events-none">
-        <div class="stars stars-sm"></div>
-        <div class="stars stars-md"></div>
-        <div class="stars stars-lg"></div>
-        <div class="stars stars-sm"></div>
-        <div class="stars stars-md"></div>
-        <div class="stars stars-lg"></div>
-        <div class="stars stars-sm"></div>
-        <div class="stars stars-md"></div>
-        <div class="stars stars-lg"></div>
-        <div class="stars stars-sm"></div>
-        <div class="stars stars-md"></div>
-        <div class="stars stars-lg"></div>
-    </div>
+        <!-- Headline -->
+        <h1 class="animate-fade-in-up delay-200 max-w-4xl">
+            <span
+                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">
+                CREAMOS
+            </span>
+            <span
+                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-gray-100 mt-3">
+                MARCAS
+            </span>
+            <span
+                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white mt-3">
+                QUE<span class="text-lm-graphite ml-4">_</span>
+            </span>
+            <span
+                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] mt-3 hero-gradient-text">
+                IMPACTAN
+            </span>
+        </h1>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0 w-full">
-        <div class="grid lg:grid-cols-12 gap-8 items-center">
-            <!-- Left content -->
-            <div class="lg:col-span-7 space-y-8">
-                <!-- Tag -->
-                <div class="animate-fade-in-up">
-                    <span
-                        class="inline-flex items-center gap-2 px-4 py-1.5 border border-lm-graphite text-lm-silver text-xs font-body tracking-[0.2em] uppercase">
-                        <span class="w-2 h-2 bg-lm-white rounded-full animate-pulse"></span>
-                        Agencia de Marketing Digital
-                    </span>
-                </div>
+        <!-- Subtitle -->
+        <p class="text-lm-white text-lg lg:text-xl max-w-2xl leading-relaxed animate-fade-in-up delay-400 mt-8">
+            Transformamos ideas en<span class="text-lm-accent"> experiencias digitales poderosas</span>. Estrategia,
+            creatividad y datos al servicio
+            de tu marca.
+        </p>
 
-                <!-- Headline -->
-                <h1 class="animate-fade-in-up delay-200">
-                    <span
-                        class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.9] tracking-[-0.04em] text-lm-white">
-                        CREAMOS
-                    </span>
-                    <span
-                        class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.9] tracking-[-0.04em] text-lm-silver mt-2">
-                        MARCAS
-                    </span>
-                    <span
-                        class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.9] tracking-[-0.04em] text-lm-white mt-2">
-                        QUE<span class="text-lm-graphite ml-4">_</span>
-                    </span>
-                    <span
-                        class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.9] tracking-[-0.04em] mt-2 hero-gradient-text">
-                        IMPACTAN
-                    </span>
-                </h1>
-
-                <!-- Subtitle -->
-                <p class="text-lm-silver text-lg lg:text-xl max-w-lg leading-relaxed animate-fade-in-up delay-400">
-                    Transformamos ideas en experiencias digitales poderosas. Estrategia, creatividad y datos al servicio
-                    de tu marca.
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-500">
-                    <a (click)="scrollTo('contacto')"
-                        class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-accent transition-all duration-300 group cursor-pointer">
-                        INICIAR PROYECTO
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                            class="transition-transform group-hover:translate-x-1">
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                        </svg>
-                    </a>
-                    <a (click)="scrollTo('portafolio')"
-                        class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-lm-graphite text-lm-white font-display font-600 text-sm tracking-[0.1em] hover:border-lm-silver hover:bg-lm-charcoal/50 transition-all duration-300 cursor-pointer">
-                        VER TRABAJOS
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right side - Hero Image -->
-            <div class="lg:col-span-5 hidden lg:flex flex-col items-end space-y-6 animate-slide-right delay-300">
-                <div class="relative w-full max-w-md hero-image-container">
-                    <!-- Decorative frame -->
-                    <div class="absolute -top-3 -left-3 w-20 h-20 border-t border-l border-lm-graphite/40"></div>
-                    <div class="absolute -bottom-3 -right-3 w-20 h-20 border-b border-r border-lm-graphite/40"></div>
-
-                    <!-- Image -->
-                    <div class="relative overflow-hidden">
-                        <img src="assets/imginicio.webp" alt="LABMARK - Creatividad Digital"
-                            class="w-full h-auto object-cover grayscale-30 opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700" />
-                        <!-- Subtle overlay gradient -->
-                        <div class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent">
-                        </div>
-                    </div>
-
-                    <!-- Floating accent dot -->
-                    <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-lm-white/10 rounded-full hero-float-dot-1"></div>
-                </div>
-
-                <!-- Scroll text -->
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-[1px] bg-lm-graphite"></div>
-                    <span class="text-xs text-lm-silver tracking-[0.3em] uppercase">Scroll para explorar</span>
-                </div>
-            </div>
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-500 mt-12">
+            <a (click)="scrollTo('contacto')"
+                class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-accent transition-all duration-300 group cursor-pointer">
+                INICIAR PROYECTO
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="transition-transform group-hover:translate-x-1">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
+            <a (click)="scrollTo('portafolio')"
+                class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-lm-graphite text-lm-white font-display font-600 text-sm tracking-[0.1em] hover:border-lm-silver hover:bg-lm-charcoal/50 transition-all duration-300 cursor-pointer">
+                VER TRABAJOS
+            </a>
         </div>
     </div>
 
@@ -119,13 +74,13 @@
         class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 group cursor-pointer animate-fade-in-up delay-700"
         aria-label="Desplazar hacia abajo">
         <span
-            class="text-[10px] text-lm-silver/60 tracking-[0.3em] uppercase font-body group-hover:text-lm-silver transition-colors duration-300">Descubre
+            class="text-[10px] text-lm-silver tracking-[0.3em] uppercase font-body group-hover:text-lm-white transition-colors duration-300">Descubre
             más</span>
         <div
             class="w-10 h-10 border border-lm-graphite/50 rounded-full flex items-center justify-center group-hover:border-lm-silver/60 transition-all duration-300 hero-scroll-bounce">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                class="text-lm-silver/60 group-hover:text-lm-white transition-colors duration-300">
+                class="text-lm-silver group-hover:text-lm-white transition-colors duration-300">
                 <path d="m6 9 6 6 6-6" />
             </svg>
         </div>
@@ -133,6 +88,6 @@
 
     <!-- Bottom line -->
     <div
-        class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-lm-graphite to-transparent">
+        class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-lm-graphite to-transparent z-10">
     </div>
 </section>

@@ -1,0 +1,402 @@
+{
+  "version": "6.0",
+  "nxVersion": "22.5.4",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {
+      "labmmark": [
+        {
+          "file": ".agent/skills/front-end/SKILL.MD",
+          "hash": "870089020232793814"
+        },
+        {
+          "file": ".editorconfig",
+          "hash": "8037249353422744134"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "17738933498318317962"
+        },
+        {
+          "file": ".postcssrc.json",
+          "hash": "12098411909725170385"
+        },
+        {
+          "file": ".vscode/extensions.json",
+          "hash": "11934160580685414355"
+        },
+        {
+          "file": ".vscode/launch.json",
+          "hash": "17406702432687230417"
+        },
+        {
+          "file": ".vscode/tasks.json",
+          "hash": "10093397977228577162"
+        },
+        {
+          "file": "README.md",
+          "hash": "1608343201324685615"
+        },
+        {
+          "file": "angular.json",
+          "hash": "4814394102951427695"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "8540567951984714451"
+        },
+        {
+          "file": "package.json",
+          "hash": "6159422765128304163"
+        },
+        {
+          "file": "public/assets/da.jpg",
+          "hash": "7690058750195763442"
+        },
+        {
+          "file": "public/assets/imginicio.webp",
+          "hash": "5195687030132063125"
+        },
+        {
+          "file": "public/assets/logotipo.webp",
+          "hash": "9788109465342735953"
+        },
+        {
+          "file": "public/assets/martial/martialcore-1.jpeg",
+          "hash": "16135771007992658271"
+        },
+        {
+          "file": "public/assets/martial/martialcore-2.jpeg",
+          "hash": "12319701188026449440"
+        },
+        {
+          "file": "public/assets/martial/martialcore-3.jpeg",
+          "hash": "6511695544235894527"
+        },
+        {
+          "file": "public/assets/martial/martialcore-4.jpeg",
+          "hash": "3651757779743349216"
+        },
+        {
+          "file": "public/assets/martial/video2.mp4",
+          "hash": "26314643713393263"
+        },
+        {
+          "file": "public/assets/martialcore.jpeg",
+          "hash": "3033362039322461410"
+        },
+        {
+          "file": "public/assets/nosotros.webp",
+          "hash": "3721353033425621158"
+        },
+        {
+          "file": "public/assets/portfolio-1.png",
+          "hash": "17816522085310114639"
+        },
+        {
+          "file": "public/assets/portfolio-2.png",
+          "hash": "10890474697120442515"
+        },
+        {
+          "file": "public/assets/services/ads.jpg",
+          "hash": "11011132418159167568"
+        },
+        {
+          "file": "public/assets/services/branding.jpg",
+          "hash": "13431803702068605264"
+        },
+        {
+          "file": "public/assets/services/content.jpg",
+          "hash": "2668682744230980659"
+        },
+        {
+          "file": "public/assets/services/social-media.jpg",
+          "hash": "10185712849080479432"
+        },
+        {
+          "file": "public/assets/services/strategy.jpg",
+          "hash": "11012942578805550962"
+        },
+        {
+          "file": "public/assets/services/web.jpg",
+          "hash": "5464599108032322414"
+        },
+        {
+          "file": "public/assets/team.png",
+          "hash": "14374727676893974710"
+        },
+        {
+          "file": "public/assets/videos/hero-video.mp4",
+          "hash": "13070575123352973858"
+        },
+        {
+          "file": "public/assets/videos/hero-video1.mp4",
+          "hash": "11541099361284212053"
+        },
+        {
+          "file": "public/brands/grin.webp",
+          "hash": "15084001710748145164"
+        },
+        {
+          "file": "public/brands/martial.webp",
+          "hash": "7701983765268414118"
+        },
+        {
+          "file": "public/brands/oigo.webp",
+          "hash": "16282606234289265394"
+        },
+        {
+          "file": "public/brands/profe.webp",
+          "hash": "18051200992297638303"
+        },
+        {
+          "file": "public/brands/tecnograss.webp",
+          "hash": "16875073555787448818"
+        },
+        {
+          "file": "public/brands/tis.webp",
+          "hash": "1360976872223711051"
+        },
+        {
+          "file": "public/favicon.ico",
+          "hash": "3988961587069885523"
+        },
+        {
+          "file": "public/favicon.webp",
+          "hash": "17480467724451879571"
+        },
+        {
+          "file": "spartan.json",
+          "hash": "10265594405181279116"
+        },
+        {
+          "file": "src/app/app.config.ts",
+          "hash": "8622584943185943861"
+        },
+        {
+          "file": "src/app/app.css",
+          "hash": "11358053138614982345"
+        },
+        {
+          "file": "src/app/app.html",
+          "hash": "13637701727812350011"
+        },
+        {
+          "file": "src/app/app.routes.ts",
+          "hash": "8888699274763320405"
+        },
+        {
+          "file": "src/app/app.spec.ts",
+          "hash": "3695979286451760839"
+        },
+        {
+          "file": "src/app/app.ts",
+          "hash": "10747849582112496215"
+        },
+        {
+          "file": "src/app/components/about/about.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/about/about.html",
+          "hash": "16393436678819502826"
+        },
+        {
+          "file": "src/app/components/about/about.ts",
+          "hash": "12729469389213558732"
+        },
+        {
+          "file": "src/app/components/brands-carousel/brands-carousel.css",
+          "hash": "12771958477761321354"
+        },
+        {
+          "file": "src/app/components/brands-carousel/brands-carousel.html",
+          "hash": "14138921248245665560"
+        },
+        {
+          "file": "src/app/components/brands-carousel/brands-carousel.ts",
+          "hash": "10608038189411456116"
+        },
+        {
+          "file": "src/app/components/breadcrumbs/breadcrumbs.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/breadcrumbs/breadcrumbs.html",
+          "hash": "11525543054233764228"
+        },
+        {
+          "file": "src/app/components/breadcrumbs/breadcrumbs.ts",
+          "hash": "15879626923572213802"
+        },
+        {
+          "file": "src/app/components/contact/contact.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/contact/contact.html",
+          "hash": "1630273498331564588"
+        },
+        {
+          "file": "src/app/components/contact/contact.ts",
+          "hash": "2961913101360185637"
+        },
+        {
+          "file": "src/app/components/footer/footer.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/footer/footer.html",
+          "hash": "17494373564343646424"
+        },
+        {
+          "file": "src/app/components/footer/footer.ts",
+          "hash": "13215387095468286115"
+        },
+        {
+          "file": "src/app/components/hero/hero.css",
+          "hash": "10313327424237653528"
+        },
+        {
+          "file": "src/app/components/hero/hero.html",
+          "hash": "14841756470391100248"
+        },
+        {
+          "file": "src/app/components/hero/hero.ts",
+          "hash": "10227091415332280257"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.html",
+          "hash": "1983589196509723681"
+        },
+        {
+          "file": "src/app/components/navbar/navbar.ts",
+          "hash": "13466606890555590550"
+        },
+        {
+          "file": "src/app/components/portfolio/portfolio.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/portfolio/portfolio.html",
+          "hash": "10164816366650863146"
+        },
+        {
+          "file": "src/app/components/portfolio/portfolio.ts",
+          "hash": "7196690297076293069"
+        },
+        {
+          "file": "src/app/components/services/services.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/services/services.html",
+          "hash": "4931793759994465130"
+        },
+        {
+          "file": "src/app/components/services/services.ts",
+          "hash": "9908155080612585999"
+        },
+        {
+          "file": "src/app/components/social-sidebar/social-sidebar.css",
+          "hash": "1147009732329122358"
+        },
+        {
+          "file": "src/app/components/social-sidebar/social-sidebar.html",
+          "hash": "14953704469363817664"
+        },
+        {
+          "file": "src/app/components/social-sidebar/social-sidebar.ts",
+          "hash": "5305892461290059945"
+        },
+        {
+          "file": "src/app/components/testimonials/testimonials.css",
+          "hash": "8457845499933271278"
+        },
+        {
+          "file": "src/app/components/testimonials/testimonials.html",
+          "hash": "15843097779884021195"
+        },
+        {
+          "file": "src/app/components/testimonials/testimonials.ts",
+          "hash": "6977735821011326558"
+        },
+        {
+          "file": "src/app/components/whatsapp-button/whatsapp-button.css",
+          "hash": "16657149340931475556"
+        },
+        {
+          "file": "src/app/components/whatsapp-button/whatsapp-button.html",
+          "hash": "6012808600105368234"
+        },
+        {
+          "file": "src/app/components/whatsapp-button/whatsapp-button.ts",
+          "hash": "5620797810747271923"
+        },
+        {
+          "file": "src/app/pages/case-study/case-study.css",
+          "hash": "12771958477761321354"
+        },
+        {
+          "file": "src/app/pages/case-study/case-study.html",
+          "hash": "6033280600770516755"
+        },
+        {
+          "file": "src/app/pages/case-study/case-study.ts",
+          "hash": "7432605989837010634"
+        },
+        {
+          "file": "src/app/pages/home/home.ts",
+          "hash": "660223747673579064"
+        },
+        {
+          "file": "src/app/pages/nosotros/nosotros.css",
+          "hash": "7253480462064233518"
+        },
+        {
+          "file": "src/app/pages/nosotros/nosotros.html",
+          "hash": "2979037558591993285"
+        },
+        {
+          "file": "src/app/pages/nosotros/nosotros.ts",
+          "hash": "7571658158500848479"
+        },
+        {
+          "file": "src/app/services/seo.service.ts",
+          "hash": "762645638339150650"
+        },
+        {
+          "file": "src/index.html",
+          "hash": "16351346052181403633"
+        },
+        {
+          "file": "src/main.ts",
+          "hash": "10405740721546735325"
+        },
+        {
+          "file": "src/styles.css",
+          "hash": "174879458300164191"
+        },
+        {
+          "file": "tsconfig.app.json",
+          "hash": "10136459155298117738"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "12986063587128948135"
+        },
+        {
+          "file": "tsconfig.spec.json",
+          "hash": "189877243707603707"
+        }
+      ]
+    },
+    "nonProjectFiles": []
+  },
+  "externalNodesHash": "1962700932858412167"
+}
