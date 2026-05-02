@@ -1,4 +1,13 @@
-import { Component } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    OnDestroy,
+    PLATFORM_ID,
+    inject,
+    viewChild,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface CaseStudyMetric {
@@ -44,7 +53,29 @@ export interface Project {
     templateUrl: './portfolio.html',
     styleUrl: './portfolio.css',
 })
-export class PortfolioComponent {
+export class PortfolioComponent implements AfterViewInit, OnDestroy {
+    private platformId = inject(PLATFORM_ID);
+
+    cardsContainer = viewChild<ElementRef<HTMLDivElement>>('cardsContainer');
+    cardsTrack = viewChild<ElementRef<HTMLDivElement>>('cardsTrack');
+
+    private marquee?: MarqueeController;
+
+    ngAfterViewInit(): void {
+        if (!isPlatformBrowser(this.platformId)) return;
+
+        const container = this.cardsContainer()?.nativeElement;
+        const track = this.cardsTrack()?.nativeElement;
+        if (!container || !track) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.marquee = new MarqueeController(container, track, reduceMotion ? 0 : 1);
+    }
+
+    ngOnDestroy(): void {
+        this.marquee?.destroy();
+    }
+
     projects: Project[] = [
         {
             slug: 'martial-core',
@@ -235,4 +266,114 @@ export class PortfolioComponent {
             },
         },
     ];
+
+    // Duplicated list so the marquee can loop seamlessly with translateX(-50%).
+    projectsLoop: Project[] = [...this.projects, ...this.projects];
+}
+
+/**
+ * Auto-scrolling, drag-to-scroll marquee. Uses pointer events so the same
+ * code path handles mouse drag, touch swipe, and stylus.
+ */
+class MarqueeController {
+    private offset = 0;
+    private halfWidth = 0;
+    private isDragging = false;
+    private didDrag = false;
+    private isPaused = false;
+    private startX = 0;
+    private startOffset = 0;
+    private rafId = 0;
+    private activePointerId: number | null = null;
+    private resizeObserver?: ResizeObserver;
+
+    constructor(
+        private container: HTMLElement,
+        private track: HTMLElement,
+        private speed: number,
+    ) {
+        this.measure();
+
+        if (typeof ResizeObserver !== 'undefined') {
+            this.resizeObserver = new ResizeObserver(() => this.measure());
+            this.resizeObserver.observe(this.track);
+        }
+
+        container.addEventListener('pointerdown', this.onPointerDown);
+        container.addEventListener('mouseenter', this.onMouseEnter);
+        container.addEventListener('mouseleave', this.onMouseLeave);
+        container.addEventListener('click', this.onClick, true);
+        document.addEventListener('pointermove', this.onPointerMove);
+        document.addEventListener('pointerup', this.onPointerUp);
+        document.addEventListener('pointercancel', this.onPointerUp);
+
+        this.tick();
+    }
+
+    destroy(): void {
+        cancelAnimationFrame(this.rafId);
+        this.resizeObserver?.disconnect();
+        this.container.removeEventListener('pointerdown', this.onPointerDown);
+        this.container.removeEventListener('mouseenter', this.onMouseEnter);
+        this.container.removeEventListener('mouseleave', this.onMouseLeave);
+        this.container.removeEventListener('click', this.onClick, true);
+        document.removeEventListener('pointermove', this.onPointerMove);
+        document.removeEventListener('pointerup', this.onPointerUp);
+        document.removeEventListener('pointercancel', this.onPointerUp);
+    }
+
+    private measure = (): void => {
+        this.halfWidth = this.track.scrollWidth / 2;
+    };
+
+    private tick = (): void => {
+        if (!this.isDragging && !this.isPaused && this.speed !== 0) {
+            this.offset += this.speed;
+        }
+        if (this.halfWidth > 0) {
+            while (this.offset > 0) this.offset -= this.halfWidth;
+            while (this.offset <= -this.halfWidth) this.offset += this.halfWidth;
+        }
+        this.track.style.transform = `translate3d(${this.offset}px, 0, 0)`;
+        this.rafId = requestAnimationFrame(this.tick);
+    };
+
+    private onMouseEnter = (): void => {
+        this.isPaused = true;
+    };
+
+    private onMouseLeave = (): void => {
+        this.isPaused = false;
+    };
+
+    private onPointerDown = (e: PointerEvent): void => {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        this.isDragging = true;
+        this.didDrag = false;
+        this.startX = e.clientX;
+        this.startOffset = this.offset;
+        this.activePointerId = e.pointerId;
+    };
+
+    private onPointerMove = (e: PointerEvent): void => {
+        if (!this.isDragging || e.pointerId !== this.activePointerId) return;
+        const dx = e.clientX - this.startX;
+        if (Math.abs(dx) > 5) this.didDrag = true;
+        this.offset = this.startOffset + dx;
+    };
+
+    private onPointerUp = (e: PointerEvent): void => {
+        if (e.pointerId !== this.activePointerId) return;
+        this.isDragging = false;
+        this.activePointerId = null;
+    };
+
+    // Capture phase so we can swallow the click before routerLink fires it.
+    private onClick = (e: Event): void => {
+        if (this.didDrag) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.didDrag = false;
+        }
+    };
 }

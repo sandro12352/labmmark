@@ -1,3 +1,77 @@
 :host {
     display: block;
 }
+
+.portfolio-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+    );
+}
+
+.portfolio-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    will-change: transform;
+}
+
+/* Cards row: JS-controlled transform + drag (mouse + touch) */
+.portfolio-marquee--cards {
+    cursor: grab;
+    /* Allow vertical page scroll on touch; horizontal goes to JS pointer handlers. */
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.portfolio-marquee--cards:active {
+    cursor: grabbing;
+}
+
+.portfolio-marquee--cards .portfolio-track {
+    /* Prevent native image drag from interfering with pointer drag. */
+    -webkit-user-drag: none;
+}
+
+.portfolio-marquee--cards img {
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+/* Typography ticker keeps pure CSS animation. */
+.portfolio-marquee--text .portfolio-track {
+    animation: portfolio-scroll-right 60s linear infinite;
+}
+
+.portfolio-marquee--text:hover .portfolio-track {
+    animation-play-state: paused;
+}
+
+@keyframes portfolio-scroll-right {
+    from {
+        transform: translate3d(-50%, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-marquee--text .portfolio-track {
+        animation: none;
+    }
+}

@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, signal, viewChild } from '@angular
 import { CommonModule } from '@angular/common';
 import { HlmCarouselImports } from '@ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import AutoScroll from 'embla-carousel-auto-scroll';
 
 interface Service {
     icon: string;
@@ -64,12 +65,16 @@ export class ServicesComponent {
     };
 
     carouselPlugins = [
-        Autoplay({
-            delay: 3000,
-            stopOnInteraction: false,
+        AutoScroll({
+            speed: 2,
+            startDelay:0,
             stopOnMouseEnter: true,
+            stopOnInteraction:false,
         }),
     ];
+
+
+    
 
     processStepsRef = viewChild<ElementRef<HTMLElement>>('processSteps');
     lineProgress = signal(0);
