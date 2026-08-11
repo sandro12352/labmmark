@@ -21,16 +21,17 @@
     <!-- Cards marquee (auto-scroll left, draggable with mouse and touch) -->
     <div #cardsContainer class="portfolio-marquee portfolio-marquee--cards" role="region"
         aria-label="Carrusel de proyectos">
-        <div #cardsTrack class="portfolio-track">
-            @for (project of projectsLoop; track $index; let i = $index) {
-            <article class="portfolio-card group/card flex-shrink-0 w-[280px] sm:w-[360px] lg:w-[440px] cursor-pointer"
+        <div #cardsTrack class="portfolio-track" >
+            @for (project of projectsLoop(); track $index; let i = $index) {
+            <article class="portfolio-card group/card flex-shrink-0 w-[280px] sm:w-[360px] lg:w-[440px] cursor-pointer fadeInUp"
                 [routerLink]="['/portafolio', project.slug]"
-                [attr.aria-hidden]="i >= projects.length ? 'true' : null"
-                [attr.tabindex]="i >= projects.length ? -1 : 0">
+                [attr.aria-hidden]="i >= projects().length ? 'true' : null"
+                [attr.tabindex]="i >= projects().length ? -1 : 0">
                 <div class="relative aspect-[4/5] overflow-hidden" [class]="'bg-linear-to-br ' + project.gradient">
                     @if (project.image) {
                     <img [src]="project.image" [alt]="project.title" loading="lazy"
-                        class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover/card:grayscale-0 group-hover/card:opacity-90 group-hover/card:scale-[1.05] transition-all duration-[900ms] ease-out">
+                    [style.view-transition-name]="i < projects().length ? 'transition-' + project.slug : null"
+                        class="absolute inset-0 w-full h-full object-cover opacity-50  group-hover/card:grayscale-0 group-hover/card:opacity-90 group-hover/card:scale-[1.05] transition-all duration-[900ms] ease-out">
                     }
 
                     <!-- Decorative corner -->
@@ -40,7 +41,7 @@
 
                     <!-- Category top right -->
                     <span
-                        class="absolute top-5 right-5 text-[10px] text-lm-silver/70 tracking-[0.25em] uppercase font-body">
+                        class="absolute top-5 right-5 text-[10px] text-lm-white tracking-[0.25em] uppercase font-body">
                         {{ project.category }}
                     </span>
 
@@ -79,7 +80,7 @@
     <div class="portfolio-marquee portfolio-marquee--text hidden md:block mt-10 lg:mt-14 py-6 lg:py-8 border-y border-lm-graphite/40"
         aria-hidden="true">
         <div class="portfolio-track portfolio-track--right">
-            @for (project of projectsLoop; track $index) {
+            @for (project of projectsLoop(); track $index) {
             <div class="flex items-center gap-8 lg:gap-12 flex-shrink-0 px-4 lg:px-6">
                 <span
                     class="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 tracking-[-0.03em] text-lm-graphite leading-none whitespace-nowrap select-none">

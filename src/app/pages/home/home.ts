@@ -23,20 +23,20 @@ import { BrandsCarouselComponent } from '../../components/brands-carousel/brands
     <main>
       <app-hero />
       
-      @defer (on viewport; prefetch on idle) {
+      @defer  {
         <app-portfolio />
       } @placeholder {
         <div id="portafolio" class="min-h-screen"></div>
       }
 
       
-      @defer (on viewport; prefetch on idle) {
+      @defer  {
         <app-services />
       } @placeholder {
         <div id="servicios" class="min-h-screen"></div>
       }
 
-      @defer (on viewport; prefetch on idle) {
+      @defer {
         <app-about />
       } @placeholder {
         <div id="nosotros" class="min-h-screen"></div>
@@ -44,19 +44,19 @@ import { BrandsCarouselComponent } from '../../components/brands-carousel/brands
 
       
 
-      @defer (on viewport; prefetch on idle) {
+      @defer  {
         <app-testimonials />
       } @placeholder {
         <div class="min-h-[60vh]"></div>
       }
 
-      @defer (on viewport; prefetch on idle) {
+      @defer  {
         <app-brands-carousel />
       } @placeholder {
         <div class="min-h-[20vh]"></div>
       }
 
-      @defer (on viewport; prefetch on idle) {
+      @defer  {
         <app-contact />
       } @placeholder {
         <div id="contacto" class="min-h-screen"></div>

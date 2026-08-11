@@ -64,14 +64,7 @@ export class ServicesComponent {
         slidesToScroll: 1,
     };
 
-    carouselPlugins = [
-        AutoScroll({
-            speed: 2,
-            startDelay:0,
-            stopOnMouseEnter: true,
-            stopOnInteraction:false,
-        }),
-    ];
+    
 
 
     

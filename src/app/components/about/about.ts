@@ -39,9 +39,9 @@ export class AboutComponent {
     ];
 
     recentWorks: Work[] = [
-        { title: 'Martial', image: 'assets/about/martial.jpg', link: '/portfolio' },
-        { title: 'Oigo', image: 'assets/about/oigo.jpg', link: '/portfolio' },
-        { title: 'Tis', image: 'assets/about/tis.jpg', link: '/portfolio' },
-        { title: 'Grin', image: 'assets/about/grin.jpg', link: '/portfolio' },
+        { title: 'Martial', image: 'assets/about/img1.webp', link: '/portfolio' },
+        { title: 'Oigo', image: 'assets/about/img2.webp', link: '/portfolio' },
+        { title: 'Tis', image: 'assets/about/img3.webp', link: '/portfolio' },
+        { title: 'Grin', image: 'assets/about/img4.webp', link: '/portfolio' },
     ];
 }

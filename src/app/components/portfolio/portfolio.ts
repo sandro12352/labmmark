@@ -4,10 +4,12 @@ import {
     ElementRef,
     OnDestroy,
     PLATFORM_ID,
+    computed,
     inject,
     viewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 export interface CaseStudyMetric {
@@ -69,21 +71,21 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
         if (!container || !track) return;
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        this.marquee = new MarqueeController(container, track, reduceMotion ? 0 : 1);
+        this.marquee = new MarqueeController(container, track, reduceMotion ? 0 : .5);
     }
 
     ngOnDestroy(): void {
         this.marquee?.destroy();
     }
 
-    projects: Project[] = [
+    readonly projects = signal<Project[]> ([
         {
             slug: 'martial-core',
             title: 'Martialcore',
             category: 'Branding / Packaging',
             size: 'large',
             gradient: 'from-lm-graphite to-lm-black',
-            image: 'assets/martialcore.jpeg',
+            image: 'assets/portafolio/martialcore.webp',
             caseStudy: {
                 challenge: 'Martialcore necesitaba reposicionar su marca en un mercado saturado de productos de belleza. Su imagen anterior no conectaba con el público joven y no transmitía la calidad premium de sus productos.',
                 solution: 'Desarrollamos una identidad visual completamente nueva, desde el logotipo hasta el packaging. Implementamos una estrategia de Meta Ads segmentada por intereses y comportamientos de compra, complementada con campañas de Google Ads para capturar intención de búsqueda.',
@@ -116,12 +118,12 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
             },
         },
         {
-            slug: 'techpulse',
-            title: 'TechPulse',
-            category: 'Web Design / UX',
+            slug: 'grin-peru',
+            title: 'Grin Perú',
+            category: 'Campaña Digital',
             size: 'small',
             gradient: 'from-lm-slate to-lm-charcoal',
-            image: 'assets/portfolio-2.png',
+            image: 'assets/portafolio/grin-peru.webp',
             caseStudy: {
                 challenge: 'TechPulse tenía una plataforma web desactualizada con una tasa de rebote del 78%. Los usuarios no encontraban los productos y el proceso de compra era confuso.',
                 solution: 'Rediseñamos la experiencia de usuario desde cero con un enfoque mobile-first. Implementamos Google Ads con campañas de Performance Max y remarketing dinámico para recuperar carritos abandonados.',
@@ -146,12 +148,12 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
             },
         },
         {
-            slug: 'alma-cafe',
-            title: 'Alma Café',
+            slug: 'opcion',
+            title: 'Opción',
             category: 'Social Media',
             size: 'small',
             gradient: 'from-lm-charcoal to-lm-graphite',
-            image: 'assets/portfolio-1.png',
+            image: 'assets/portafolio/opcion.webp',
             caseStudy: {
                 challenge: 'Alma Café era un negocio local con poca presencia digital. Necesitaban atraer clientes jóvenes y posicionarse como el café de especialidad de referencia en la ciudad.',
                 solution: 'Creamos una estrategia de contenido para Instagram y TikTok con enfoque en storytelling. Implementamos Meta Ads con campañas de alcance local y generación de tráfico a tienda física.',
@@ -176,12 +178,12 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
             },
         },
         {
-            slug: 'nova-fitness',
-            title: 'Nova Fitness',
+            slug: 'sabor-y-sason',
+            title: 'Sabory Sason',
             category: 'Campaña Digital',
             size: 'small',
             gradient: 'from-lm-graphite to-lm-slate',
-            image: 'assets/portfolio-1.png',
+            image: 'assets/portafolio/saborysason.webp',
             caseStudy: {
                 challenge: 'Nova Fitness lanzaba un nuevo gimnasio y necesitaba generar 500 membresías en el primer mes de apertura con un presupuesto limitado.',
                 solution: 'Diseñamos una campaña de lanzamiento multicanal con Meta Ads (leads), Google Ads (búsqueda local) y una landing page optimizada para conversión. Implementamos una estrategia de urgencia con ofertas por tiempo limitado.',
@@ -206,12 +208,12 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
             },
         },
         {
-            slug: 'urban-living',
-            title: 'Urban Living',
+            slug: 'tecnograss',
+            title: 'Tecnograss',
             category: 'Branding Completo',
             size: 'small',
             gradient: 'from-lm-slate to-lm-black',
-            image: 'assets/portfolio-1.png',
+            image: 'assets/portafolio/tecnograss.webp',
             caseStudy: {
                 challenge: 'Urban Living es una desarrolladora inmobiliaria que necesitaba diferenciarse en un mercado competitivo y generar leads cualificados para sus proyectos de departamentos de lujo.',
                 solution: 'Construimos una marca premium desde cero y desplegamos una estrategia digital completa: Meta Ads para awareness, Google Ads para búsqueda de intención y una web inmersiva con recorridos virtuales.',
@@ -236,12 +238,12 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
             },
         },
         {
-            slug: 'meridian-bank',
-            title: 'Meridian Bank',
+            slug: 'tismartial',
+            title: 'Tismartial',
             category: 'Estrategia Digital',
             size: 'large',
             gradient: 'from-lm-charcoal to-lm-black',
-            image: 'assets/da.jpg',
+            image: 'assets/portafolio/tismartial.webp',
             caseStudy: {
                 challenge: 'Meridian Bank necesitaba modernizar su imagen digital y atraer a un público más joven sin perder la confianza de sus clientes existentes. Su presencia en redes era inexistente.',
                 solution: 'Implementamos una estrategia digital 360°: rediseño de marca digital, gestión de redes sociales con contenido educativo financiero, campañas de Google Ads para productos bancarios y Meta Ads para awareness de marca.',
@@ -265,10 +267,10 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                 },
             },
         },
-    ];
+    ]);
 
     // Duplicated list so the marquee can loop seamlessly with translateX(-50%).
-    projectsLoop: Project[] = [...this.projects, ...this.projects];
+   readonly projectsLoop = computed(() => [...this.projects(), ...this.projects()]);
 }
 
 /**
