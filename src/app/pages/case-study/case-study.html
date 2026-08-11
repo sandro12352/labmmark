@@ -42,14 +42,21 @@
 </section>
 
 <!-- Metrics Bar -->
-<section class="relative bg-lm-charcoal border-y border-lm-graphite/30">
+<section class="relative bg-lm-charcoal border-y border-lm-graphite/30 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-lm-graphite/30">
-            @for (metric of project.caseStudy.metrics; track metric.label) {
-            <div class="py-10 lg:py-14 px-6 lg:px-10 text-center">
-                <span class="block font-display text-4xl lg:text-5xl font-800 text-lm-white tracking-tight">{{
-                    metric.value }}</span>
-                <span class="block text-xs text-lm-silver mt-2 tracking-[0.2em] uppercase">{{ metric.label }}</span>
+            @for (metric of project.caseStudy.metrics; track metric.label; let i = $index) {
+            <div class="py-10 lg:py-14 px-6 lg:px-10 text-center group transition-colors duration-300 hover:bg-lm-graphite/20"
+                [attr.data-aos]="i % 2 === 0 ? 'fade-down-right' : 'fade-up-left'"
+     [attr.data-aos-delay]="i * 150"
+     data-aos-duration="700">
+                
+                <span class="block font-display text-4xl lg:text-5xl font-800 text-lm-white tracking-tight group-hover:scale-110 group-hover:text-lm-violet transition-all duration-300">
+                    {{ metric.value }}
+                </span>
+                <span class="block text-xs text-lm-silver mt-2 tracking-[0.2em] uppercase group-hover:text-lm-white transition-colors duration-300">
+                    {{ metric.label }}
+                </span>
             </div>
             }
         </div>

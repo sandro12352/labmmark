@@ -28,15 +28,15 @@ export const routes: Routes = [
             description: 'Conoce al equipo de LABMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores, proceso y trayectoria.',
         },
     },
-    // {
-    //     path: 'portafolio',
-    //     component: HomeComponent,
-    //     data: {
-    //         title: 'Portafolio',
-    //         breadcrumb: 'Portafolio',
-    //         description: 'Explora nuestros proyectos de branding, diseño web, social media y estrategia digital.',
-    //     },
-    // },
+    {
+        path: 'portafolio',
+        component: HomeComponent,
+        data: {
+            title: 'Portafolio',
+            breadcrumb: 'Portafolio',
+            description: 'Explora nuestros proyectos de branding, diseño web, social media y estrategia digital.',
+        },
+    },
     {
         path: 'portafolio/:slug',
         loadComponent: () => import('./pages/case-study/case-study').then(m => m.CaseStudyComponent),

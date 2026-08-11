@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-interface Brand {
+export interface Brand {
     name: string;
     logo: string;
 }

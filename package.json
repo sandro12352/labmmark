@@ -54,6 +54,7 @@
     "@angular/compiler-cli": "21.2.11",
     "@spartan-ng/cli": "^0.0.1-alpha.648",
     "@tailwindcss/postcss": "^4.1.12",
+    "@types/aos": "^3.0.8",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "jsdom": "^27.1.0",

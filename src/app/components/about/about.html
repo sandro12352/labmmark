@@ -5,7 +5,7 @@
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20 lg:mb-24">
 
             <!-- Left: Text content -->
-            <div class="flex flex-col">
+            <div class="flex flex-col" data-aos="fade-right">
                 <!-- Section badge -->
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-px bg-lm-silver"></div>
@@ -56,9 +56,9 @@
             </div>
 
             <!-- Right: Portrait Image -->
-            <div class="relative aspect-square lg:aspect-auto lg:h-full rounded-2xl overflow-hidden bg-lm-charcoal">
+            <div class="relative aspect-square lg:aspect-auto lg:h-full rounded-2xl overflow-hidden bg-lm-charcoal" >
                 <img src="assets/nosotros.webp" alt="Equipo Labmark"
-                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                    class="w-full h-full object-cover" />
                 <div class="absolute inset-0 bg-linear-to-t from-lm-black/30 via-transparent to-transparent"></div>
             </div>
         </div>
@@ -78,11 +78,13 @@
 
         <!-- Recent works grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            @for (work of recentWorks; track work.title) {
+            @for (work of recentWorks; track work.title ; let i = $index) {
             <a [routerLink]="work.link"
-                class="group relative aspect-square rounded-2xl overflow-hidden bg-lm-charcoal block">
+                class="group relative aspect-square rounded-2xl overflow-hidden bg-lm-charcoal block"
+                data-aos="fade-up"
+                [attr.data-aos-delay]=" i* 100">
                 <img [src]="work.image" [alt]="work.title"
-                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" />
+                    class="w-full h-full object-cover  group-hover:scale-105 transition-all duration-500" />
                 <div
                     class="absolute inset-0 bg-linear-to-t from-lm-black/80 via-lm-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                 </div>

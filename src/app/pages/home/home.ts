@@ -6,6 +6,7 @@ import { PortfolioComponent } from '../../components/portfolio/portfolio';
 import { TestimonialsComponent } from '../../components/testimonials/testimonials';
 import { ContactComponent } from '../../components/contact/contact';
 import { BrandsCarouselComponent } from '../../components/brands-carousel/brands-carousel';
+import { EstrategiaComponent } from '../../components/estrategia/estrategia.component';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,17 @@ import { BrandsCarouselComponent } from '../../components/brands-carousel/brands
     TestimonialsComponent,
     BrandsCarouselComponent,
     ContactComponent,
+    EstrategiaComponent,
   ],
   template: `
     <main>
       <app-hero />
+
+       @defer  {
+        <app-estrategia/>
+      } @placeholder {
+        <div id="portafolio" class="min-h-screen"></div>
+      }
       
       @defer  {
         <app-portfolio />
