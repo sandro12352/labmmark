@@ -95,7 +95,7 @@
     </div>
 
     <!-- Subsección Marcas -->
-    <div class="mt-20 pt-12 ">
+    <div class="mt-10 pt-12 ">
 
         <!-- Carrusel Infinito con Máscara de Difuminado Lateral -->
         <div class="relative w-full overflow-hidden py-4 select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
@@ -107,14 +107,13 @@
                 @for (brand of brands; track brand.name) {
                 <div class="flex items-center gap-8 shrink-0 group cursor-pointer">
                     <!-- Cápsula de Marca -->
-                    <div
-                        class="flex items-center gap-4 px-8 py-4 rounded-full bg-lm-charcoal/40 border border-lm-graphite/40 group-hover:border-lm-violet/50 group-hover:bg-lm-black transition-all duration-500 shadow-sm group-hover:shadow-[0_0_25px_rgba(139,92,246,0.2)]">
+                    <div class="flex items-center gap-4 px-8 py-4">
                         @if (brand.logo) {
                         <img [src]="brand.logo" [alt]="brand.name"
-                            class="h-6 w-auto object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            class="h-16 w-auto object-cover filter  group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                         }
                         <span
-                            class="text-xs font-mono tracking-widest text-lm-silver/50 group-hover:text-lm-white transition-colors duration-500 uppercase">
+                            class="text-xs font-mono tracking-widest text-lm-white transition-colors duration-500 uppercase">
                             {{ brand.name }}
                         </span>
                     </div>
@@ -129,14 +128,13 @@
                 @for (brand of brands; track brand.name + '-dup') {
                 <div class="flex items-center gap-8 shrink-0 group cursor-pointer">
                     <!-- Cápsula de Marca -->
-                    <div
-                        class="flex items-center gap-4 px-8 py-4 rounded-full bg-lm-charcoal/40 border border-lm-graphite/40 group-hover:border-lm-violet/50 group-hover:bg-lm-black transition-all duration-500 shadow-sm group-hover:shadow-[0_0_25px_rgba(139,92,246,0.2)]">
+                    <div class="flex items-center gap-4 px-8 py-4">
                         @if (brand.logo) {
                         <img [src]="brand.logo" [alt]="brand.name"
-                            class="h-6 w-auto object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            class="h-16 w-auto object-cover filter  group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                         }
                         <span
-                            class="text-xs font-mono tracking-widest text-lm-silver/50 group-hover:text-lm-white transition-colors duration-500 uppercase">
+                            class="text-xs font-mono tracking-widest text-lm-white transition-colors duration-500 uppercase">
                             {{ brand.name }}
                         </span>
                     </div>
@@ -161,24 +159,20 @@
     [class.pointer-events-none]="!isModalOpen()" role="dialog" aria-modal="true">
 
     <!-- Backdrop con desenfoque de cristal -->
-    <div class="absolute inset-0 bg-lm-black/80 backdrop-blur-xl transition-opacity duration-500"
-        (click)="closeModal()"></div>
-
+    <div class="absolute inset-0 bg-lm-black/80  transition-opacity duration-500" (click)="closeModal()"></div>
+    <!-- Botón de Cierre (X) -->
+    <button (click)="closeModal()" type="button" aria-label="Cerrar modal"
+        class="w-16 h-16 absolute top-8 right-8 rounded-full bg-lm-graphite/40 hover:bg-lm-violet text-lm-silver hover:text-lm-white flex items-center justify-center transition-colors duration-300">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
     <!-- Contenedor del Modal con animación de escala 3D elástica -->
-    <div class="relative w-full max-w-4xl bg-lm-black rounded-2xl border border-lm-violet/40 shadow-[0_0_50px_rgba(139,92,246,0.3)] overflow-hidden transition-all duration-500 modal-spring-box"
+    <div class="relative w-full max-w-5xl bg-lm-black rounded-2xl border border-lm-violet/40 shadow-[0_0_50px_rgba(139,92,246,0.3)] overflow-hidden transition-all duration-500 modal-spring-box"
         [class.scale-100]="isModalOpen()" [class.rotate-x-0]="isModalOpen()" [class.scale-50]="!isModalOpen()"
         [class.rotate-x-45]="!isModalOpen()">
 
-        <!-- Header del Modal -->
-        <div class="flex justify-end p-4 px-6 border-b border-lm-graphite/40 bg-lm-charcoal/80">
-            <!-- Botón de Cierre (X) -->
-            <button (click)="closeModal()" type="button" aria-label="Cerrar modal"
-                class="w-8 h-8 rounded-full bg-lm-graphite/40 hover:bg-lm-violet text-lm-silver hover:text-lm-white flex items-center justify-center transition-colors duration-300">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
+
 
         <!-- Reproductor de Video -->
         <div class="relative aspect-video w-full bg-black">

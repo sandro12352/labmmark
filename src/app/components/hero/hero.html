@@ -1,5 +1,6 @@
-<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden"
+<section id="inicio" class="relative lg:min-h-screen w-full flex items-center justify-center overflow-hidden py-20 lg:py-0"
     aria-label="Sección principal">
+    
     <!-- Background Video -->
     <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
         <source src="assets/videos/hero-video1.mp4" type="video/mp4">
@@ -7,53 +8,48 @@
     </video>
 
     <!-- Overlay gradient for better text readability -->
-    <div class="absolute inset-0 bg-linear-to-b from-lm-black/40 via-lm-black/30 to-lm-black/50"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-lm-black/50 via-lm-black/40 to-lm-black/70"></div>
 
     <!-- Grain overlay -->
-    <div class="grain-overlay"></div>
+    <div class="grain-overlay absolute inset-0 pointer-events-none"></div>
 
     <!-- Content centered -->
-    <div class="relative z-10 flex flex-col items-center justify-center text-center px-6">
+    <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-auto">
+        
         <!-- Tag -->
-        <div class="mb-8 animate-fade-in-up">
-            <span
-                class="inline-flex items-center gap-2 px-4 py-1.5 border border-lm-light text-lm-white text-xs font-body tracking-[0.3em] uppercase">
-                <span class="w-2 h-2 bg-lm-white rounded-full animate-pulse"></span>
+        <div class="mb-6 sm:mb-8 animate-fade-in-up">
+            <span class="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 border border-lm-light text-lm-white text-[10px] sm:text-xs font-body tracking-[0.2em] sm:tracking-[0.3em] uppercase backdrop-blur-xs">
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-lm-white rounded-full animate-pulse"></span>
                 Agencia de Marketing Digital
             </span>
         </div>
 
         <!-- Headline -->
-        <h1 class="animate-fade-in-up delay-200 max-w-4xl">
-            <span
-                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">
+        <h1 class="animate-fade-in-up delay-200 max-w-5xl">
+            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">
                 CREAMOS
             </span>
-            <span
-                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-gray-100 mt-3">
+            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-gray-100 mt-2 sm:mt-3">
                 MARCAS
             </span>
-            <span
-                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white mt-3">
-                QUE<span class="text-lm-graphite ml-4"></span>
+            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white mt-2 sm:mt-3">
+                QUE
             </span>
-            <span
-                class="block font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] mt-3 hero-gradient-text">
+            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] mt-2 sm:mt-3 hero-gradient-text">
                 IMPACTAN
             </span>
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-lm-white text-lg lg:text-xl max-w-2xl leading-relaxed animate-fade-in-up delay-400 mt-8">
-            Transformamos ideas en<span class="text-lm-accent"> experiencias digitales poderosas</span>. Estrategia,
-            creatividad y datos al servicio
-            de tu marca.
+        <p class="text-lm-white text-base sm:text-lg lg:text-xl max-w-xl sm:max-w-2xl leading-relaxed animate-fade-in-up delay-400 mt-6 sm:mt-8 px-2">
+            Transformamos ideas en <span class="text-lm-accent font-semibold">experiencias digitales poderosas</span>. Estrategia,
+            creatividad y datos al servicio de tu marca.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-500 mt-12">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-500 mt-8 sm:mt-10 w-full sm:w-auto px-4 sm:px-0">
             <a (click)="scrollTo('contacto')"
-                class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-accent transition-all duration-300 group cursor-pointer">
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-lm-white text-lm-black font-display font-700 text-xs sm:text-sm tracking-[0.1em] hover:bg-lm-accent transition-all duration-300 group cursor-pointer active:scale-95">
                 INICIAR PROYECTO
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
@@ -63,7 +59,7 @@
                 </svg>
             </a>
             <a (click)="scrollTo('portafolio')"
-                class="inline-flex items-center justify-center gap-3 px-8 py-4 border border-lm-graphite text-lm-white font-display font-600 text-sm tracking-[0.1em] hover:border-lm-silver hover:bg-lm-charcoal/50 transition-all duration-300 cursor-pointer">
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 border border-lm-graphite text-lm-white font-display font-600 text-xs sm:text-sm tracking-[0.1em] hover:border-lm-silver hover:bg-lm-charcoal/50 transition-all duration-300 cursor-pointer active:scale-95">
                 VER TRABAJOS
             </a>
         </div>
@@ -71,14 +67,13 @@
 
     <!-- Scroll down indicator -->
     <a (click)="scrollTo('servicios')"
-        class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 group cursor-pointer animate-fade-in-up delay-700"
+        class="hidden sm:flex absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2 group cursor-pointer animate-fade-in-up delay-700"
         aria-label="Desplazar hacia abajo">
-        <span
-            class="text-[10px] text-lm-silver tracking-[0.3em] uppercase font-body group-hover:text-lm-white transition-colors duration-300">Descubre
-            más</span>
-        <div
-            class="w-10 h-10 border border-lm-graphite/50 rounded-full flex items-center justify-center group-hover:border-lm-silver/60 transition-all duration-300 hero-scroll-bounce">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        <span class="text-[9px] sm:text-[10px] text-lm-silver tracking-[0.3em] uppercase font-body group-hover:text-lm-white transition-colors duration-300">
+            Descubre más
+        </span>
+        <div class="w-8 h-8 sm:w-10 sm:h-10 border border-lm-graphite/50 rounded-full flex items-center justify-center group-hover:border-lm-silver/60 transition-all duration-300 hero-scroll-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                 class="text-lm-silver group-hover:text-lm-white transition-colors duration-300">
                 <path d="m6 9 6 6 6-6" />
@@ -87,7 +82,5 @@
     </a>
 
     <!-- Bottom line -->
-    <div
-        class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-lm-graphite to-transparent z-10">
-    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-lm-graphite to-transparent z-10"></div>
 </section>
