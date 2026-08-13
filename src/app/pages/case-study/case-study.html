@@ -3,9 +3,8 @@
     <!-- Background Image -->
     <div class="absolute inset-0" [class]="'bg-linear-to-br ' + project.gradient">
         @if (project.image) {
-        <img [src]="project.image" [alt]="project.title" 
-        [style]="'view-transition-name: transition-' + project.slug"
-        class="absolute inset-0 w-full h-full object-cover object-top opacity-50">
+        <img [src]="project.image" [alt]="project.title" [style]="'view-transition-name: transition-' + project.slug"
+            class="absolute inset-0 w-full h-full object-cover object-top opacity-50">
         }
         <div class="absolute inset-0 bg-linear-to-t from-lm-black via-lm-black/20 to-transparent"></div>
     </div>
@@ -47,14 +46,15 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-lm-graphite/30">
             @for (metric of project.caseStudy.metrics; track metric.label; let i = $index) {
             <div class="py-10 lg:py-14 px-6 lg:px-10 text-center group transition-colors duration-300 hover:bg-lm-graphite/20"
-                [attr.data-aos]="i % 2 === 0 ? 'fade-down-right' : 'fade-up-left'"
-     [attr.data-aos-delay]="i * 150"
-     data-aos-duration="700">
-                
-                <span class="block font-display text-4xl lg:text-5xl font-800 text-lm-white tracking-tight group-hover:scale-110 group-hover:text-lm-violet transition-all duration-300">
+                [attr.data-aos]="i % 2 === 0 ? 'fade-down-right' : 'fade-up-left'" [attr.data-aos-delay]="i * 150"
+                data-aos-duration="700">
+
+                <span
+                    class="block font-display text-4xl lg:text-5xl font-800 text-lm-white tracking-tight group-hover:scale-110 group-hover:text-lm-violet transition-all duration-300">
                     {{ metric.value }}
                 </span>
-                <span class="block text-xs text-lm-silver mt-2 tracking-[0.2em] uppercase group-hover:text-lm-white transition-colors duration-300">
+                <span
+                    class="block text-xs text-lm-silver mt-2 tracking-[0.2em] uppercase group-hover:text-lm-white transition-colors duration-300">
                     {{ metric.label }}
                 </span>
             </div>
@@ -78,13 +78,8 @@
         </div>
 
         <div class="relative w-full aspect-video border border-lm-graphite/30 overflow-hidden">
-            <video
-                [src]="project.caseStudy.videoUrl"
-                class="w-full h-full object-cover"
-                controls
-                playsinline
-                preload="metadata">
-            </video>
+            <iframe [src]="videoUrl" class="w-full h-full" frameborder="0" allow="autoplay" allowfullscreen>
+            </iframe>
         </div>
     </div>
 </section>

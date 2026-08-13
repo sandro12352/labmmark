@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Project } from '../../components/portfolio/portfolio';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-case-study',
@@ -12,6 +13,8 @@ import { Project } from '../../components/portfolio/portfolio';
 export class CaseStudyComponent implements OnInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
+    private sanitizer = inject(DomSanitizer);
+    videoUrl!: SafeResourceUrl;
 
     project!: Project;
 
@@ -52,7 +55,7 @@ export class CaseStudyComponent implements OnInit {
                     author: 'María González',
                     role: 'CEO, Renacer Cosmetics',
                 },
-                videoUrl: 'assets/martial/video2.mp4',
+                videoUrl: 'https://www.youtube.com/embed/K7yloQsiAss?controls=1&rel=0',
             },
         },
         {
@@ -91,6 +94,7 @@ export class CaseStudyComponent implements OnInit {
                     author: 'Carlos Ruiz',
                     role: 'CTO, TechPulse',
                 },
+                videoUrl: 'https://www.youtube.com/embed/Wc4AZodk8Ss?controls=1&rel=0',
             },
         },
         {
@@ -124,7 +128,7 @@ export class CaseStudyComponent implements OnInit {
                     'assets/portafolio/opcion/5.webp',
                     'assets/portafolio/opcion/6.webp',
                 ],
-                
+
                 testimonial: {
                     quote: 'Gracias a LABMARK nuestro café se llenó de clientes nuevos. Las redes sociales cambiaron todo.',
                     author: 'Ana Torres',
@@ -168,6 +172,7 @@ export class CaseStudyComponent implements OnInit {
                     author: 'Diego Méndez',
                     role: 'Director, Nova Fitness',
                 },
+                videoUrl: 'https://www.youtube.com/embed/98Dl1ttq8fM?controls=1&rel=0',
             },
         },
         {
@@ -256,6 +261,12 @@ export class CaseStudyComponent implements OnInit {
             return;
         }
         this.project = found;
+
+        if (this.project.caseStudy.videoUrl) {
+            this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+                this.project.caseStudy.videoUrl
+            );
+        }
     }
 
     getServiceIcon(icon: string): string {
