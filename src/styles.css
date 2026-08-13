@@ -45,7 +45,7 @@ scroll-behavior: auto;
 
 body {
 font-family: var(--font-body);
-background-color: var(--color-lm-black);
+background-color: var(--color-lm-white);
 color: var(--color-lm-white);
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;

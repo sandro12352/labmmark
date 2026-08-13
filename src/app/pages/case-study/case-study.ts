@@ -2,11 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Project } from '../../components/portfolio/portfolio';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { LucideSearch } from '@lucide/angular';
+
 
 @Component({
     selector: 'app-case-study',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, LucideSearch],
     templateUrl: './case-study.html',
     styleUrl: './case-study.css',
 })
@@ -211,6 +213,7 @@ export class CaseStudyComponent implements OnInit {
                     author: 'Roberto Castillo',
                     role: 'Director Comercial, Urban Living',
                 },
+                videoUrl: 'https://www.youtube.com/embed/rT6i0EqiZg8?controls=1&rel=0',
             },
         },
         {

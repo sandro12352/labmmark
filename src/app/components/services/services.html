@@ -1,174 +1,189 @@
-<section id="servicios" class="relative   bg-lm-black" aria-labelledby="services-title">
-    <div class="max-w-[87vw] mx-auto px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="mb-16" data-aos="fade-up">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-px bg-lm-silver"></div>
-                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Lo que hacemos</span>
-            </div>
-            <h2 id="services-title"
-                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
-                SERVICIOS<span class="text-lm-graphite">.</span>
-            </h2>
-            <p class="mt-6 text-lm-silver text-lg max-w-2xl leading-relaxed">
-                Cada proyecto tiene su propia esencia. Integramos estrategia, creatividad y tecnología para lograr
-                resultados que realmente generan impacto.
-            </p>
-        </div>
+<section id="servicios"
+    class="relative py-16 bg-lm-black bg-[url('/assets/team2.webp')] bg-fixed bg-cover bg-center bg-no-repeat"
+    aria-labelledby="services-title">
 
-        <!-- Services Carousel (Spartan NG) -->
-        <hlm-carousel [options]="carouselOptions" class="w-full">
-            <hlm-carousel-content class="-ml-4">
-                @for (service of services; track service.title; let i = $index) {
-                <div hlmCarouselItem class="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4" data-aos="fade-up"
-                    [attr.data-aos-delay]="(i % 4) * 100" data-aos-duration="600" data-aos-easing="ease-out-cubic">
+    <div class="absolute inset-0 bg-lm-black/80 pointer-events-none"></div>
 
-                    <article
-                        class="group relative overflow-hidden rounded-lg hover:border-lm-graphite/60 transition-all duration-500 hover:shadow-lg cursor-default flex flex-col select-none hover:cursor-pointer h-full">
 
-                        <!-- Image -->
-                        <div
-                            class="relative overflow-hidden h-80 w-full bg-linear-to-br from-lm-graphite/20 to-lm-black/50 flex-shrink-0">
-                            <img [src]="service.imageUrl" [alt]="service.title" loading="lazy"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                            <div
-                                class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent">
-                            </div>
-                        </div>
-
-                        <!-- Content -->
-                        <div class="p-4 lg:p-6 flex flex-col grow">
-                            <!-- Index number (formato 01, 02, ... 10) -->
-                            <span
-                                class="inline-block mb-3 font-display text-xs text-lm-graphite tracking-[0.15em] self-start">
-                                {{ (i + 1) < 10 ? '0' + (i + 1) : (i + 1) }} </span>
-
-                                    <!-- Title -->
-                                    <h3
-                                        class="font-display text-sm font-700 text-lm-white mb-1 tracking-[-0.02em] group-hover:tracking-[0.02em] transition-all duration-500">
-                                        {{ service.title }}
-                                    </h3>
-
-                                    <!-- Description -->
-                                    <p class="text-xs text-lm-silver leading-relaxed mb-4 grow line-clamp-2">
-                                        {{ service.description }}
-                                    </p>
-
-                                    <!-- Hover arrow -->
-                                    <div
-                                        class="flex items-center gap-1 text-lm-graphite group-hover:text-lm-white transition-all duration-500 mt-auto">
-                                        <span class="text-[10px] tracking-[0.1em] uppercase">Más</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="transition-transform group-hover:translate-x-0.5">
-                                            <path d="M5 12h14" />
-                                            <path d="m12 5 7 7-7 7" />
-                                        </svg>
-                                    </div>
-                        </div>
-                    </article>
-                </div>
-                }
-            </hlm-carousel-content>
-
-            <!-- Navigation Arrows -->
-            <button hlmCarouselPrevious aria-label="Slide anterior"
-                class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Prev</button>
-            <button hlmCarouselNext aria-label="Siguiente slide"
-                class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Next</button>
-        </hlm-carousel>
-
-        <!-- Process Section -->
-        <div class="mt-12 pt-10 ">
+        <div class="max-w-[87vw] mx-auto px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="mb-16 text-center" data-aos="fade-up">
-                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body mb-4 inline-block">Nuestro
-                    Proceso</span>
-                <h2
-                    class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
-                    Proceso Probado<span class="text-lm-graphite">.</span>
+            <div class="mb-16" data-aos="fade-up">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-px bg-lm-silver"></div>
+                    <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Lo que hacemos</span>
+                </div>
+                <h2 id="services-title"
+                    class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                    SERVICIOS<span class="text-lm-graphite">.</span>
                 </h2>
-                <p class="text-lm-silver text-lg max-w-2xl mx-auto leading-relaxed">
-                    Aplicamos una metodología sólida que nos permite alcanzar resultados sobresalientes en cada
-                    proyecto.
+                <p class="mt-6 text-lm-silver text-lg max-w-2xl leading-relaxed">
+                    Cada proyecto tiene su propia esencia. Integramos estrategia, creatividad y tecnología para lograr
+                    resultados que realmente generan impacto.
                 </p>
             </div>
 
-            <!-- Process Steps -->
-            <div #processSteps class="relative">
-                <!-- Background line -->
-                <div class="absolute top-0 left-0 right-0 h-px bg-lm-graphite/20 hidden lg:block"></div>
-                <!-- Progressive line -->
-                <div class="absolute top-0 left-0 h-px bg-lm-accent hidden lg:block transition-[width] duration-300 ease-out"
-                    [style.width.%]="lineProgress() * 100"></div>
+            <!-- Services Carousel (Spartan NG) -->
+            <hlm-carousel [options]="carouselOptions" class="w-full">
+                <hlm-carousel-content class="-ml-4">
+                    @for (service of services; track service.title; let i = $index) {
+                    <div hlmCarouselItem class="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                        data-aos="fade-up" [attr.data-aos-delay]="(i % 4) * 100" data-aos-duration="600"
+                        data-aos-easing="ease-out-cubic">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
-                    <!-- Step 1 -->
-                    <div class="relative group pt-8 lg:pt-0 lg:px-6">
-                        <div class="flex flex-col h-full">
-                            <div class="mb-6">
-                                <span class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                    [ngClass]="isStepActive(0) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">01</span>
+                        <article
+                            class="group relative overflow-hidden rounded-lg hover:border-lm-graphite/60 transition-all duration-500 hover:shadow-lg cursor-default flex flex-col select-none hover:cursor-pointer h-full">
+
+                            <!-- Image -->
+                            <div
+                                class="relative overflow-hidden h-80 w-full bg-linear-to-br from-lm-graphite/20 to-lm-black/50 flex-shrink-0">
+                                <img [src]="service.imageUrl" [alt]="service.title" loading="lazy"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <div
+                                    class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent">
+                                </div>
                             </div>
-                            <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
-                                Descubrimiento</h3>
-                            <p class="text-sm text-lm-silver leading-relaxed grow">
-                                Entendemos profundamente tu negocio, audiencia y objetivos para crear una estrategia
-                                personalizada.
-                            </p>
-                        </div>
+
+                            <!-- Content -->
+                            <div class="p-4 lg:p-6 flex flex-col grow">
+                                <!-- Index number (formato 01, 02, ... 10) -->
+                                <span
+                                    class="inline-block mb-3 font-display text-xs text-lm-graphite tracking-[0.15em] self-start">
+                                    {{ (i + 1) < 10 ? '0' + (i + 1) : (i + 1) }} </span>
+
+                                        <!-- Title -->
+                                        <h3
+                                            class="font-display text-sm font-700 text-lm-white mb-1 tracking-[-0.02em] group-hover:tracking-[0.02em] transition-all duration-500">
+                                            {{ service.title }}
+                                        </h3>
+
+                                        <!-- Description -->
+                                        <p class="text-xs text-lm-silver leading-relaxed mb-4 grow line-clamp-2">
+                                            {{ service.description }}
+                                        </p>
+
+                                        <!-- Hover arrow -->
+                                        <div
+                                            class="flex items-center gap-1 text-lm-graphite group-hover:text-lm-white transition-all duration-500 mt-auto">
+                                            <span class="text-[10px] tracking-[0.1em] uppercase">Más</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="transition-transform group-hover:translate-x-0.5">
+                                                <path d="M5 12h14" />
+                                                <path d="m12 5 7 7-7 7" />
+                                            </svg>
+                                        </div>
+                            </div>
+                        </article>
                     </div>
+                    }
+                </hlm-carousel-content>
 
-                    <!-- Step 2 -->
-                    <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/20">
-                        <div class="flex flex-col h-full">
-                            <div class="mb-6">
-                                <span class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                    [ngClass]="isStepActive(1) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">02</span>
+                <!-- Navigation Arrows -->
+                <button hlmCarouselPrevious aria-label="Slide anterior"
+                    class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Prev</button>
+                <button hlmCarouselNext aria-label="Siguiente slide"
+                    class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Next</button>
+            </hlm-carousel>
+
+            <!-- Process Section -->
+            <div class="mt-12 pt-10 ">
+                <!-- Section Header -->
+                <div class="mb-16 text-center" data-aos="fade-up">
+                    <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body mb-4 inline-block">Nuestro
+                        Proceso</span>
+                    <h2
+                        class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
+                        Proceso Probado<span class="text-lm-graphite">.</span>
+                    </h2>
+                    <p class="text-lm-silver text-lg max-w-2xl mx-auto leading-relaxed">
+                        Aplicamos una metodología sólida que nos permite alcanzar resultados sobresalientes en cada
+                        proyecto.
+                    </p>
+                </div>
+
+                <!-- Process Steps -->
+                <div #processSteps class="relative">
+                    <!-- Background line -->
+                    <div class="absolute top-0 left-0 right-0 h-px bg-lm-graphite/20 hidden lg:block"></div>
+                    <!-- Progressive line -->
+                    <div class="absolute top-0 left-0 h-px bg-lm-accent hidden lg:block transition-[width] duration-300 ease-out"
+                        [style.width.%]="lineProgress() * 100"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
+                        <!-- Step 1 -->
+                        <div class="relative group pt-8 lg:pt-0 lg:px-6">
+                            <div class="flex flex-col h-full">
+                                <div class="mb-6">
+                                    <span
+                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
+                                        [ngClass]="isStepActive(0) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">01</span>
+                                </div>
+                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
+                                    Descubrimiento</h3>
+                                <p class="text-sm text-lm-silver leading-relaxed grow">
+                                    Entendemos profundamente tu negocio, audiencia y objetivos para crear una estrategia
+                                    personalizada.
+                                </p>
                             </div>
-                            <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">Estrategia
-                            </h3>
-                            <p class="text-sm text-lm-silver leading-relaxed grow">
-                                Desarrollamos un plan detallado basado en datos, insights de mercado y mejores prácticas
-                                de la industria.
-                            </p>
                         </div>
-                    </div>
 
-                    <!-- Step 3 -->
-                    <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/20">
-                        <div class="flex flex-col h-full">
-                            <div class="mb-6">
-                                <span class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                    [ngClass]="isStepActive(2) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">03</span>
+                        <!-- Step 2 -->
+                        <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/20">
+                            <div class="flex flex-col h-full">
+                                <div class="mb-6">
+                                    <span
+                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
+                                        [ngClass]="isStepActive(1) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">02</span>
+                                </div>
+                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
+                                    Estrategia
+                                </h3>
+                                <p class="text-sm text-lm-silver leading-relaxed grow">
+                                    Desarrollamos un plan detallado basado en datos, insights de mercado y mejores
+                                    prácticas
+                                    de la industria.
+                                </p>
                             </div>
-                            <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">Ejecución
-                            </h3>
-                            <p class="text-sm text-lm-silver leading-relaxed grow">
-                                Nuestro equipo creativo implementa la estrategia con diseño de calidad premium y
-                                tecnología de punta.
-                            </p>
                         </div>
-                    </div>
 
-                    <!-- Step 4 -->
-                    <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/20">
-                        <div class="flex flex-col h-full">
-                            <div class="mb-6">
-                                <span class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                    [ngClass]="isStepActive(3) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">04</span>
+                        <!-- Step 3 -->
+                        <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/20">
+                            <div class="flex flex-col h-full">
+                                <div class="mb-6">
+                                    <span
+                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
+                                        [ngClass]="isStepActive(2) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">03</span>
+                                </div>
+                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
+                                    Ejecución
+                                </h3>
+                                <p class="text-sm text-lm-silver leading-relaxed grow">
+                                    Nuestro equipo creativo implementa la estrategia con diseño de calidad premium y
+                                    tecnología de punta.
+                                </p>
                             </div>
-                            <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">Optimización
-                            </h3>
-                            <p class="text-sm text-lm-silver leading-relaxed grow">
-                                Monitoreamos resultados, analizamos métricas y optimizamos continuamente para máximo
-                                impacto.
-                            </p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/20">
+                            <div class="flex flex-col h-full">
+                                <div class="mb-6">
+                                    <span
+                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
+                                        [ngClass]="isStepActive(3) ? 'text-lm-accent/60' : 'text-lm-graphite/40 group-hover:text-lm-accent/60'">04</span>
+                                </div>
+                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
+                                    Optimización
+                                </h3>
+                                <p class="text-sm text-lm-silver leading-relaxed grow">
+                                    Monitoreamos resultados, analizamos métricas y optimizamos continuamente para máximo
+                                    impacto.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
