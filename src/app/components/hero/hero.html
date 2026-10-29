@@ -2,7 +2,7 @@
     aria-label="Sección principal">
     
     <!-- Background Video -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+    <video autoplay muted loop playsinline class="hero-video absolute inset-0 w-full h-full object-cover">
         <source src="assets/videos/hero-video1.mp4" type="video/mp4">
         <source src="assets/videos/hero-video1.mp4" type="video/webm">
     </video>
@@ -17,7 +17,7 @@
     <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-auto">
         
         <!-- Tag -->
-        <div class="mb-6 sm:mb-8 animate-fade-in-up">
+        <div class="hero-tag opacity-0 mb-6 sm:mb-8">
             <span class="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 border border-lm-light text-lm-white text-[10px] sm:text-xs font-body tracking-[0.2em] sm:tracking-[0.3em] uppercase backdrop-blur-xs">
                 <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-lm-white rounded-full animate-pulse"></span>
                 Agencia de Marketing Digital
@@ -25,29 +25,30 @@
         </div>
 
         <!-- Headline -->
-        <h1 class="animate-fade-in-up delay-200 max-w-5xl">
-            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">
-                CREAMOS
+        <h1 class="max-w-5xl">
+            <span class="block overflow-hidden pb-1">
+                <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">CREAMOS</span>
             </span>
-            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-gray-100 mt-2 sm:mt-3">
-                MARCAS
+            <span class="block overflow-hidden pb-1 mt-2 sm:mt-3">
+                <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-gray-100">MARCAS</span>
             </span>
-            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white mt-2 sm:mt-3">
-                QUE
+            <span class="block overflow-hidden pb-1 mt-2 sm:mt-3">
+                <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">QUE</span>
             </span>
-            <span class="block font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] mt-2 sm:mt-3 hero-gradient-text">
-                IMPACTAN
+            <span class="block overflow-hidden pb-1 mt-2 sm:mt-3">
+                <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] hero-gradient-text">IMPACTAN</span>
             </span>
         </h1>
 
+
         <!-- Subtitle -->
-        <p class="text-lm-white text-base sm:text-lg lg:text-xl max-w-xl sm:max-w-2xl leading-relaxed animate-fade-in-up delay-400 mt-6 sm:mt-8 px-2">
+        <p class="text-lm-white text-base sm:text-lg lg:text-xl max-w-xl sm:max-w-2xl leading-relaxed hero-sub opacity-0 mt-6 sm:mt-8 px-2">
             Transformamos ideas en <span class="text-lm-accent font-semibold">experiencias digitales poderosas</span>. Estrategia,
             creatividad y datos al servicio de tu marca.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-500 mt-8 sm:mt-10 w-full sm:w-auto px-4 sm:px-0">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 hero-cta opacity-0 mt-8 sm:mt-10 w-full sm:w-auto px-4 sm:px-0">
             <a (click)="scrollTo('contacto')"
                 class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-lm-white text-lm-black font-display font-700 text-xs sm:text-sm tracking-[0.1em] hover:bg-lm-accent transition-all duration-300 group cursor-pointer active:scale-95">
                 INICIAR PROYECTO

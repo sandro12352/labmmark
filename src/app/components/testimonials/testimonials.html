@@ -1,4 +1,4 @@
-<section class="relative py-24 lg:py-32 bg-lm-charcoal overflow-hidden" aria-labelledby="testimonials-title">
+<section class="relative py-20 lg:py-28 bg-lm-charcoal overflow-hidden" aria-labelledby="testimonials-title">
 
     <!-- 1. Imagen de Fondo Fija (Efecto Parallax) -->
     <div class="absolute inset-0 bg-fixed bg-cover  bg-center opacity-25 pointer-events-none z-0"
@@ -17,7 +17,7 @@
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <!-- Section Header -->
-        <div class="mb-20 text-center" data-aos="fade-up" data-aos-duration="700">
+        <div class="mb-20 text-center" appReveal="fade-up" [revealDuration]="700">
             <div class="flex items-center justify-center gap-4 mb-6">
                 <div class="w-12 h-[1px] bg-lm-silver"></div>
                 <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Testimonios</span>
@@ -26,7 +26,7 @@
             <h2 id="testimonials-title"
                 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
                 LO QUE DICEN<br>
-                <span class="text-lm-silver">NUESTROS CLIENTES</span><span class="text-lm-graphite">.</span>
+                <span class="text-lm-silver">NUESTROS CLIENTES</span><span class="text-lm-violet">.</span>
             </h2>
         </div>
 
@@ -34,8 +34,8 @@
         <div class="grid md:grid-cols-3 gap-6">
             @for (testimonial of testimonials; track testimonial.name; let i = $index) {
             <article
-                class="group bg-lm-black border border-lm-graphite/50 p-8 lg:p-10 hover:border-lm-silver/30 transition-all duration-500 relative"
-                data-aos="fade-up" [attr.data-aos-delay]="i * 100">
+                class="group bg-lm-black border border-lm-graphite/50 p-8 lg:p-10 hover:border-lm-silver/30 transition-colors duration-500 relative"
+                appReveal="fade" [revealDuration]="700" revealEase="ease-in-out">
                 <!-- Quote mark -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"

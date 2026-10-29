@@ -1,10 +1,11 @@
+import { RevealDirective } from '../../directives/reveal';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Brand } from '../brands-carousel/brands-carousel';
 
 @Component({
   selector: 'app-estrategia',
-  imports: [],
+  imports: [RevealDirective],
   templateUrl: './estrategia.component.html',
   styleUrl: './estrategia.component.css',
 })

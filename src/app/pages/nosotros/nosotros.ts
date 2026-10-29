@@ -1,14 +1,133 @@
-import { Component } from '@angular/core';
+import { afterNextRender, Component, DestroyRef, ElementRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { RevealDirective } from '../../directives/reveal';
 
 @Component({
     selector: 'app-nosotros',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, RevealDirective],
     templateUrl: './nosotros.html',
     styleUrl: './nosotros.css',
 })
 export class NosotrosComponent {
+    private host = inject<ElementRef<HTMLElement>>(ElementRef);
+    private destroyRef = inject(DestroyRef);
+
+    constructor() {
+        afterNextRender(() => {
+            const root = this.host.nativeElement;
+            const steps = root.querySelector<HTMLElement>('.approach-steps');
+            const approachLine = root.querySelector<HTMLElement>('.approach-line');
+            const timeline = root.querySelector<HTMLElement>('.timeline-wrap');
+            const timelineLine = root.querySelector<HTMLElement>('.timeline-line');
+            const cards = Array.from(root.querySelectorAll<HTMLElement>('.approach-card'));
+
+            const title = root.querySelector<HTMLElement>('.hero-title');
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                cards.forEach((card) => card.classList.add('is-active'));
+                title?.classList.remove('opacity-0');
+                return;
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            const ctx = gsap.context(() => {
+                // Título del hero: cada letra entra desde la derecha con fundido
+                if (title) {
+                    const chars = this.splitChars(title);
+                    gsap.set(title, { opacity: 1 });
+                    gsap.from(chars, {
+                        x: 150,
+                        opacity: 0,
+                        duration: 0.7,
+                        delay: 0.2,
+                        stagger: 0.025,
+                        ease: 'power4.out',
+                    });
+                }
+
+                // La línea del proceso se dibuja con el scroll y enciende cada paso al alcanzarlo
+                if (steps && approachLine) {
+                    gsap.fromTo(
+                        approachLine,
+                        { scaleX: 0 },
+                        {
+                            scaleX: 1,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: steps,
+                                start: 'top 80%',
+                                end: 'top 30%',
+                                scrub: 0.5,
+                                onUpdate: (self) => {
+                                    cards.forEach((card, i) =>
+                                        card.classList.toggle('is-active', self.progress >= (i + 0.5) / cards.length),
+                                    );
+                                },
+                            },
+                        },
+                    );
+                }
+
+                // La línea vertical del timeline crece a medida que se baja por la historia
+                if (timeline && timelineLine) {
+                    gsap.fromTo(
+                        timelineLine,
+                        { scaleY: 0 },
+                        {
+                            scaleY: 1,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: timeline,
+                                start: 'top 70%',
+                                end: 'bottom 60%',
+                                scrub: 0.5,
+                            },
+                        },
+                    );
+                }
+            }, root);
+
+            this.destroyRef.onDestroy(() => ctx.revert());
+        });
+    }
+
+    /** Divide el texto del elemento en palabras (sin cortes a medias) y letras animables; respeta los spans de color. */
+    private splitChars(el: HTMLElement): HTMLElement[] {
+        const chars: HTMLElement[] = [];
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        const nodes: Text[] = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+
+        for (const node of nodes) {
+            const text = node.textContent ?? '';
+            if (!text.trim()) continue;
+            const frag = document.createDocumentFragment();
+            text.split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) {
+                    frag.appendChild(document.createTextNode(' '));
+                    return;
+                }
+                const word = document.createElement('span');
+                word.className = 'inline-block whitespace-nowrap';
+                for (const ch of part) {
+                    const c = document.createElement('span');
+                    c.className = 'inline-block';
+                    c.textContent = ch;
+                    word.appendChild(c);
+                    chars.push(c);
+                }
+                frag.appendChild(word);
+            });
+            node.replaceWith(frag);
+        }
+        return chars;
+    }
+
     values = [
         {
             icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
@@ -84,10 +203,10 @@ export class NosotrosComponent {
     ];
 
     stats = [
-        { value: '+50', label: 'Clientes activos' },
-        { value: '+120', label: 'Proyectos entregados' },
-        { value: '5', label: 'Años de experiencia' },
-        { value: '100%', label: 'Compromiso' },
+        { prefix: '+', value: '50', suffix: '', label: 'Clientes activos' },
+        { prefix: '+', value: '120', suffix: '', label: 'Proyectos entregados' },
+        { prefix: '', value: '5', suffix: '', label: 'Años de experiencia' },
+        { prefix: '', value: '100', suffix: '%', label: 'Compromiso' },
     ];
 
     approach = [

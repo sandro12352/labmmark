@@ -20,26 +20,26 @@
     <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40 w-full">
         <div class="max-w-4xl">
             <!-- Breadcrumb -->
-            <div class="flex items-center gap-3 mb-8">
+            <div class="flex items-center gap-3 mb-8" appReveal="fade-up" [revealDuration]="700">
                 <a routerLink="/"
                     class="text-xs text-lm-silver/60 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
                 <span class="text-lm-graphite">/</span>
                 <span class="text-xs text-lm-white tracking-widest uppercase font-body">Nosotros</span>
             </div>
 
-            <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
                 <div class="w-16 h-px bg-lm-silver"></div>
                 <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Quiénes somos</span>
             </div>
 
-            <h1
-                class="font-display text-5xl sm:text-6xl lg:text-8xl font-800 tracking-tight text-lm-white leading-[1.05] mb-8">
-                FUSIONAMOS<br>
-                ESTRATEGIA,<br>
-                <span class="text-lm-silver">CREATIVIDAD Y TECNOLOGÍA</span><span class="text-lm-graphite">.</span>
+            <h1 #heroTitle aria-label="Fusionamos estrategia, creatividad y tecnología."
+                class="hero-title opacity-0 font-display text-5xl sm:text-6xl lg:text-8xl font-800 tracking-tight text-lm-white leading-[1.05] mb-8">
+                <span class="hero-line block" aria-hidden="true">FUSIONAMOS</span>
+                <span class="hero-line block" aria-hidden="true">ESTRATEGIA,</span>
+                <span class="hero-line block" aria-hidden="true"><span class="text-lm-silver">CREATIVIDAD Y TECNOLOGÍA</span><span class="text-lm-violet">.</span></span>
             </h1>
 
-            <p class="text-lm-silver text-lg lg:text-xl leading-relaxed max-w-2xl">
+            <p class="text-lm-silver text-lg lg:text-xl leading-relaxed max-w-2xl" appReveal="fade-up" [revealDuration]="800" [revealDelay]="750">
                 Para dar vida a experiencias de marca que conectan, inspiran y generan resultados.
             </p>
         </div>
@@ -62,26 +62,28 @@
             <!-- Left: Image -->
             <div class="relative">
                 <div class="relative aspect-4/5 bg-lm-black overflow-hidden border border-lm-graphite/30 shadow-2xl">
-                    <img src="assets/nosotros.webp" alt="Equipo LABMARK en acción"
+                    <div class="absolute inset-0" appReveal="zoom-in" [revealDuration]="1400" revealEase="ease-out-cubic">
+                        <img src="assets/nosotros.webp" alt="Equipo LABMARK en acción"
                         class="absolute inset-0 w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition-all duration-1000">
+                    </div>
 
                     <!-- Overlay gradient -->
                     <div class="absolute inset-0 bg-gradient-to-t from-lm-charcoal/60 to-transparent"></div>
 
                     <!-- Corner accents -->
-                    <div class="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-lm-white/30"></div>
-                    <div class="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-lm-white/30"></div>
+                    <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-lm-white/30"></div>
+                    <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-lm-white/30"></div>
                 </div>
 
                 <!-- Floating badge -->
-                <div
+                <div appReveal="fade-up" [revealDuration]="800" [revealDelay]="450"
                     class="absolute -bottom-4 -right-4 bg-lm-white text-lm-black px-6 py-3 font-display font-700 text-sm tracking-widest shadow-xl">
                     DESDE 2021
                 </div>
             </div>
 
             <!-- Right: Text -->
-            <div class="space-y-8">
+            <div class="space-y-8" appReveal="fade-left" [revealDuration]="1200" revealEase="ease-out-cubic">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-px bg-lm-silver"></div>
                     <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Nuestro manifiesto</span>
@@ -90,7 +92,7 @@
                 <h2 class="font-display text-4xl sm:text-5xl font-800 tracking-tight text-lm-white leading-[1.1]">
                     NO SOMOS UNA<br>
                     AGENCIA<br>
-                    <span class="text-lm-silver">CONVENCIONAL</span><span class="text-lm-graphite">.</span>
+                    <span class="text-lm-silver">CONVENCIONAL</span><span class="text-lm-violet">.</span>
                 </h2>
 
                 <div class="space-y-5">
@@ -113,9 +115,9 @@
                 <!-- Stats -->
                 <div class="w-full h-px bg-lm-graphite"></div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    @for (stat of stats; track stat.label) {
-                    <div class="text-center sm:text-left">
-                        <span class="block font-display text-3xl font-800 text-lm-white">{{ stat.value }}</span>
+                    @for (stat of stats; track stat.label; let i = $index) {
+                    <div class="text-center sm:text-left" appReveal="fade-up" [revealDuration]="700" [revealDelay]="i * 100">
+                        <span class="block font-display text-3xl font-800 text-lm-white"><span class="text-lm-violet">{{ stat.prefix }}</span>{{ stat.value }}<span class="text-lm-violet">{{ stat.suffix }}</span></span>
                         <span class="block text-xs text-lm-silver mt-1 tracking-widest uppercase">{{ stat.label
                             }}</span>
                     </div>
@@ -132,7 +134,7 @@
     <div class="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-lm-graphite/20"></div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16 lg:mb-20">
+        <div class="text-center mb-16 lg:mb-20" appReveal="fade-up" [revealDuration]="800">
             <div class="flex items-center justify-center gap-4 mb-6">
                 <div class="w-12 h-px bg-lm-silver"></div>
                 <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Lo que nos mueve</span>
@@ -141,14 +143,14 @@
             <h2
                 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight text-lm-white leading-[1.1]">
                 NUESTROS<br>
-                <span class="text-lm-silver">VALORES</span><span class="text-lm-graphite">.</span>
+                <span class="text-lm-silver">VALORES</span><span class="text-lm-violet">.</span>
             </h2>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @for (value of values; track value.title) {
-            <div
-                class="value-card relative group bg-lm-charcoal/50 border border-lm-graphite/20 p-8 hover:border-lm-graphite/50 transition-all duration-500">
+            @for (value of values; track value.title; let i = $index) {
+            <div appReveal="fade-up" [revealDuration]="700" [revealDelay]="(i % 4) * 80"
+                class="value-card relative group bg-lm-charcoal/50 border border-lm-graphite/20 p-8 hover:border-lm-graphite/50 transition-colors duration-500">
                 <!-- Icon -->
                 <div
                     class="w-12 h-12 flex items-center justify-center mb-6 border border-lm-graphite/30 group-hover:border-lm-white/30 transition-colors duration-500">
@@ -179,7 +181,7 @@
     <div class="absolute bottom-0 right-0 w-32 h-32 border-b border-r border-lm-graphite/20"></div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16 lg:mb-20">
+        <div class="text-center mb-16 lg:mb-20" appReveal="fade-up" [revealDuration]="800">
             <div class="flex items-center justify-center gap-4 mb-6">
                 <div class="w-12 h-px bg-lm-silver"></div>
                 <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Cómo trabajamos</span>
@@ -188,16 +190,21 @@
             <h2
                 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight text-lm-white leading-[1.1]">
                 NUESTRO<br>
-                <span class="text-lm-silver">PROCESO</span><span class="text-lm-graphite">.</span>
+                <span class="text-lm-silver">PROCESO</span><span class="text-lm-violet">.</span>
             </h2>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            @for (item of approach; track item.step) {
+        <div class="approach-steps relative">
+            <div class="hidden lg:block absolute top-0 left-0 right-0 h-px bg-lm-graphite/40"></div>
+            <div class="approach-line hidden lg:block absolute top-0 left-0 right-0 h-px bg-lm-accent origin-left"></div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:pt-10">
+            @for (item of approach; track item.step; let i = $index) {
+            <div appReveal="fade-up" [revealDuration]="700" [revealDelay]="(i % 4) * 80">
             <div class="approach-card group relative">
                 <!-- Step number -->
                 <div
-                    class="font-display text-7xl font-800 text-lm-graphite/30 mb-4 group-hover:text-lm-graphite/60 transition-colors duration-500">
+                    class="font-display text-7xl font-800 text-lm-graphite/30 mb-4 group-hover:text-lm-graphite/60 group-[.is-active]:text-lm-violet/60 transition-colors duration-500">
                     {{ item.step }}</div>
 
                 <!-- Connector line (not on last) -->
@@ -212,7 +219,9 @@
                     class="w-8 h-px bg-lm-graphite/30 group-hover:w-16 group-hover:bg-lm-white/30 transition-all duration-500 mt-6">
                 </div>
             </div>
+            </div>
             }
+        </div>
         </div>
     </div>
 </section>
@@ -221,7 +230,7 @@
 <!-- Timeline Section -->
 <section class="relative py-24 lg:py-32 bg-lm-black">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16 lg:mb-20">
+        <div class="text-center mb-16 lg:mb-20" appReveal="fade-up" [revealDuration]="800">
             <div class="flex items-center justify-center gap-4 mb-6">
                 <div class="w-12 h-px bg-lm-silver"></div>
                 <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Nuestra historia</span>
@@ -230,28 +239,31 @@
             <h2
                 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight text-lm-white leading-[1.1]">
                 EL<br>
-                <span class="text-lm-silver">CAMINO</span><span class="text-lm-graphite">.</span>
+                <span class="text-lm-silver">CAMINO</span><span class="text-lm-violet">.</span>
             </h2>
         </div>
 
         <!-- Timeline -->
-        <div class="relative max-w-3xl mx-auto">
+        <div class="timeline-wrap relative max-w-3xl mx-auto">
             <!-- Vertical line -->
             <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-px bg-lm-graphite/30 -translate-x-1/2"></div>
+            <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
+                <div class="timeline-line h-full w-full bg-lm-violet/60 origin-top"></div>
+            </div>
 
             <div class="space-y-16">
                 @for (item of timeline; track item.year; let i = $index; let even = $even) {
                 <div class="relative flex items-start gap-8" [class.lg:flex-row-reverse]="even"
                     [class.lg:text-right]="even">
                     <!-- Dot -->
-                    <div
-                        class="timeline-dot absolute left-8 lg:left-1/2 w-4 h-4 bg-lm-white border-4 border-lm-black -translate-x-1/2 z-10 shadow-[0_0_0_4px_rgba(255,255,255,0.1)]">
+                    <div appReveal="pop" [revealDuration]="600" revealEase="ease-out-back"
+                        class="timeline-dot absolute left-8 lg:left-1/2 w-4 h-4 bg-lm-violet border-4 border-lm-black -translate-x-1/2 z-10 shadow-[0_0_0_4px_rgba(201,160,220,0.2)]">
                     </div>
 
                     <!-- Content -->
-                    <div class="ml-16 lg:ml-0 lg:w-[calc(50%-2rem)]" [class.lg:pr-8]="!even" [class.lg:pl-8]="even"
+                    <div class="ml-16 lg:ml-0 lg:w-[calc(50%-2rem)]" [appReveal]="even ? 'fade-left' : 'fade-right'" [revealDuration]="900" revealEase="ease-out-cubic" [class.lg:pr-8]="!even" [class.lg:pl-8]="even"
                         [class.lg:ml-auto]="even">
-                        <span class="font-display text-4xl font-800 text-lm-graphite/50">{{ item.year }}</span>
+                        <span class="font-display text-4xl font-800 text-lm-violet">{{ item.year }}</span>
                         <h3 class="font-display text-xl font-700 text-lm-white mt-2 mb-2 tracking-wide">{{ item.title }}
                         </h3>
                         <p class="text-lm-silver text-sm leading-relaxed">{{ item.description }}</p>
@@ -269,37 +281,53 @@
     <div class="absolute top-0 right-0 w-32 h-32 border-t border-r border-lm-graphite/20"></div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-x-24 lg:gap-y-8">
             <!-- Left: Header -->
-            <div class="space-y-6 lg:sticky lg:top-32">
+            <div class="space-y-6 lg:col-start-1 lg:row-start-1">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-px bg-lm-silver"></div>
                     <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">El equipo</span>
                 </div>
 
-                <h2 class="font-display text-4xl sm:text-5xl font-800 tracking-tight text-lm-white leading-[1.1]">
+                <h2 class="font-display text-4xl sm:text-5xl font-800 tracking-tight text-lm-white leading-[1.1]" appReveal="fade-up" [revealDuration]="800" [revealDelay]="100">
                     MENTES<br>
-                    <span class="text-lm-silver">CREATIVAS</span><span class="text-lm-graphite">.</span>
+                    <span class="text-lm-silver">CREATIVAS</span><span class="text-lm-violet">.</span>
                 </h2>
 
-                <p class="text-lm-silver text-base lg:text-lg leading-relaxed">
+                <p class="text-lm-silver text-base lg:text-lg leading-relaxed" appReveal="fade-up" [revealDuration]="800" [revealDelay]="200">
                     Detrás de cada proyecto exitoso hay un equipo apasionado. Somos profesionales de diversas
                     disciplinas
                     unidos por un objetivo común: crear marcas extraordinarias.
                 </p>
 
-                <div class="relative aspect-3/2 bg-lm-black overflow-hidden border border-lm-graphite/30 mt-8">
-                    <img src="assets/team.png" alt="Equipo LABMARK"
-                        class="absolute inset-0 w-full h-full object-cover opacity-70 grayscale hover:grayscale-0 transition-all duration-1000">
-                    <div class="absolute inset-0 bg-gradient-to-t from-lm-charcoal/80 to-transparent"></div>
-                </div>
             </div>
 
-            <!-- Right: Roles -->
-            <div class="space-y-6">
+            <!-- Izquierda, bajo el texto: foto del equipo. Mismo estilo que la foto del manifiesto: marco, sombra, degradado inferior y esquinas. Fondo gris liso para que la ropa negra no se pierda. Cuadrada en escritorio para no alargar la columna -->
+            <div class="relative w-full max-w-md lg:max-w-none lg:col-start-1 lg:row-start-2 lg:self-start">
+            <div class="relative aspect-4/5 lg:aspect-square bg-linear-to-b from-lm-slate to-lm-graphite overflow-hidden border border-lm-graphite/30 shadow-2xl" appReveal="reveal-up" [revealDuration]="1100" revealEase="ease-out-cubic">
+                <img src="assets/equipo.webp" alt="Equipo LABMARK" loading="lazy" width="1100" height="1347"
+                    class="absolute inset-0 w-full h-full object-contain object-bottom grayscale opacity-90">
+
+                <!-- Overlay gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-lm-charcoal/60 to-transparent"></div>
+
+                <!-- Corner accents -->
+                <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-lm-white/30"></div>
+                <div class="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-lm-white/30"></div>
+            </div>
+
+            <!-- Etiqueta flotante, como la de "Desde 2021" del manifiesto -->
+            <div appReveal="fade-up" [revealDuration]="800" [revealDelay]="450"
+                class="absolute -bottom-4 -right-4 bg-lm-white text-lm-black px-6 py-3 font-display font-700 text-sm tracking-widest shadow-xl">
+                6 MENTES · 1 EQUIPO
+            </div>
+            </div>
+
+            <!-- Derecha: Roles. Ocupa el alto de las dos filas de la izquierda y las cajas se reparten ese alto -->
+            <div class="flex flex-col gap-6 lg:col-start-2 lg:row-start-1 lg:row-span-2">
                 @for (member of team; track member.name) {
-                <div
-                    class="group bg-lm-black/50 border border-lm-graphite/20 p-8 hover:border-lm-graphite/50 transition-all duration-500">
+                <div appReveal="fade-left" [revealDuration]="800" revealEase="ease-out-cubic"
+                    class="group lg:flex-1 flex flex-col justify-center bg-lm-black/50 border border-lm-graphite/20 p-8 hover:border-lm-graphite/50 transition-colors duration-500">
                     <div class="flex items-start gap-6">
                         <div
                             class="shrink-0 w-14 h-14 flex items-center justify-center border border-lm-graphite/30 group-hover:border-lm-white/30 transition-colors duration-500">
@@ -337,7 +365,7 @@
         <span class="font-display text-[16rem] md:text-[22rem] font-800 text-lm-white/[0.02] leading-none">?</span>
     </div>
 
-    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center" appReveal="fade-up" [revealDuration]="900">
         <div class="flex items-center justify-center gap-4 mb-6">
             <div class="w-12 h-px bg-lm-silver"></div>
             <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">¿Listo para empezar?</span>
@@ -347,7 +375,7 @@
         <h2
             class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight text-lm-white leading-[1.1] mb-6">
             TRANSFORMEMOS<br>
-            TU <span class="text-lm-silver">MARCA</span><span class="text-lm-graphite">.</span>
+            TU <span class="text-lm-silver">MARCA</span><span class="text-lm-violet">.</span>
         </h2>
 
         <p class="text-lm-silver text-lg leading-relaxed max-w-2xl mx-auto mb-10">

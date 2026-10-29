@@ -1,4 +1,4 @@
-import { Component, signal, HostListener, inject } from '@angular/core';
+import { Component, signal, computed, HostListener, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -12,6 +12,8 @@ export class NavbarComponent {
     private router = inject(Router);
 
     isScrolled = signal(false);
+    isHidden = signal(false);
+    private lastScrollY = 0;
     mobileMenuOpen = signal(false);
 
     navLinks: { label: string; fragment: string; route?: string }[] = [
@@ -22,9 +24,22 @@ export class NavbarComponent {
         { label: 'Contacto', fragment: 'contacto' },
     ];
 
+    navClasses = computed(() => {
+        const state = this.isScrolled()
+            ? 'bg-lm-black/80 backdrop-blur-md shadow-2xl border-b border-lm-graphite'
+            : 'bg-transparent';
+        return this.isHidden() ? state + ' -translate-y-full' : state;
+    });
+
     @HostListener('window:scroll')
     onScroll() {
-        this.isScrolled.set(window.scrollY > 50);
+        const y = window.scrollY;
+        this.isScrolled.set(y > 50);
+
+        // Se oculta al bajar (pasado el hero) y reaparece al subir; con el menú móvil abierto siempre visible
+        const goingDown = y > this.lastScrollY;
+        this.isHidden.set(goingDown && y > 200 && !this.mobileMenuOpen());
+        this.lastScrollY = y;
     }
 
     toggleMenu() {

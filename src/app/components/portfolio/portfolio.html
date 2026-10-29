@@ -1,5 +1,5 @@
-<section id="portafolio" class="relative py-16 bg-lm-black overflow-hidden" aria-labelledby="portfolio-title" >
-    <div class="max-w-[87vw] mx-auto px-6 lg:px-8" data-aos="fade-up">
+<section id="portafolio" class="relative py-20 lg:py-28 bg-lm-black overflow-hidden" aria-labelledby="portfolio-title" >
+    <div class="max-w-7xl mx-auto px-6 lg:px-8" appReveal="fade-up">
         <!-- Section Header -->
         <div class="mb-16 lg:mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
@@ -9,7 +9,7 @@
                 </div>
                 <h2 id="portfolio-title"
                     class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
-                    PORTAFOLIO<span class="text-lm-graphite">.</span>
+                    PORTAFOLIO<span class="text-lm-violet">.</span>
                 </h2>
             </div>
             <p class="text-lm-silver text-lg max-w-md leading-relaxed lg:text-right">
@@ -28,13 +28,12 @@
                 [attr.aria-hidden]="i >= projects().length ? 'true' : null"
                 [attr.tabindex]="i >= projects().length ? -1 : 0">
                 <div class="relative aspect-4/5 overflow-hidden" [class]="'bg-linear-to-br ' + project.gradient" 
-                data-aos="zoom-in-up"
-                 [attr.data-aos-delay]="i * 50"
-                 data-aos-duration="700"
-                 data-aos-easing="ease-out-back">
+                appReveal="reveal-up"
+                 [revealDelay]="i * 50"
+                 [revealDuration]="1000"
+                 revealEase="ease-out-cubic">
                     @if (project.image) {
                     <img [src]="project.image" [alt]="project.title" loading="lazy"
-                    [style.view-transition-name]="i < projects().length ? 'transition-' + project.slug : null"
                         class="absolute inset-0 w-full h-full object-cover opacity-50  group-hover/card:grayscale-0 group-hover/card:opacity-90 group-hover/card:scale-[1.05] transition-all duration-[900ms] ease-out">
                     }
 

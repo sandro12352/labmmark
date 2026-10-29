@@ -1,4 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { RevealDirective } from '../../directives/reveal';
+import { afterNextRender, Component, ElementRef, inject, OnInit, viewChild } from '@angular/core';
+import { gsap } from 'gsap';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Project } from '../../components/portfolio/portfolio';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -8,7 +10,7 @@ import { LucideSearch } from '@lucide/angular';
 @Component({
     selector: 'app-case-study',
     standalone: true,
-    imports: [RouterLink, LucideSearch],
+    imports: [RouterLink, LucideSearch, RevealDirective],
     templateUrl: './case-study.html',
     styleUrl: './case-study.css',
 })
@@ -20,6 +22,27 @@ export class CaseStudyComponent implements OnInit {
 
     project!: Project;
 
+    private heroCurtain = viewChild<ElementRef<HTMLElement>>('heroCurtain');
+
+    constructor() {
+        afterNextRender(() => {
+            const curtain = this.heroCurtain()?.nativeElement;
+            if (!curtain) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                curtain.remove();
+                return;
+            }
+            // Solo opacidad: no toca la imagen, así que no repinta el banner
+            gsap.to(curtain, {
+                opacity: 0,
+                duration: 1.2,
+                delay: 0.15,
+                ease: 'power2.inOut',
+                onComplete: () => curtain.remove(),
+            });
+        });
+    }
+
     private allProjects: Project[] = [
         {
             slug: 'martial-core',
@@ -29,20 +52,20 @@ export class CaseStudyComponent implements OnInit {
             gradient: 'from-lm-graphite to-lm-black',
             image: 'assets/portafolio/martialcore/banner.webp',
             caseStudy: {
-                challenge: 'Martialcore necesitaba reposicionar su marca en un mercado saturado de productos de belleza. Su imagen anterior no conectaba con el público joven y no transmitía la calidad premium de sus productos.',
-                solution: 'Desarrollamos una identidad visual completamente nueva, desde el logotipo hasta el packaging. Implementamos una estrategia de Meta Ads segmentada por intereses y comportamientos de compra, complementada con campañas de Google Ads para capturar intención de búsqueda.',
-                results: 'En 3 meses logramos posicionar la marca como referente en cosmética natural, triplicando las ventas online y generando una comunidad activa en redes sociales.',
+                challenge: 'Martial es un centro de alto rendimiento de deportes de combate que competía con gimnasios genéricos de la zona. Su comunicación no reflejaba la intensidad de sus atletas ni atraía a nuevos alumnos.',
+                solution: 'Construimos una identidad visual con carácter de competencia y una sesión fotográfica con sus propios atletas como protagonistas. Lanzamos campañas en Meta Ads orientadas a clases de prueba gratuitas y reforzamos la presencia en redes con contenido de entrenamientos.',
+                results: 'En 3 meses la academia duplicó sus solicitudes de clase de prueba y consolidó una comunidad activa en redes alrededor de su marca.',
                 services: [
-                    { icon: 'palette', name: 'Branding & Identidad', description: 'Rediseño completo de marca, logotipo, paleta de colores y tipografía.' },
-                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas en Facebook e Instagram con segmentación avanzada por audiencias lookalike.' },
-                    { icon: 'google', name: 'Google Ads', description: 'Campañas de Shopping y Search para capturar intención de compra directa.' },
-                    { icon: 'package', name: 'Diseño de Packaging', description: 'Packaging premium alineado con la nueva identidad visual de la marca.' },
+                    { icon: 'palette', name: 'Branding & Identidad', description: 'Logotipo, paleta y sistema visual con la fuerza de los deportes de combate.' },
+                    { icon: 'camera', name: 'Producción Fotográfica', description: 'Sesión de retratos de atletas y entrenadores para toda la comunicación de marca.' },
+                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas de clase de prueba gratuita segmentadas por zona e intereses deportivos.' },
+                    { icon: 'package', name: 'Merchandising', description: 'Diseño de uniformes y artículos con la nueva identidad visual.' },
                 ],
                 metrics: [
-                    { value: '320%', label: 'Aumento en ventas' },
-                    { value: '4.2x', label: 'ROAS en Meta Ads' },
-                    { value: '58K', label: 'Nuevos seguidores' },
-                    { value: '-45%', label: 'Costo por adquisición' },
+                    { value: '2.3x', label: 'Clases de prueba' },
+                    { value: '38%', label: 'Conversión a matrícula' },
+                    { value: '12K', label: 'Nuevos seguidores' },
+                    { value: '-35%', label: 'Costo por lead' },
                 ],
                 gallery: [
                     'assets/portafolio/martialcore/1.webp',
@@ -53,9 +76,9 @@ export class CaseStudyComponent implements OnInit {
                     'assets/portafolio/martialcore/6.webp',
                 ],
                 testimonial: {
-                    quote: 'LABMARK transformó nuestra marca por completo. Los resultados superaron todas nuestras expectativas.',
-                    author: 'María González',
-                    role: 'CEO, Renacer Cosmetics',
+                    quote: 'Pasamos de ser un gimnasio más a una marca con identidad. Nuestros alumnos se sienten parte de algo.',
+                    author: 'Equipo Martial',
+                    role: 'Centro de Alto Rendimiento',
                 },
                 videoUrl: 'https://www.youtube.com/embed/K7yloQsiAss?controls=1&rel=0',
             },
@@ -68,20 +91,20 @@ export class CaseStudyComponent implements OnInit {
             gradient: 'from-lm-slate to-lm-charcoal',
             image: 'assets/portafolio/grin/banner.webp',
             caseStudy: {
-                challenge: 'TechPulse tenía una plataforma web desactualizada con una tasa de rebote del 78%. Los usuarios no encontraban los productos y el proceso de compra era confuso.',
-                solution: 'Rediseñamos la experiencia de usuario desde cero con un enfoque mobile-first. Implementamos Google Ads con campañas de Performance Max y remarketing dinámico para recuperar carritos abandonados.',
-                results: 'La nueva plataforma redujo la tasa de rebote a un 32% y duplicó las conversiones en el primer mes.',
+                challenge: 'Grin lanzaba al mercado peruano motos y scooters eléctricos, una categoría nueva para muchos usuarios. Necesitaba darse a conocer, explicar sus beneficios y generar interesados desde el primer día.',
+                solution: 'Diseñamos una campaña de lanzamiento con el mensaje "Lanzamiento exclusivo", con piezas de producto y estilo de vida urbano. Combinamos Meta Ads y Google Ads para captar interesados en movilidad eléctrica y los dirigimos a una landing optimizada para cotizar.',
+                results: 'La campaña de lanzamiento generó cientos de cotizaciones en las primeras semanas y posicionó a Grin como una opción visible de movilidad eléctrica.',
                 services: [
-                    { icon: 'layout', name: 'Diseño Web / UX', description: 'Rediseño completo de la plataforma con enfoque en conversión y usabilidad.' },
-                    { icon: 'google', name: 'Google Ads', description: 'Performance Max y remarketing dinámico para maximizar conversiones.' },
-                    { icon: 'search', name: 'SEO Técnico', description: 'Optimización on-page, velocidad de carga y estructura de datos.' },
-                    { icon: 'bar-chart', name: 'Analytics & CRO', description: 'Implementación de tracking avanzado y optimización de tasa de conversión.' },
+                    { icon: 'trending-up', name: 'Campaña de Lanzamiento', description: 'Concepto creativo y piezas gráficas para presentar los nuevos modelos.' },
+                    { icon: 'meta', name: 'Meta Ads', description: 'Anuncios segmentados a público urbano interesado en movilidad sostenible.' },
+                    { icon: 'google', name: 'Google Ads', description: 'Búsqueda y remarketing para quienes comparan motos y scooters eléctricos.' },
+                    { icon: 'layout', name: 'Landing de Cotización', description: 'Página enfocada en convertir visitas en solicitudes de cotización.' },
                 ],
                 metrics: [
-                    { value: '-58%', label: 'Tasa de rebote' },
-                    { value: '2.1x', label: 'Conversiones' },
-                    { value: '3.8s', label: 'Tiempo de carga' },
-                    { value: '185%', label: 'Tráfico orgánico' },
+                    { value: '480', label: 'Cotizaciones en el lanzamiento' },
+                    { value: '3.4x', label: 'ROAS' },
+                    { value: '2.1%', label: 'CTR promedio' },
+                    { value: '-40%', label: 'Costo por cotización' },
                 ],
                 gallery: [
                     'assets/portafolio/grin/1.webp',
@@ -92,9 +115,9 @@ export class CaseStudyComponent implements OnInit {
                     'assets/portafolio/grin/6.webp',
                 ],
                 testimonial: {
-                    quote: 'El equipo de LABMARK entendió perfectamente lo que necesitábamos. La nueva web es otra cosa.',
-                    author: 'Carlos Ruiz',
-                    role: 'CTO, TechPulse',
+                    quote: 'El lanzamiento tuvo la visibilidad que buscábamos. Las consultas llegaron desde el primer día.',
+                    author: 'Equipo Grin',
+                    role: 'Movilidad eléctrica',
                 },
                 videoUrl: 'https://www.youtube.com/embed/Wc4AZodk8Ss?controls=1&rel=0',
             },
@@ -107,20 +130,20 @@ export class CaseStudyComponent implements OnInit {
             gradient: 'from-lm-charcoal to-lm-graphite',
             image: 'assets/portafolio/opcion/banner.webp',
             caseStudy: {
-                challenge: 'Alma Café era un negocio local con poca presencia digital. Necesitaban atraer clientes jóvenes y posicionarse como el café de especialidad de referencia en la ciudad.',
-                solution: 'Creamos una estrategia de contenido para Instagram y TikTok con enfoque en storytelling. Implementamos Meta Ads con campañas de alcance local y generación de tráfico a tienda física.',
-                results: 'En 4 meses Alma Café pasó de 800 a 15K seguidores y aumentó las visitas a tienda en un 200%.',
+                challenge: 'Opción ofrece financiamiento para vehículos y maquinaria, un producto que genera dudas y requiere confianza. Necesitaba explicar su propuesta con claridad y atraer solicitudes de personas y empresas.',
+                solution: 'Creamos una campaña de redes con el mensaje "Tu futuro, tus metas, tu Opción", mostrando metas alcanzables. Reforzamos con Meta Ads segmentados para personas y pymes, y contenido informativo que resuelve las dudas frecuentes sobre el financiamiento.',
+                results: 'La campaña aumentó las solicitudes de información y posicionó a Opción como una alternativa clara y confiable de financiamiento.',
                 services: [
-                    { icon: 'instagram', name: 'Social Media Management', description: 'Gestión integral de Instagram y TikTok con contenido diario.' },
-                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas de alcance local y tráfico a tienda con geo-targeting.' },
-                    { icon: 'camera', name: 'Producción de Contenido', description: 'Fotografía y video profesional para redes sociales.' },
-                    { icon: 'trending-up', name: 'Estrategia de Crecimiento', description: 'Plan de crecimiento orgánico con colaboraciones e influencers locales.' },
+                    { icon: 'instagram', name: 'Social Media Management', description: 'Calendario de contenido informativo y de confianza para Instagram y Facebook.' },
+                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas de generación de leads para personas y empresas.' },
+                    { icon: 'palette', name: 'Diseño de Piezas', description: 'Piezas gráficas alineadas con la línea visual de la marca.' },
+                    { icon: 'trending-up', name: 'Estrategia de Crecimiento', description: 'Plan de contenido y pauta para sostener el flujo de solicitudes.' },
                 ],
                 metrics: [
-                    { value: '15K', label: 'Seguidores ganados' },
-                    { value: '200%', label: 'Visitas a tienda' },
-                    { value: '12%', label: 'Engagement rate' },
-                    { value: '2.8x', label: 'ROAS campañas' },
+                    { value: '2.6x', label: 'Solicitudes mensuales' },
+                    { value: '18K', label: 'Seguidores ganados' },
+                    { value: '4.8%', label: 'Engagement rate' },
+                    { value: '-30%', label: 'Costo por solicitud' },
                 ],
                 gallery: [
                     'assets/portafolio/opcion/1.webp',
@@ -132,9 +155,9 @@ export class CaseStudyComponent implements OnInit {
                 ],
 
                 testimonial: {
-                    quote: 'Gracias a LABMARK nuestro café se llenó de clientes nuevos. Las redes sociales cambiaron todo.',
-                    author: 'Ana Torres',
-                    role: 'Fundadora, Alma Café',
+                    quote: 'Ahora nuestros clientes entienden mejor cómo funciona el financiamiento y nos escriben con más confianza.',
+                    author: 'Equipo Opción',
+                    role: 'Financiamiento vehicular',
                 },
             },
         },
@@ -146,20 +169,20 @@ export class CaseStudyComponent implements OnInit {
             gradient: 'from-lm-charcoal to-lm-black',
             image: 'assets/portafolio/tismartial/banner.webp',
             caseStudy: {
-                challenge: 'Nova Fitness lanzaba un nuevo gimnasio y necesitaba generar 500 membresías en el primer mes de apertura con un presupuesto limitado.',
-                solution: 'Diseñamos una campaña de lanzamiento multicanal con Meta Ads (leads), Google Ads (búsqueda local) y una landing page optimizada para conversión. Implementamos una estrategia de urgencia con ofertas por tiempo limitado.',
-                results: 'Superamos el objetivo con 687 membresías vendidas en 30 días, con un costo por lead de $1.20 USD.',
+                challenge: 'Tismartial es una academia de artes marciales para niños y adultos que dependía del boca a boca. Necesitaba atraer nuevas familias y mantener inscritos a sus alumnos durante todo el año.',
+                solution: 'Diseñamos una estrategia digital que muestra el valor de la disciplina y la comunidad: sesión de retratos de alumnos, campañas en Meta Ads para clases de prueba y una landing de inscripción. Sumamos email marketing para dar seguimiento a las familias interesadas.',
+                results: 'La academia aumentó sus inscripciones en las temporadas de campaña y mejoró la retención de alumnos gracias al seguimiento continuo.',
                 services: [
-                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas de generación de leads con formularios instantáneos.' },
-                    { icon: 'google', name: 'Google Ads', description: 'Campañas de búsqueda local y display para awareness en la zona.' },
-                    { icon: 'layout', name: 'Landing Page', description: 'Diseño y desarrollo de landing page optimizada para conversión.' },
-                    { icon: 'mail', name: 'Email Marketing', description: 'Secuencia automatizada de nurturing para convertir leads en membresías.' },
+                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas dirigidas a padres de familia y adultos interesados en artes marciales.' },
+                    { icon: 'camera', name: 'Producción Fotográfica', description: 'Retratos de alumnos e instructores con estética de campeonato.' },
+                    { icon: 'layout', name: 'Landing de Inscripción', description: 'Página optimizada para convertir visitas en inscripciones.' },
+                    { icon: 'mail', name: 'Email Marketing', description: 'Seguimiento automatizado a las familias que pidieron información.' },
                 ],
                 metrics: [
-                    { value: '687', label: 'Membresías vendidas' },
-                    { value: '$1.20', label: 'Costo por lead' },
-                    { value: '37%', label: 'Tasa de conversión' },
-                    { value: '5.6x', label: 'ROAS general' },
+                    { value: '+85', label: 'Nuevas inscripciones' },
+                    { value: '$1.50', label: 'Costo por lead' },
+                    { value: '32%', label: 'Tasa de conversión' },
+                    { value: '4.1x', label: 'ROAS general' },
                 ],
                 gallery: [
                     'assets/portafolio/tismartial/1.webp',
@@ -170,9 +193,9 @@ export class CaseStudyComponent implements OnInit {
                     'assets/portafolio/tismartial/6.webp',
                 ],
                 testimonial: {
-                    quote: 'Abrimos con el gimnasio lleno. La estrategia de LABMARK fue impecable desde el día uno.',
-                    author: 'Diego Méndez',
-                    role: 'Director, Nova Fitness',
+                    quote: 'Las familias llegan mejor informadas y con ganas de empezar. La academia se siente más grande.',
+                    author: 'Equipo Tismartial',
+                    role: 'Academia de artes marciales',
                 },
                 videoUrl: 'https://www.youtube.com/embed/98Dl1ttq8fM?controls=1&rel=0',
             },
@@ -185,20 +208,20 @@ export class CaseStudyComponent implements OnInit {
             gradient: 'from-lm-slate to-lm-black',
             image: 'assets/portafolio/tecnograss/banner.webp',
             caseStudy: {
-                challenge: 'Urban Living es una desarrolladora inmobiliaria que necesitaba diferenciarse en un mercado competitivo y generar leads cualificados para sus proyectos de departamentos de lujo.',
-                solution: 'Construimos una marca premium desde cero y desplegamos una estrategia digital completa: Meta Ads para awareness, Google Ads para búsqueda de intención y una web inmersiva con recorridos virtuales.',
-                results: 'Generamos 1,200 leads cualificados en 2 meses y la marca se posicionó como referente de vivienda premium en la región.',
+                challenge: 'Tecnograss vende césped sintético para canchas deportivas en un mercado donde casi todos compiten por precio. Necesitaba una marca que transmitiera calidad y tecnología, y generar solicitudes de presupuesto.',
+                solution: 'Construimos la identidad de marca con un logotipo de carácter deportivo y tecnológico, y la aplicamos en fotografía de canchas y redes. Desplegamos Google Ads para búsquedas de césped sintético y Meta Ads para clubes, colegios y administradores de canchas.',
+                results: 'La marca se diferenció de la competencia por precio y generó un flujo constante de solicitudes de presupuesto de clubes, colegios y empresas.',
                 services: [
-                    { icon: 'palette', name: 'Branding Completo', description: 'Identidad visual premium, manual de marca y aplicaciones.' },
-                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas de awareness y generación de leads para proyectos inmobiliarios.' },
-                    { icon: 'google', name: 'Google Ads', description: 'Search y Display orientado a compradores de vivienda de lujo.' },
-                    { icon: 'layout', name: 'Diseño Web Inmersivo', description: 'Web con recorridos virtuales 360° y experiencia interactiva.' },
+                    { icon: 'palette', name: 'Branding Completo', description: 'Logotipo, paleta de colores y manual de marca con identidad deportiva y tecnológica.' },
+                    { icon: 'google', name: 'Google Ads', description: 'Campañas de búsqueda para quienes necesitan césped sintético para sus canchas.' },
+                    { icon: 'meta', name: 'Meta Ads', description: 'Anuncios dirigidos a clubes, colegios y administradores de canchas.' },
+                    { icon: 'layout', name: 'Diseño Web', description: 'Sitio con catálogo y formulario de solicitud de presupuesto.' },
                 ],
                 metrics: [
-                    { value: '1,200', label: 'Leads cualificados' },
-                    { value: '$8.50', label: 'Costo por lead' },
-                    { value: '24', label: 'Departamentos vendidos' },
-                    { value: '8.2x', label: 'ROI de campaña' },
+                    { value: '260', label: 'Solicitudes de presupuesto' },
+                    { value: '$6.40', label: 'Costo por lead' },
+                    { value: '14', label: 'Canchas instaladas' },
+                    { value: '5.2x', label: 'ROI de campaña' },
                 ],
                 gallery: [
                     'assets/portafolio/tecnograss/1.webp',
@@ -209,9 +232,9 @@ export class CaseStudyComponent implements OnInit {
                     'assets/portafolio/tecnograss/6.webp',
                 ],
                 testimonial: {
-                    quote: 'LABMARK nos ayudó a construir una marca que transmite exactamente lo que somos. Los resultados hablan solos.',
-                    author: 'Roberto Castillo',
-                    role: 'Director Comercial, Urban Living',
+                    quote: 'Pasamos de competir solo por precio a que nos elijan por la calidad. La marca ahora se ve a la altura del producto.',
+                    author: 'Equipo Tecnograss',
+                    role: 'Césped sintético deportivo',
                 },
                 videoUrl: 'https://www.youtube.com/embed/rT6i0EqiZg8?controls=1&rel=0',
             },
@@ -224,20 +247,20 @@ export class CaseStudyComponent implements OnInit {
             gradient: 'from-lm-graphite to-lm-slate',
             image: 'assets/portafolio/sabor-y-sason/banner.webp',
             caseStudy: {
-                challenge: 'Meridian Bank necesitaba modernizar su imagen digital y atraer a un público más joven sin perder la confianza de sus clientes existentes. Su presencia en redes era inexistente.',
-                solution: 'Implementamos una estrategia digital 360°: rediseño de marca digital, gestión de redes sociales con contenido educativo financiero, campañas de Google Ads para productos bancarios y Meta Ads para awareness de marca.',
-                results: 'En 6 meses duplicaron las aperturas de cuenta online y se convirtieron en el banco con mayor engagement en redes sociales de su categoría.',
+                challenge: 'Son & Sazón D\'Mario es un restaurante de comida peruana que quería destacar frente a la competencia del barrio y llenar sus mesas en los días de menor afluencia, con poca presencia digital.',
+                solution: 'Creamos la campaña "Somos los reyes de la sazón", con fotografía de sus platos estrella, promociones por día y piezas para redes. Activamos Meta Ads con geolocalización cercana al local y reforzamos la comunicación en Instagram y Facebook.',
+                results: 'El restaurante aumentó los pedidos y las reservas, y sus platos se volvieron un referente en las redes de la zona.',
                 services: [
-                    { icon: 'trending-up', name: 'Estrategia Digital 360°', description: 'Plan integral de marketing digital con KPIs claros y medibles.' },
-                    { icon: 'google', name: 'Google Ads', description: 'Campañas de Search para productos bancarios y remarketing.' },
-                    { icon: 'meta', name: 'Meta Ads', description: 'Awareness de marca y campañas de engagement para público joven.' },
-                    { icon: 'instagram', name: 'Social Media', description: 'Contenido educativo financiero y gestión de comunidad.' },
+                    { icon: 'trending-up', name: 'Estrategia Digital', description: 'Plan de promociones por día y calendario de contenido.' },
+                    { icon: 'camera', name: 'Producción Fotográfica', description: 'Fotografía gastronómica para destacar sabor y presentación.' },
+                    { icon: 'meta', name: 'Meta Ads', description: 'Campañas con geolocalización y promociones para el público cercano.' },
+                    { icon: 'instagram', name: 'Social Media', description: 'Gestión de comunidad y contenido de platos y promociones.' },
                 ],
                 metrics: [
-                    { value: '2x', label: 'Aperturas de cuenta' },
-                    { value: '340%', label: 'Engagement en RRSS' },
-                    { value: '92K', label: 'Seguidores totales' },
-                    { value: '3.5x', label: 'ROAS promedio' },
+                    { value: '+45%', label: 'Pedidos mensuales' },
+                    { value: '2.8x', label: 'Reservas desde redes' },
+                    { value: '31K', label: 'Seguidores totales' },
+                    { value: '3.9x', label: 'ROAS promedio' },
                 ],
                 gallery: [
                     'assets/portafolio/sabor-y-sason/1.webp',
@@ -248,9 +271,9 @@ export class CaseStudyComponent implements OnInit {
                     'assets/portafolio/sabor-y-sason/6.webp',
                 ],
                 testimonial: {
-                    quote: 'LABMARK logró lo que parecía imposible: hacer que un banco conecte con millennials sin perder seriedad.',
-                    author: 'Patricia Vega',
-                    role: 'CMO, Meridian Bank',
+                    quote: 'Las mesas se llenan incluso entre semana. Nuestros platos ahora se ven tan ricos como saben.',
+                    author: 'Equipo D\'Mario',
+                    role: 'Son & Sazón D\'Mario',
                 },
             },
         },

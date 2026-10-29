@@ -1,3 +1,4 @@
+import { RevealDirective } from '../../directives/reveal';
 import { Component } from '@angular/core';
 
 export interface Brand {
@@ -8,6 +9,7 @@ export interface Brand {
 @Component({
     selector: 'app-brands-carousel',
     standalone: true,
+    imports: [RevealDirective],
     templateUrl: './brands-carousel.html',
     styleUrl: './brands-carousel.css',
 })

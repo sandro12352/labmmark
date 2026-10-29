@@ -1,3 +1,4 @@
+import { RevealDirective } from '../../directives/reveal';
 import {
     AfterViewInit,
     Component,
@@ -51,7 +52,7 @@ export interface Project {
 @Component({
     selector: 'app-portfolio',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, RevealDirective],
     templateUrl: './portfolio.html',
     styleUrl: './portfolio.css',
 })

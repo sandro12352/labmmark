@@ -1,11 +1,11 @@
 <section id="metodologia" class="relative py-20 lg:py-28 bg-lm-black overflow-hidden"
     aria-labelledby="methodology-title">
-    <div class="max-w-[87vw] mx-auto px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             <!-- COLUMNA IZQUIERDA: VIDEO PREVIEW -->
-            <div class="relative group" data-aos="fade-right" data-aos-duration="800">
+            <div class="relative group" appReveal="fade-right" [revealDuration]="800">
                 <!-- Resplandor decorativo de fondo -->
                 <div
                     class="absolute -inset-1 bg-gradient-to-r from-lm-violet/40 to-lm-silver/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500">
@@ -48,7 +48,7 @@
             </div>
 
             <!-- COLUMNA DERECHA: TEXTO Y PASOS DE LA METODOLOGÍA -->
-            <div class="flex flex-col" data-aos="fade-left" data-aos-duration="800">
+            <div class="flex flex-col" appReveal="fade-left" [revealDuration]="800">
                 <!-- Section Badge -->
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-px bg-lm-silver"></div>
@@ -57,7 +57,7 @@
 
                 <!-- Título -->
                 <h2 id="methodology-title"
-                    class="font-display text-4xl sm:text-5xl font-800 tracking-tight text-lm-white leading-[1.15] mb-6">
+                    class="font-display text-4xl sm:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
                     CÓMO TRANSFORMAMOS <br>
                     <span class="text-lm-silver">IDEAS EN RESULTADOS</span><span class="text-lm-violet">.</span>
                 </h2>
@@ -99,7 +99,7 @@
 
         <!-- Carrusel Infinito con Máscara de Difuminado Lateral -->
         <div class="relative w-full overflow-hidden py-4 select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
-            data-aos="fade-up" data-aos-duration="800">
+            appReveal="fade-up" [revealDuration]="800">
 
             <div class="flex items-center gap-8 w-max animate-scroll-left hover:[animation-play-state:paused]">
 

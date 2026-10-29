@@ -26,8 +26,8 @@ export class FooterComponent {
 
     socialLinks = [
         { name: 'Instagram', url: '#' },
-        { name: 'LinkedIn', url: '#' },
+        { name: 'Facebook', url: '#' },
         { name: 'TikTok', url: '#' },
-        { name: 'Behance', url: '#' },
+        { name: 'LinkedIn', url: '#' },
     ];
 }

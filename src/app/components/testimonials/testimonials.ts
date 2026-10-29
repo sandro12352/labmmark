@@ -1,3 +1,4 @@
+import { RevealDirective } from '../../directives/reveal';
 import { Component } from '@angular/core';
 
 interface Testimonial {
@@ -11,6 +12,7 @@ interface Testimonial {
 @Component({
     selector: 'app-testimonials',
     standalone: true,
+    imports: [RevealDirective],
     templateUrl: './testimonials.html',
     styleUrl: './testimonials.css',
 })

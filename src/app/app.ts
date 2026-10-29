@@ -5,7 +5,6 @@ import { FooterComponent } from './components/footer/footer';
 import { SocialSidebarComponent } from './components/social-sidebar/social-sidebar';
 import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button';
 import { SeoService } from './services/seo.service';
-import AOS from 'aos';
 import { filter } from 'rxjs';
 
 @Component({
@@ -20,17 +19,12 @@ export class App implements OnInit {
   private router = inject(Router);
   constructor() {
     afterNextRender(() => {
-      AOS.init({
-        duration: 800,
-        once: false, // Animación solo la primera vez que hace scroll
-        mirror: true,
-      });
-
-      // 2. Escuchamos cada cambio de ruta para recalculaciones del DOM
+      // Cada cambio de ruta altera el alto de la página: se recalculan las posiciones de los triggers
       this.router.events
         .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          setTimeout(() => AOS.refresh(), 100);
+        .subscribe(async () => {
+          const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+          setTimeout(() => ScrollTrigger.refresh(), 100);
         });
     });
   }

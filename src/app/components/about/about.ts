@@ -1,3 +1,4 @@
+import { RevealDirective } from '../../directives/reveal';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -10,6 +11,8 @@ interface Experience {
 
 interface Work {
     title: string;
+    service: string;
+    description: string;
     image: string;
     link: string;
 }
@@ -17,7 +20,7 @@ interface Work {
 @Component({
     selector: 'app-about',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, RevealDirective],
     templateUrl: './about.html',
     styleUrl: './about.css',
 })
@@ -39,9 +42,9 @@ export class AboutComponent {
     ];
 
     recentWorks: Work[] = [
-        { title: 'Martial', image: 'assets/about/img1.webp', link: '/portfolio' },
-        { title: 'Oigo', image: 'assets/about/img2.webp', link: '/portfolio' },
-        { title: 'Tis', image: 'assets/about/img3.webp', link: '/portfolio' },
-        { title: 'Grin', image: 'assets/about/img4.webp', link: '/portfolio' },
+        // TODO: los `service` son provisionales, reemplazar por el trabajo real de cada cliente
+        { title: 'Montepinar', service: 'Campaña digital', description: 'Proyecto inmobiliario.', image: 'assets/about/montepinar.webp', link: '/portafolio' },
+        { title: 'Tayta', service: 'Fotografía · Redes sociales', description: 'Kombucha y otras bebidas artesanales.', image: 'assets/about/tayta.webp', link: '/portafolio' },
+        { title: 'Alpina', service: 'Contenido · Meta Ads', description: 'Maquinaria y productos complementarios de jardinería.', image: 'assets/about/podadora.webp', link: '/portafolio' },
     ];
 }

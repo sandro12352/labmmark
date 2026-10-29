@@ -1,11 +1,11 @@
-<section id="nosotros" class="relative py-24 lg:py-32 bg-lm-black overflow-hidden" aria-labelledby="about-title">
-    <div class="max-w-[87vw] mx-auto px-6 lg:px-8">
+<section id="nosotros" class="relative py-20 lg:py-28 bg-lm-black overflow-hidden" aria-labelledby="about-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
         <!-- Top: 2 columns -->
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20 lg:mb-24">
 
             <!-- Left: Text content -->
-            <div class="flex flex-col" data-aos="fade-right">
+            <div class="flex flex-col" appReveal="fade-right" [revealDuration]="1300" revealEase="ease-out-cubic">
                 <!-- Section badge -->
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-px bg-lm-silver"></div>
@@ -14,8 +14,8 @@
 
                 <!-- Title -->
                 <h2 id="about-title"
-                    class="font-display text-5xl sm:text-6xl lg:text-7xl font-300 tracking-tight text-lm-white leading-none mb-6">
-                    Meet <span class="text-lm-violet">LABMARK.</span>
+                    class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
+                    CONOCE A <span class="text-lm-violet">LABMARK.</span>
                 </h2>
 
                 <!-- Description -->
@@ -57,7 +57,7 @@
 
             <!-- Right: Portrait Image -->
             <div class="relative aspect-square lg:aspect-auto lg:h-full rounded-2xl overflow-hidden bg-lm-charcoal" >
-                <img src="assets/nosotros.webp" alt="Equipo Labmark"
+                <img src="assets/nosotros.webp" alt="Equipo Labmark" appReveal="zoom-in" [revealDuration]="1400"
                     class="w-full h-full object-cover" />
                 <div class="absolute inset-0 bg-linear-to-t from-lm-black/30 via-transparent to-transparent"></div>
             </div>
@@ -65,8 +65,8 @@
 
         <!-- Recent Works header -->
         <div class="flex items-center gap-3 mb-6">
-            <h3 class="font-display text-xl lg:text-2xl text-lm-white font-400 tracking-tight">Recent Works</h3>
-            <a href="#portfolio"
+            <h3 class="font-display text-xl lg:text-2xl text-lm-white font-400 tracking-tight">Proyectos recientes</h3>
+            <a href="#portafolio"
                 class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-lm-graphite/60 text-lm-silver hover:text-lm-violet hover:border-lm-violet/40 transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -77,26 +77,36 @@
         </div>
 
         <!-- Recent works grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             @for (work of recentWorks; track work.title ; let i = $index) {
+            <!-- Forma con dos esquinas cortadas (arriba derecha, abajo izquierda). El contorno es el fondo del <a> asomando 1px alrededor del contenido interior, así también se ve en las diagonales -->
             <a [routerLink]="work.link"
-                class="group relative aspect-square rounded-2xl overflow-hidden bg-lm-charcoal block"
-                data-aos="fade-up"
-                [attr.data-aos-delay]=" i* 100">
-                <img [src]="work.image" [alt]="work.title"
-                    class="w-full h-full object-cover  group-hover:scale-105 transition-all duration-500" />
+                class="group relative aspect-4/5 block bg-lm-graphite/50 hover:bg-lm-violet/60 transition-colors duration-300 [--c:32px] [clip-path:polygon(0_0,calc(100%_-_var(--c))_0,100%_var(--c),100%_100%,var(--c)_100%,0_calc(100%_-_var(--c)))]"
+                appReveal="zoom-in"
+                [revealDuration]="900">
                 <div
-                    class="absolute inset-0 bg-linear-to-t from-lm-black/80 via-lm-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    class="absolute inset-px overflow-hidden bg-lm-charcoal [--c:31px] [clip-path:polygon(0_0,calc(100%_-_var(--c))_0,100%_var(--c),100%_100%,var(--c)_100%,0_calc(100%_-_var(--c)))]">
+                    <img [src]="work.image" [alt]="work.title"
+                        class="w-full h-full object-cover brightness-[0.7] saturate-[0.85] group-hover:brightness-90 group-hover:saturate-100 group-hover:scale-105 transition-[filter,transform] duration-500" />
+                    <div
+                        class="absolute inset-0 bg-linear-to-t from-lm-black/90 via-lm-black/30 to-transparent">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-20">
+                        <span class="block mb-2 text-[11px] text-lm-violet tracking-[0.2em] uppercase font-body">{{ work.service }}</span>
+                        <h4 class="font-display text-2xl font-700 tracking-[-0.02em] text-lm-white">{{ work.title }}</h4>
+                        <p class="mt-1 text-sm text-lm-silver leading-snug line-clamp-2">{{ work.description }}</p>
+                    </div>
+                    <span
+                        class="absolute bottom-6 right-6 w-10 h-10 flex items-center justify-center border border-lm-silver/40 text-lm-white group-hover:bg-lm-violet group-hover:border-lm-violet group-hover:text-lm-black transition-colors duration-300"
+                        aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                            <path d="M7 17 17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </span>
                 </div>
-                <span
-                    class="absolute bottom-4 left-4 right-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-lm-black/60 backdrop-blur-sm border border-lm-graphite/60 rounded-full text-xs text-lm-white group-hover:border-lm-violet/40 group-hover:text-lm-violet transition-colors duration-300">
-                    View Casestudy
-                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M7 17 17 7" />
-                        <path d="M7 7h10v10" />
-                    </svg>
-                </span>
             </a>
             }
         </div>
