@@ -1,17 +1,16 @@
 import { Component, signal } from '@angular/core';
+import { WHATSAPP_NUMBER } from '../../config/contact';
 
 @Component({
     selector: 'app-whatsapp-button',
     standalone: true,
     templateUrl: './whatsapp-button.html',
-    styleUrl: './whatsapp-button.css',
 })
 export class WhatsappButtonComponent {
     isHovered = signal(false);
     showTooltip = signal(true);
 
-    /** WhatsApp number — change this to the real one */
-    readonly whatsappNumber = '51999999999';
+    readonly whatsappNumber = WHATSAPP_NUMBER;
     readonly defaultMessage = '¡Hola! Me interesa saber más sobre los servicios de LABMARK.';
 
     get whatsappUrl(): string {

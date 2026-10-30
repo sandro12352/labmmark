@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FACEBOOK_URL, INSTAGRAM_URL, LINKEDIN_URL, TIKTOK_URL } from '../../config/contact';
 
 @Component({
     selector: 'app-footer',
@@ -25,9 +26,9 @@ export class FooterComponent {
     ];
 
     socialLinks = [
-        { name: 'Instagram', url: '#' },
-        { name: 'Facebook', url: '#' },
-        { name: 'TikTok', url: '#' },
-        { name: 'LinkedIn', url: '#' },
+        { name: 'Instagram', url: INSTAGRAM_URL },
+        { name: 'Facebook', url: FACEBOOK_URL },
+        { name: 'TikTok', url: TIKTOK_URL },
+        { name: 'LinkedIn', url: LINKEDIN_URL },
     ];
 }

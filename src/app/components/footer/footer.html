@@ -17,7 +17,7 @@
                 <!-- Social Links -->
                 <div class="flex items-center gap-3 pt-2">
                     @for (social of socialLinks; track social.name) {
-                    <a [href]="social.url"
+                    <a [href]="social.url" target="_blank" rel="noopener noreferrer"
                         class="w-9 h-9 border border-lm-graphite flex items-center justify-center text-lm-silver hover:text-lm-white hover:border-lm-silver transition-all duration-300"
                         [attr.aria-label]="social.name">
                         @switch (social.name) {

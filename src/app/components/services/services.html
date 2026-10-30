@@ -31,40 +31,41 @@
                         revealEase="ease-out-cubic">
 
                         <article
-                            class="group relative overflow-hidden rounded-lg hover:border-lm-graphite/60 transition-all duration-500 hover:shadow-lg cursor-default flex flex-col select-none hover:cursor-pointer h-full">
+                            class="group relative overflow-hidden bg-lm-black/70 border border-lm-graphite/40 hover:border-lm-violet/50 transition-colors duration-500 cursor-default flex flex-col select-none hover:cursor-pointer h-full">
 
                             <!-- Image -->
                             <div
                                 class="relative overflow-hidden h-80 w-full bg-linear-to-br from-lm-graphite/20 to-lm-black/50 flex-shrink-0">
                                 <img [src]="service.imageUrl" [alt]="service.title" loading="lazy"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                    class="w-full h-full object-cover grayscale brightness-[0.8] group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-[filter,transform] duration-500" />
                                 <div
                                     class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent">
                                 </div>
                             </div>
 
                             <!-- Content -->
-                            <div class="p-4 lg:p-6 flex flex-col grow">
+                            <div class="p-6 lg:p-7 flex flex-col grow">
                                 <!-- Index number (formato 01, 02, ... 10) -->
                                 <span
-                                    class="inline-block mb-3 font-display text-xs text-lm-silver tracking-[0.15em] self-start">
+                                    class="inline-block mb-3 font-display text-3xl font-800 text-lm-silver/40 group-hover:text-lm-violet transition-colors duration-500 self-start">
                                     {{ (i + 1) < 10 ? '0' + (i + 1) : (i + 1) }} </span>
 
                                         <!-- Title -->
                                         <h3
-                                            class="font-display text-sm font-700 text-lm-white mb-1 tracking-[-0.02em] group-hover:tracking-[0.02em] transition-all duration-500">
+                                            class="font-display text-xl font-700 text-lm-white mb-2 tracking-[-0.02em]">
                                             {{ service.title }}
                                         </h3>
 
                                         <!-- Description -->
-                                        <p class="text-xs text-lm-silver leading-relaxed mb-4 grow line-clamp-2">
+                                        <p class="text-sm text-lm-silver leading-relaxed mb-5 grow">
                                             {{ service.description }}
                                         </p>
 
-                                        <!-- Hover arrow -->
-                                        <div
-                                            class="flex items-center gap-1 text-lm-violet group-hover:text-lm-white transition-all duration-500 mt-auto">
-                                            <span class="text-[10px] tracking-[0.1em] uppercase">Más</span>
+                                        <!-- Enlace a WhatsApp (toda la tarjeta es clicable) -->
+                                        <a [href]="whatsappUrl(service)" target="_blank" rel="noopener noreferrer"
+                                            [attr.aria-label]="'Más información sobre ' + service.title + ' por WhatsApp'"
+                                            class="flex items-center gap-1 text-lm-violet group-hover:text-lm-white transition-colors duration-500 mt-auto after:absolute after:inset-0">
+                                            <span class="text-xs tracking-[0.1em] uppercase">Más información</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -72,7 +73,7 @@
                                                 <path d="M5 12h14" />
                                                 <path d="m12 5 7 7-7 7" />
                                             </svg>
-                                        </div>
+                                        </a>
                             </div>
                         </article>
                     </div>
@@ -85,6 +86,24 @@
                 <button hlmCarouselNext aria-label="Siguiente slide"
                     class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Next</button>
             </hlm-carousel>
+
+            <!-- Enlace a los programas -->
+            <div class="mt-14 pt-8 border-t border-lm-graphite/40 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                appReveal="fade-up" [revealDuration]="700">
+                <p class="text-lm-light text-base lg:text-lg">
+                    Todo esto se combina en nuestros programas de crecimiento.
+                </p>
+                <a routerLink="/programas"
+                    class="group inline-flex items-center gap-2 shrink-0 text-sm font-display font-700 tracking-widest uppercase text-lm-white hover:text-lm-violet transition-colors duration-300">
+                    Conoce IMPULSO y XPANDE
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
 
             <!-- Process Section -->
             <div class="mt-12 pt-10 ">

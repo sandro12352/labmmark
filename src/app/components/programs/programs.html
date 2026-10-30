@@ -1,0 +1,96 @@
+<section id="programas" class="relative py-20 lg:py-28 bg-lm-charcoal" aria-labelledby="programs-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="mb-16" appReveal="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Elige tu camino</span>
+            </div>
+            <h2 id="programs-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                PROGRAMAS<span class="text-lm-violet">.</span>
+            </h2>
+            <p class="mt-6 text-lm-silver text-lg max-w-2xl leading-relaxed">
+                Dos caminos de crecimiento, según el momento de tu negocio.
+            </p>
+        </div>
+
+        <!-- Cards -->
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
+            @for (program of programs; track program.name; let i = $index) {
+            <article appReveal="fade-up" [revealDuration]="800" [revealDelay]="i * 120" revealEase="ease-out-cubic"
+                class="group relative flex flex-col p-8 lg:p-10 border transition-colors duration-500"
+                [class]="program.popular
+                    ? 'bg-lm-black border-lm-violet/50 hover:border-lm-violet'
+                    : 'bg-lm-black/50 border-lm-graphite/40 hover:border-lm-graphite'">
+
+                @if (program.popular) {
+                <span
+                    class="absolute -top-3 left-8 lg:left-10 bg-lm-violet text-lm-black px-3 py-1 text-[11px] font-display font-700 tracking-[0.2em] uppercase">
+                    Más popular
+                </span>
+                }
+
+                <span class="text-xs text-lm-silver tracking-[0.2em] uppercase font-body">{{ program.focus }}</span>
+                <h3 class="mt-3 font-display text-4xl lg:text-5xl font-800 tracking-[-0.03em] text-lm-white">
+                    {{ program.name }}<span class="text-lm-violet">.</span>
+                </h3>
+                <p class="mt-4 text-lm-silver text-sm leading-relaxed">{{ program.description }}</p>
+
+                @if (program.price) {
+                <div class="mt-8 flex items-baseline gap-2">
+                    <span class="font-display text-4xl font-800 text-lm-white tracking-tight">{{ program.price }}</span>
+                    <span class="text-sm text-lm-silver">/ mes + IGV</span>
+                </div>
+                }
+
+                <div class="my-8 h-px bg-lm-graphite/60"></div>
+
+                <ul class="space-y-3.5 mb-10">
+                    @for (feature of program.features; track feature) {
+                    <li class="flex items-start gap-3 text-sm text-lm-light leading-relaxed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="mt-0.5 shrink-0 text-lm-violet" aria-hidden="true">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        {{ feature }}
+                    </li>
+                    }
+                </ul>
+
+                <a routerLink="/contacto"
+                    class="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:tracking-[0.15em] cursor-pointer"
+                    [class]="program.popular
+                        ? 'bg-lm-white text-lm-black hover:bg-lm-violet'
+                        : 'border border-lm-silver/40 text-lm-white hover:border-lm-violet hover:text-lm-violet'">
+                    Solicitar propuesta
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </article>
+            }
+        </div>
+
+        <div class="mt-8 max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p class="text-xs text-lm-silver/70">
+                Contrato mínimo de 3 meses. Precios sin IGV. La inversión publicitaria (Meta Ads, TikTok Ads, Google Ads) no está incluida.
+            </p>
+            <a routerLink="/programas"
+                class="group inline-flex items-center gap-2 shrink-0 text-sm text-lm-white hover:text-lm-violet transition-colors duration-300">
+                Ver comparación y condiciones
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>

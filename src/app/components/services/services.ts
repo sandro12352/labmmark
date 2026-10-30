@@ -3,6 +3,8 @@ import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, vie
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { whatsappLink } from '../../config/contact';
 import { HlmCarouselImports } from '@ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import AutoScroll from 'embla-carousel-auto-scroll';
@@ -17,7 +19,7 @@ interface Service {
 @Component({
     selector: 'app-services',
     standalone: true,
-    imports: [CommonModule, ...HlmCarouselImports, RevealDirective],
+    imports: [CommonModule, RouterLink, ...HlmCarouselImports, RevealDirective],
     templateUrl: './services.html',
     styleUrl: './services.css',
 })
@@ -59,7 +61,24 @@ export class ServicesComponent {
             imageUrl: 'assets/services/strategy.jpg',
             description: 'Planificación integral basada en datos. Definimos el camino óptimo para alcanzar tus objetivos de negocio.',
         },
+        {
+            icon: 'analytics',
+            title: 'Analítica y Optimización',
+            imageUrl: 'assets/services/analitica.jpg',
+            description: 'Seguimiento de métricas clave y mejora continua basada en datos, no en intuición.',
+        },
+        {
+            icon: 'automation',
+            title: 'Automatización Comercial',
+            imageUrl: 'assets/services/automatizacion.jpg',
+            description: 'CRM en GoHighLevel, WhatsApp e IA para vender y fidelizar sin depender de procesos manuales.',
+        },
     ];
+
+    /** Enlace a WhatsApp con un mensaje listo sobre el servicio */
+    whatsappUrl(service: Service): string {
+        return whatsappLink(`¡Hola! Me interesa recibir más información sobre el servicio de ${service.title}.`);
+    }
 
     carouselOptions = {
         align: 'start' as const,

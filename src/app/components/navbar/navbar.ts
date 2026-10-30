@@ -18,10 +18,10 @@ export class NavbarComponent {
 
     navLinks: { label: string; fragment: string; route?: string }[] = [
         { label: 'Inicio', fragment: '' },
-        { label: 'Servicios', fragment: 'servicios' },
+        { label: 'Programas', fragment: 'programas', route: '/programas' },
         { label: 'Nosotros', fragment: 'nosotros', route: '/nosotros' },
-        { label: 'Portafolio', fragment: 'portafolio' },
-        { label: 'Contacto', fragment: 'contacto' },
+        { label: 'Portafolio', fragment: 'portafolio', route: '/portafolio' },
+        { label: 'Contacto', fragment: 'contacto', route: '/contacto' },
     ];
 
     navClasses = computed(() => {
@@ -61,6 +61,11 @@ export class NavbarComponent {
         }
 
         this.scrollTo(link.fragment);
+    }
+
+    goToContact() {
+        this.closeMenu();
+        this.router.navigate(['/contacto']);
     }
 
     scrollTo(fragment: string) {

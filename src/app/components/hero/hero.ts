@@ -36,6 +36,10 @@ export class HeroComponent {
         });
     }
 
+    goToContact() {
+        this.router.navigate(['/contacto']);
+    }
+
     scrollTo(fragment: string) {
         const isHome = this.router.url === '/' || this.router.url.startsWith('/#');
         if (isHome) {

@@ -1,0 +1,278 @@
+<!-- Cursor "VER CASO" (se mueve con el mouse sobre las tarjetas) -->
+<div aria-hidden="true"
+    class="pf-cursor pointer-events-none fixed left-0 top-0 z-[60] w-24 h-24 rounded-full bg-lm-violet text-lm-black flex items-center justify-center font-display font-700 text-[11px] tracking-[0.2em] opacity-0">
+    VER CASO
+</div>
+
+<!-- Hero -->
+<section class="relative bg-lm-black overflow-hidden pt-40 pb-16 lg:pt-48 lg:pb-20">
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;">
+        </div>
+    </div>
+    <div class="absolute top-8 left-8 w-24 h-24 border-t border-l border-lm-graphite/40"></div>
+    <div class="absolute bottom-8 right-8 w-24 h-24 border-b border-r border-lm-graphite/40"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center gap-3 mb-8" appReveal="fade-up" [revealDuration]="700">
+            <a routerLink="/"
+                class="text-xs text-lm-silver/60 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
+            <span class="text-lm-graphite">/</span>
+            <span class="text-xs text-lm-white tracking-widest uppercase font-body">Portafolio</span>
+        </div>
+
+        <div class="flex items-end justify-between gap-8 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
+            <div class="flex items-center gap-4">
+                <div class="w-16 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Casos de éxito</span>
+            </div>
+            <span class="hidden sm:block font-display text-sm tracking-[0.2em] text-lm-silver">
+                <span class="text-lm-violet">{{ items.length < 10 ? '0' + items.length : items.length }}</span> PROYECTOS
+            </span>
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-7xl lg:text-9xl font-800 tracking-tight text-lm-white leading-[1.02] mb-8 pb-2">
+            <span class="block overflow-hidden pb-1">
+                @for (c of titleLine1; track $index) {<span class="pf-char inline-block">{{ c === ' ' ? ' ' : c }}</span>}
+            </span>
+            <span class="block overflow-hidden pb-1 text-lm-silver">
+                @for (c of titleLine2; track $index) {<span class="pf-char inline-block">{{ c }}</span>}<span class="pf-char inline-block text-lm-violet">.</span>
+            </span>
+        </h1>
+
+        <p class="text-lm-silver text-lg lg:text-xl leading-relaxed max-w-2xl" appReveal="fade-up" [revealDuration]="800" [revealDelay]="700">
+            Marcas que confiaron en nosotros y los resultados que construimos juntos. Elige un caso para ver el proceso completo.
+        </p>
+    </div>
+</section>
+
+<!-- Cinta de nombres -->
+<section class="relative bg-lm-black border-y border-lm-graphite/30 overflow-hidden py-6 lg:py-8 select-none" aria-hidden="true">
+    <div class="flex w-max pf-marquee-track">
+        @for (name of marqueeNames; track $index) {
+        <span class="flex items-center">
+            <span
+                class="font-display text-5xl lg:text-7xl font-800 tracking-tight uppercase text-transparent [-webkit-text-stroke:1px_rgba(160,160,160,0.45)] hover:text-lm-violet hover:[-webkit-text-stroke:1px_#C9A0DC] transition-colors duration-500 px-8 lg:px-12">{{ name }}</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-lm-violet/70"></span>
+        </span>
+        }
+    </div>
+</section>
+
+<!-- Filtros + cuadrícula -->
+<section class="relative bg-lm-black py-16 lg:py-24" aria-label="Casos de éxito">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Filtros -->
+        <div class="flex flex-wrap gap-3 mb-14 lg:mb-20" role="tablist" aria-label="Filtrar por categoría" appReveal="fade-up">
+            @for (f of filters; track f) {
+            <button type="button" role="tab" [attr.aria-selected]="active() === f" (click)="setFilter(f)"
+                class="px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-body border transition-colors duration-300 cursor-pointer"
+                [class]="active() === f
+                    ? 'bg-lm-white text-lm-black border-lm-white'
+                    : 'text-lm-silver border-lm-graphite hover:border-lm-violet hover:text-lm-violet'">
+                {{ f }}
+            </button>
+            }
+        </div>
+
+        <div #grid class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-14 lg:gap-y-10">
+            @for (item of items; track item.slug; let i = $index) {
+            <div data-card [attr.data-group]="item.group" [class]="i % 3 === 1 ? 'lg:mt-24' : i % 3 === 2 ? 'lg:mt-12' : ''">
+                <a [routerLink]="['/portafolio', item.slug]" class="group block" [attr.aria-label]="'Ver caso ' + item.title">
+                    <!-- Marco con esquina cortada -->
+                    <div
+                        class="bg-lm-graphite/60 group-hover:bg-lm-violet/70 p-px transition-colors duration-500 [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                        <div
+                            class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                            <div class="absolute inset-0" appReveal="reveal-up" [revealDuration]="1200"
+                                [revealDelay]="(i % 3) * 120" revealEase="ease-out-cubic">
+                                <div class="absolute inset-0 transition-transform duration-[900ms] ease-out group-hover:scale-105">
+                                    <img [src]="item.image" [alt]="item.title" loading="lazy" width="880" height="1101"
+                                        data-parallax="13.8"
+                                        class="absolute left-0 top-0 w-full h-[116%] object-cover brightness-90 group-hover:brightness-100 transition-[filter] duration-500">
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-lm-black/70 via-transparent to-transparent"></div>
+                            </div>
+                            <span
+                                class="absolute top-5 left-5 font-display text-xs font-700 tracking-[0.2em] text-lm-white/90">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 flex items-start justify-between gap-4">
+                        <div>
+                            <h3
+                                class="font-display text-2xl lg:text-3xl font-700 tracking-tight text-lm-white group-hover:text-lm-violet transition-colors duration-300">
+                                {{ item.title }}</h3>
+                            <p class="mt-1 text-xs text-lm-silver tracking-[0.2em] uppercase font-body">{{ item.category }}</p>
+                        </div>
+                        <span
+                            class="shrink-0 mt-1 w-10 h-10 border border-lm-graphite group-hover:border-lm-violet group-hover:bg-lm-violet text-lm-silver group-hover:text-lm-black flex items-center justify-center transition-all duration-300">
+                            <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17 17 7" />
+                                <path d="M7 7h10v10" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Galería diagonal: piezas de campaña en movimiento -->
+<section class="relative bg-lm-charcoal overflow-hidden" aria-labelledby="gd-title">
+    <div class="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-center">
+        <div class="px-6 pt-16 lg:py-24 lg:pr-8 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] space-y-6" appReveal="fade-right">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">En movimiento</span>
+            </div>
+            <h2 id="gd-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                CAMPAÑAS<br><span class="text-lm-silver">EN ACCIÓN</span><span class="text-lm-violet">.</span>
+            </h2>
+            <p class="text-lm-silver text-lg max-w-md leading-relaxed">
+                Piezas, promociones y lanzamientos que creamos para nuestras marcas.
+            </p>
+            <a routerLink="/contacto"
+                class="group inline-flex items-center justify-between gap-6 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-violet transition-colors duration-300 [clip-path:polygon(0_0,calc(100%-16px)_0,100%_16px,100%_100%,0_100%)] w-fit">
+                QUIERO ALGO ASÍ
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+
+        <div appReveal="fade" [revealDuration]="1200">
+            <app-diagonal-gallery [columns]="galleryColumns" />
+        </div>
+    </div>
+</section>
+
+<!-- Casos apilados: cada banner se queda fijo y el siguiente sube por encima -->
+<section class="relative bg-lm-black pt-20 lg:pt-28 pb-24 lg:pb-32" aria-labelledby="stack-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-12 lg:mb-16" appReveal="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Caso por caso</span>
+            </div>
+            <h2 id="stack-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                UNO A UNO<span class="text-lm-violet">.</span>
+            </h2>
+        </div>
+    </div>
+
+    <!-- A todo el ancho de la pantalla -->
+    <div>
+            @for (item of stack; track item.slug; let i = $index) {
+            <div class="stack-card sticky mb-[18vh] last:mb-0 will-change-transform" [style.top]="'max(0px, min(' + (80 + i * 10) + 'px, calc(100vh - 56.25vw)))'"
+                [style.z-index]="i + 1">
+                <a [routerLink]="['/portafolio', item.slug]" [attr.aria-label]="'Ver caso ' + item.title"
+                    class="group relative block w-full">
+                    <div class="relative bg-lm-charcoal">
+                        <picture>
+                            <source media="(max-width: 767px)" [srcset]="item.mobile" width="800" height="720">
+                            <img [src]="item.desktop" [alt]="item.title + ' — ' + item.category" width="1400" height="788"
+                                loading="lazy" class="block w-full h-auto">
+                        </picture>
+
+                        <div
+                            class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 px-6 pb-4 pt-14 lg:pb-6 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))] bg-gradient-to-t from-lm-black/75 via-lm-black/25 to-transparent">
+                            <div class="flex items-baseline gap-4">
+                                <span class="font-display text-xs font-700 tracking-[0.2em] text-lm-violet">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }} / {{ stack.length < 10 ? '0' + stack.length : stack.length }}</span>
+                                <h3 class="font-display text-xl lg:text-2xl font-700 tracking-tight text-lm-white">{{ item.title }}</h3>
+                                <span class="hidden sm:inline text-xs text-lm-silver tracking-[0.2em] uppercase font-body">{{ item.category }}</span>
+                            </div>
+                            <span class="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-body text-lm-white group-hover:text-lm-violet transition-colors">
+                                Ver caso
+                                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </span>
+                        </div>
+
+                        <!-- Oscurece la tarjeta cuando la siguiente la cubre -->
+                        <div class="stack-dim pointer-events-none absolute inset-0 bg-lm-black opacity-0"></div>
+                    </div>
+                </a>
+            </div>
+            }
+    </div>
+</section>
+
+<!-- Proyectos recientes -->
+<section class="relative bg-lm-charcoal py-20 lg:py-28" aria-labelledby="recent-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-12" appReveal="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Lo más nuevo</span>
+            </div>
+            <h2 id="recent-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                PROYECTOS RECIENTES<span class="text-lm-violet">.</span>
+            </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+            @for (work of recent; track work.name; let i = $index) {
+            <div class="group bg-lm-graphite/60 hover:bg-lm-violet/70 p-px transition-colors duration-500 [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]"
+                appReveal="fade-up" [revealDelay]="i * 150" [revealDuration]="900" revealEase="ease-out-cubic">
+                <div class="relative aspect-[4/5] overflow-hidden bg-lm-black [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]">
+                    <img [src]="work.image" [alt]="work.name" loading="lazy" width="880" height="1101"
+                        class="absolute inset-0 w-full h-full object-cover brightness-[0.8] saturate-[0.9] group-hover:brightness-100 group-hover:saturate-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-lm-black/85 via-lm-black/10 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="font-display text-2xl font-700 tracking-tight text-lm-white">{{ work.name }}</h3>
+                        <p class="mt-1 text-xs text-lm-silver tracking-[0.2em] uppercase font-body">{{ work.service }}</p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Cierre -->
+<section class="relative py-24 lg:py-32 bg-lm-black border-t border-lm-graphite/30" aria-labelledby="pf-cta-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+        <div class="space-y-6" appReveal="fade-right">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Tu marca, el siguiente caso</span>
+            </div>
+            <h2 id="pf-cta-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                ¿HABLAMOS DE<br><span class="text-lm-silver">TU PROYECTO</span><span class="text-lm-violet">?</span>
+            </h2>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4" appReveal="fade-left" [revealDelay]="150">
+            <a routerLink="/contacto"
+                class="group inline-flex items-center justify-between gap-3 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-violet transition-colors duration-300">
+                ESCRÍBENOS
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
+            <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-8 py-4 border border-lm-silver/40 text-lm-white font-display font-700 text-sm tracking-[0.1em] hover:border-lm-violet hover:text-lm-violet transition-colors duration-300">
+                WHATSAPP
+            </a>
+        </div>
+    </div>
+</section>

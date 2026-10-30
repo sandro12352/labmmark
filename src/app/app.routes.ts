@@ -29,8 +29,17 @@ export const routes: Routes = [
         },
     },
     {
+        path: 'programas',
+        loadComponent: () => import('./pages/programas/programas').then(m => m.ProgramasComponent),
+        data: {
+            title: 'Programas — LABMARK',
+            breadcrumb: 'Programas',
+            description: 'Programas de crecimiento IMPULSO y XPANDE: gestión de redes, producción de contenido y publicidad digital con seguimiento y reportes mensuales.',
+        },
+    },
+    {
         path: 'portafolio',
-        component: HomeComponent,
+        loadComponent: () => import('./pages/portafolio/portafolio').then(m => m.PortafolioComponent),
         data: {
             title: 'Portafolio',
             breadcrumb: 'Portafolio',
@@ -46,15 +55,15 @@ export const routes: Routes = [
             description: 'Conoce los detalles de nuestro caso de éxito y los resultados obtenidos.',
         },
     },
-    // {
-    //     path: 'contacto',
-    //     component: HomeComponent,
-    //     data: {
-    //         title: 'Contacto',
-    //         breadcrumb: 'Contacto',
-    //         description: 'Contáctanos para transformar tu marca. Primera consulta sin costo.',
-    //     },
-    // },
+    {
+        path: 'contacto',
+        loadComponent: () => import('./pages/contacto/contacto').then(m => m.ContactoComponent),
+        data: {
+            title: 'Contacto — LABMARK',
+            breadcrumb: 'Contacto',
+            description: 'Contáctanos para transformar tu marca. Escríbenos por formulario o WhatsApp.',
+        },
+    },
     {
         path: '**',
         redirectTo: '',

@@ -1,0 +1,186 @@
+<!-- Hero -->
+<section class="relative bg-lm-black overflow-hidden pt-40 pb-20 lg:pt-48 lg:pb-28">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;">
+        </div>
+    </div>
+
+    <!-- Decorative corners -->
+    <div class="absolute top-8 left-8 w-24 h-24 border-t border-l border-lm-graphite/40"></div>
+    <div class="absolute bottom-8 right-8 w-24 h-24 border-b border-r border-lm-graphite/40"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-4xl">
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-3 mb-8" appReveal="fade-up" [revealDuration]="700">
+                <a routerLink="/"
+                    class="text-xs text-lm-silver/60 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
+                <span class="text-lm-graphite">/</span>
+                <span class="text-xs text-lm-white tracking-widest uppercase font-body">Programas</span>
+            </div>
+
+            <div class="flex items-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
+                <div class="w-16 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Elige tu camino</span>
+            </div>
+
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-800 tracking-tight text-lm-white leading-[1.05] mb-8 overflow-hidden pb-2">
+                <span class="block" appReveal="rise" [revealDuration]="1100" [revealDelay]="200" revealEase="ease-out-cubic">PROGRAMAS</span>
+                <span class="block text-lm-silver" appReveal="rise" [revealDuration]="1100" [revealDelay]="350" revealEase="ease-out-cubic">DE CRECIMIENTO<span class="text-lm-violet">.</span></span>
+            </h1>
+
+            <p class="text-lm-silver text-lg lg:text-xl leading-relaxed max-w-2xl" appReveal="fade-up" [revealDuration]="800" [revealDelay]="600">
+                Dos caminos de crecimiento, según el momento de tu negocio. Estrategia, contenido, publicidad y optimización en un solo equipo.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Comparación -->
+<section class="relative py-20 lg:py-28 bg-lm-charcoal" aria-labelledby="comparison-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-12" appReveal="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Lado a lado</span>
+            </div>
+            <h2 id="comparison-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                COMPARA<span class="text-lm-violet">.</span>
+            </h2>
+        </div>
+
+        <div class="overflow-x-auto -mx-6 px-6 lg:mx-0 lg:px-0" appReveal="fade-up" [revealDuration]="900" revealEase="ease-out-cubic">
+            <table class="w-full min-w-[680px] border-collapse text-left">
+                <thead>
+                    <tr>
+                        <th class="w-[28%] p-0"></th>
+                        @for (program of programs; track program.name) {
+                        <th scope="col" class="align-bottom p-6 border-t-2"
+                            [class]="program.popular ? 'border-lm-violet bg-lm-black' : 'border-lm-graphite bg-lm-black/50'">
+                            @if (program.popular) {
+                            <span class="block mb-2 text-[11px] text-lm-violet tracking-[0.2em] uppercase font-display font-700">Más popular</span>
+                            }
+                            <span class="block font-display text-3xl font-800 tracking-[-0.03em] text-lm-white">{{ program.name }}<span class="text-lm-violet">.</span></span>
+                            @if (program.price) {
+                            <span class="mt-2 flex items-baseline gap-2 font-normal">
+                                <span class="font-display text-xl font-700 text-lm-white">{{ program.price }}</span>
+                                <span class="text-xs text-lm-silver">/ mes + IGV</span>
+                            </span>
+                            }
+                        </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of comparison; track row[0]) {
+                    <tr class="border-t border-lm-graphite/40">
+                        <th scope="row" class="py-5 pr-6 text-xs text-lm-silver tracking-[0.15em] uppercase font-body font-normal align-top">{{ row[0] }}</th>
+                        @for (value of [row[1], row[2]]; track $index) {
+                        <td class="p-6 text-sm leading-relaxed align-top" [class]="$index === 1 ? 'bg-lm-black' : 'bg-lm-black/50'">
+                            @if (value === null) {
+                            <span class="text-lm-graphite" aria-label="No incluido">—</span>
+                            } @else if (value === 'Incluido') {
+                            <span class="inline-flex items-center gap-2 text-lm-light">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="text-lm-violet" aria-hidden="true">
+                                    <path d="M20 6 9 17l-5-5" />
+                                </svg>
+                                Incluido
+                            </span>
+                            } @else {
+                            <span class="text-lm-light">{{ value }}</span>
+                            }
+                        </td>
+                        }
+                    </tr>
+                    }
+                    <tr class="border-t border-lm-graphite/40">
+                        <td class="p-0"></td>
+                        @for (program of programs; track program.name) {
+                        <td class="p-6" [class]="program.popular ? 'bg-lm-black' : 'bg-lm-black/50'">
+                            <button type="button" (click)="goToContact()"
+                                class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:tracking-[0.15em] cursor-pointer"
+                                [class]="program.popular
+                                    ? 'bg-lm-white text-lm-black hover:bg-lm-violet'
+                                    : 'border border-lm-silver/40 text-lm-white hover:border-lm-violet hover:text-lm-violet'">
+                                Solicitar propuesta
+                            </button>
+                        </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Qué busca cada programa -->
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mt-14">
+            @for (program of programs; track program.name; let i = $index) {
+            <div class="pl-6 border-l-2" [class]="program.popular ? 'border-lm-violet' : 'border-lm-graphite'"
+                appReveal="fade-up" [revealDuration]="800" [revealDelay]="i * 120">
+                <span class="block text-xs text-lm-silver tracking-[0.2em] uppercase font-body mb-2">Qué busca</span>
+                <h3 class="font-display text-2xl font-800 tracking-[-0.03em] text-lm-white mb-3">{{ program.name }}<span class="text-lm-violet">.</span></h3>
+                <p class="text-sm text-lm-silver leading-relaxed">{{ program.objective }}</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Condiciones -->
+<section class="relative py-20 lg:py-28 bg-lm-black" aria-labelledby="conditions-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="mb-12" appReveal="fade-up">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Reglas claras</span>
+            </div>
+            <h2 id="conditions-title"
+                class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                CONDICIONES<span class="text-lm-violet">.</span>
+            </h2>
+        </div>
+
+        <dl class="grid md:grid-cols-2 gap-x-16 gap-y-0">
+            @for (condition of conditions; track condition[0]; let i = $index) {
+            <div class="py-6 border-t border-lm-graphite/40" appReveal="fade-up" [revealDuration]="700" [revealDelay]="(i % 2) * 80">
+                <dt class="font-display text-lg font-700 text-lm-white mb-2 tracking-wide">{{ condition[0] }}</dt>
+                <dd class="text-sm text-lm-silver leading-relaxed">{{ condition[1] }}</dd>
+            </div>
+            }
+        </dl>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="relative py-24 lg:py-32 bg-lm-charcoal overflow-hidden">
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center" appReveal="fade-up" [revealDuration]="900">
+        <div class="flex items-center justify-center gap-4 mb-6">
+            <div class="w-12 h-px bg-lm-silver"></div>
+            <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">¿Cuál es el tuyo?</span>
+            <div class="w-12 h-px bg-lm-silver"></div>
+        </div>
+
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-tight text-lm-white leading-[1.1] mb-6">
+            EMPECEMOS A <span class="text-lm-silver">CRECER</span><span class="text-lm-violet">.</span>
+        </h2>
+
+        <p class="text-lm-silver text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+            Cuéntanos sobre tu negocio y te recomendamos el programa que mejor encaja con tus objetivos.
+        </p>
+
+        <button type="button" (click)="goToContact()"
+            class="inline-flex items-center gap-3 px-10 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:bg-lm-violet hover:tracking-[0.15em] group cursor-pointer">
+            Solicitar propuesta
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+            </svg>
+        </button>
+    </div>
+</section>

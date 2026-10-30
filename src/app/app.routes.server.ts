@@ -2,16 +2,24 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 const PORTFOLIO_SLUGS = [
   'martial-core',
-  'techpulse',
-  'alma-cafe',
-  'nova-fitness',
-  'urban-living',
-  'meridian-bank',
+  'grin-peru',
+  'opcion',
+  'sabor-y-sason',
+  'tecnograss',
+  'tismartial',
 ];
 
 export const serverRoutes: ServerRoute[] = [
   {
     path: 'nosotros',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'contacto',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'programas',
     renderMode: RenderMode.Prerender
   },
   {

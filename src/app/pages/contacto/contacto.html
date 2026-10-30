@@ -1,0 +1,77 @@
+<!-- Hero -->
+<section class="relative bg-lm-black overflow-hidden pt-40 pb-16 lg:pt-48 lg:pb-20">
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;">
+        </div>
+    </div>
+
+    <div class="absolute top-8 left-8 w-24 h-24 border-t border-l border-lm-graphite/40"></div>
+    <div class="absolute bottom-8 right-8 w-24 h-24 border-b border-r border-lm-graphite/40"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-4xl">
+            <div class="flex items-center gap-3 mb-8" appReveal="fade-up" [revealDuration]="700">
+                <a routerLink="/"
+                    class="text-xs text-lm-silver/60 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
+                <span class="text-lm-graphite">/</span>
+                <span class="text-xs text-lm-white tracking-widest uppercase font-body">Contacto</span>
+            </div>
+
+            <div class="flex items-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
+                <div class="w-16 h-px bg-lm-silver"></div>
+                <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Conversemos</span>
+            </div>
+
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-800 tracking-tight text-lm-white leading-[1.05] mb-8 overflow-hidden pb-2">
+                <span class="block" appReveal="rise" [revealDuration]="1100" [revealDelay]="200" revealEase="ease-out-cubic">HABLEMOS</span>
+                <span class="block text-lm-silver" appReveal="rise" [revealDuration]="1100" [revealDelay]="350" revealEase="ease-out-cubic">DE TU PROYECTO<span class="text-lm-violet">.</span></span>
+            </h1>
+
+            <p class="text-lm-silver text-lg lg:text-xl leading-relaxed max-w-2xl" appReveal="fade-up" [revealDuration]="800" [revealDelay]="600">
+                Cuéntanos qué necesitas y diseñemos juntos la solución. También puedes escribirnos directo por WhatsApp.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Canales -->
+<section class="relative bg-lm-black pb-8 lg:pb-12" aria-label="Canales de contacto">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            @for (channel of channels; track channel.name; let i = $index) {
+            <a [href]="channel.url" [attr.target]="channel.name === 'email' ? null : '_blank'"
+                rel="noopener noreferrer" appReveal="fade-up" [revealDelay]="i * 100" [revealDuration]="800"
+                class="group relative block bg-lm-graphite hover:bg-lm-violet p-px transition-colors duration-300 [clip-path:polygon(0_0,calc(100%-24px)_0,100%_24px,100%_100%,0_100%)]">
+                <div
+                    class="h-full bg-lm-charcoal p-6 flex flex-col gap-6 [clip-path:polygon(0_0,calc(100%-24px)_0,100%_24px,100%_100%,0_100%)]">
+                    <div class="flex items-start justify-between">
+                        <svg class="w-6 h-6 text-lm-silver group-hover:text-lm-violet transition-colors duration-300"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            aria-hidden="true">
+                            <path [attr.d]="channel.icon" fill-rule="evenodd" />
+                        </svg>
+                        @if (channel.badge) {
+                        <span
+                            class="mr-5 text-[10px] tracking-[0.2em] uppercase font-body text-lm-violet border border-lm-violet/40 px-2 py-1">{{ channel.badge }}</span>
+                        }
+                    </div>
+                    <div class="space-y-1">
+                        <span class="block font-display text-lg font-700 tracking-[0.05em] text-lm-white">{{ channel.label }}</span>
+                        <span class="block text-sm text-lm-silver break-all">{{ channel.detail }}</span>
+                    </div>
+                    <svg class="w-4 h-4 text-lm-silver group-hover:text-lm-violet group-hover:translate-x-1 transition-all duration-300"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </div>
+            </a>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Formulario + datos -->
+<app-contact />
