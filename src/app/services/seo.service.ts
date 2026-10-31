@@ -23,8 +23,8 @@ export class SeoService {
       )
       .subscribe((data: any) => {
         const pageTitle = data['title']
-          ? `${data['title']} — LABMARK`
-          : 'LABMARK — Agencia de Marketing Digital';
+          ? `${data['title']} — LABMMARK`
+          : 'LABMMARK — Agencia de Marketing Digital';
         this.title.setTitle(pageTitle);
 
         if (data['description']) {

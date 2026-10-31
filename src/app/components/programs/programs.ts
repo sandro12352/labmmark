@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../../directives/reveal';
-import { PROGRAMS } from './programs.data';
+import { PROGRAMS, planWhatsappUrl } from './programs.data';
 
 @Component({
     selector: 'app-programs',
@@ -11,4 +11,5 @@ import { PROGRAMS } from './programs.data';
 })
 export class ProgramsComponent {
     programs = PROGRAMS;
+    planUrl = planWhatsappUrl;
 }

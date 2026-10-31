@@ -1,23 +1,19 @@
 <section class="relative py-20 lg:py-28 bg-lm-charcoal overflow-hidden" aria-labelledby="testimonials-title">
 
-    <!-- 1. Imagen de Fondo Fija (Efecto Parallax) -->
-    <div class="absolute inset-0 bg-fixed bg-cover  bg-center opacity-25 pointer-events-none z-0"
-        style="background-image: url('assets/team.png');">
+    <!-- Imagen de fondo fija (efecto parallax) -->
+    <div class="absolute inset-0 bg-fixed bg-cover bg-center opacity-20 saturate-[0.8] pointer-events-none z-0"
+        style="background-image: url('assets/equipo-dashboard.webp');">
     </div>
 
-    <!-- 2. Overlay Oscuro para garantizar legibilidad del texto -->
-
-
-
-    <!-- Background decorative text -->
+    <!-- Comilla decorativa de fondo -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <span
             class="font-display text-[10rem] lg:text-[20rem] font-800 text-lm-graphite/[0.07] leading-none whitespace-nowrap">"</span>
     </div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <!-- Section Header -->
-        <div class="mb-20 text-center" appReveal="fade-up" [revealDuration]="700">
+        <!-- Encabezado -->
+        <div class="mb-14 lg:mb-16 text-center" appReveal="fade-up" [revealDuration]="700">
             <div class="flex items-center justify-center gap-4 mb-6">
                 <div class="w-12 h-[1px] bg-lm-silver"></div>
                 <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Testimonios</span>
@@ -28,49 +24,102 @@
                 LO QUE DICEN<br>
                 <span class="text-lm-silver">NUESTROS CLIENTES</span><span class="text-lm-violet">.</span>
             </h2>
+            <p class="mt-6 text-lm-silver text-lg max-w-2xl mx-auto leading-relaxed">
+                Ellos lo cuentan mejor que nosotros. Elige un video y escucha su experiencia.
+            </p>
         </div>
 
-        <!-- Testimonials Grid -->
-        <div class="grid md:grid-cols-3 gap-6">
-            @for (testimonial of testimonials; track testimonial.name; let i = $index) {
-            <article
-                class="group bg-lm-black border border-lm-graphite/50 p-8 lg:p-10 hover:border-lm-silver/30 transition-colors duration-500 relative"
-                appReveal="fade" [revealDuration]="700" revealEase="ease-in-out">
-                <!-- Quote mark -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
-                    class="text-lm-graphite mb-6">
-                    <path
-                        d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z" />
-                    <path
-                        d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
+        <!-- Videos de clientes -->
+        <hlm-carousel [options]="carouselOptions" class="w-full">
+            <hlm-carousel-content class="-ml-4">
+                @for (video of videos; track video.id; let i = $index) {
+                <div hlmCarouselItem class="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                    <button type="button" (click)="open(video)"
+                        [attr.aria-label]="'Ver el testimonio de ' + video.client"
+                        class="group block w-full h-full text-left cursor-pointer bg-lm-graphite/60 hover:bg-lm-violet/70 p-px transition-colors duration-500 [clip-path:polygon(0_0,calc(100%-24px)_0,100%_24px,100%_100%,0_100%)]">
+                        <div
+                            class="h-full flex flex-col bg-lm-black [clip-path:polygon(0_0,calc(100%-24px)_0,100%_24px,100%_100%,0_100%)]">
+                            <!-- Miniatura -->
+                            <div class="relative aspect-video overflow-hidden bg-lm-charcoal">
+                                <img [src]="'assets/testimonios/' + video.id + '.webp'"
+                                    [alt]="'Testimonio de ' + video.client" loading="lazy" width="640" height="360"
+                                    class="w-full h-full object-cover brightness-[0.8] saturate-[0.9] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out">
+                                <div class="absolute inset-0 bg-gradient-to-t from-lm-black/60 via-transparent to-transparent"></div>
+
+                                <span
+                                    class="absolute inset-0 m-auto w-14 h-14 rounded-full flex items-center justify-center bg-lm-black/70 backdrop-blur-sm border border-lm-violet/60 text-lm-white group-hover:bg-lm-violet group-hover:border-lm-violet group-hover:text-lm-black transition-colors duration-300">
+                                    <svg class="w-6 h-6 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </span>
+
+                                <span
+                                    class="absolute bottom-3 right-3 px-2 py-1 bg-lm-black/80 text-[11px] tracking-[0.15em] font-body text-lm-white">{{ duration(video.seconds) }}</span>
+                            </div>
+
+                            <!-- Texto -->
+                            <div class="flex flex-col gap-3 p-6 grow">
+                                <span class="text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet">Caso de éxito</span>
+                                <h3 class="font-display text-xl font-700 tracking-tight text-lm-white group-hover:text-lm-violet transition-colors duration-300">{{ video.client }}</h3>
+                                <p class="text-sm text-lm-silver leading-relaxed line-clamp-3">“{{ video.quote }}”</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                }
+            </hlm-carousel-content>
+
+            <button hlmCarouselPrevious aria-label="Video anterior"
+                class="hidden lg:block bg-transparent dark:bg-transparent border-0 shadow-none text-lm-white text-lg hover:scale-125 transition-all duration-300 hover:bg-transparent dark:hover:bg-transparent hover:text-lm-violet cursor-pointer">Prev</button>
+            <button hlmCarouselNext aria-label="Siguiente video"
+                class="hidden lg:block bg-transparent dark:bg-transparent border-0 shadow-none text-lm-white text-lg hover:scale-125 transition-all duration-300 hover:bg-transparent dark:hover:bg-transparent hover:text-lm-violet cursor-pointer">Next</button>
+        </hlm-carousel>
+
+        <!-- Más videos -->
+        <div class="mt-12 flex justify-center">
+            <a [href]="channelUrl" target="_blank" rel="noopener noreferrer"
+                class="group inline-flex items-center gap-3 px-8 py-4 border border-lm-silver/40 text-lm-white font-display font-700 text-sm tracking-[0.1em] hover:border-lm-violet hover:text-lm-violet transition-colors duration-300">
+                VER MÁS EN YOUTUBE
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
                 </svg>
-
-                <!-- Quote -->
-                <blockquote class="text-lm-light text-base leading-relaxed mb-8">
-                    "{{ testimonial.quote }}"
-                </blockquote>
-
-                <!-- Author -->
-                <div class="flex items-center gap-4">
-                    <!-- Avatar -->
-                    <div
-                        class="w-12 h-12 bg-lm-graphite flex items-center justify-center text-lm-white font-display font-700 text-sm tracking-wider">
-                        {{ testimonial.initials }}
-                    </div>
-                    <div>
-                        <span class="block text-sm font-600 text-lm-white">{{ testimonial.name }}</span>
-                        <span class="block text-xs text-lm-silver mt-0.5">{{ testimonial.role }}, {{ testimonial.company
-                            }}</span>
-                    </div>
-                </div>
-
-                <!-- Bottom accent -->
-                <div
-                    class="absolute bottom-0 left-0 w-0 h-[2px] bg-lm-white group-hover:w-full transition-all duration-700">
-                </div>
-            </article>
-            }
+            </a>
         </div>
     </div>
 </section>
+
+<!-- Visor del video -->
+<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-10 transition-opacity duration-300"
+    [class]="current() ? 'opacity-100' : 'opacity-0 pointer-events-none'" role="dialog" aria-modal="true"
+    [attr.aria-hidden]="current() ? null : 'true'" [attr.aria-label]="current() ? 'Testimonio de ' + current()?.client : null">
+    <div class="absolute inset-0 bg-lm-black/85 backdrop-blur-sm" (click)="close()"></div>
+
+    <div class="relative w-full max-w-5xl transition-all duration-500 ease-out"
+        [class]="current() ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'">
+        <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+                <span class="block text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet">Caso de éxito</span>
+                <span class="block font-display text-xl font-700 text-lm-white">{{ current()?.client }}</span>
+            </div>
+            <button type="button" (click)="close()" aria-label="Cerrar video"
+                class="w-11 h-11 border border-lm-graphite text-lm-silver hover:text-lm-violet hover:border-lm-violet flex items-center justify-center cursor-pointer transition-colors duration-300">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="relative aspect-video w-full bg-black border border-lm-violet/40">
+            @if (videoUrl(); as url) {
+            <iframe [src]="url" [title]="'Testimonio de ' + current()?.client" class="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            }
+        </div>
+    </div>
+</div>

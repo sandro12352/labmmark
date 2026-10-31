@@ -11,7 +11,7 @@ export class WhatsappButtonComponent {
     showTooltip = signal(true);
 
     readonly whatsappNumber = WHATSAPP_NUMBER;
-    readonly defaultMessage = '¡Hola! Me interesa saber más sobre los servicios de LABMARK.';
+    readonly defaultMessage = '¡Hola! Me interesa saber más sobre los servicios de LABMMARK.';
 
     get whatsappUrl(): string {
         const msg = encodeURIComponent(this.defaultMessage);

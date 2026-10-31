@@ -241,7 +241,7 @@ export class CaseStudyComponent implements OnInit {
         },
         {
             slug: 'sabor-y-sason',
-            title: 'Sabor y Sason',
+            title: 'Son y Sazón',
             category: 'Campaña Digital',
             size: 'small',
             gradient: 'from-lm-graphite to-lm-slate',

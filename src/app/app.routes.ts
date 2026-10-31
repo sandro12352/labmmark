@@ -7,7 +7,7 @@ export const routes: Routes = [
         component: HomeComponent,
         data: {
             title: 'Inicio',
-            description: 'LABMARK: Agencia de marketing digital especializada en branding, social media, diseño web y estrategia digital.',
+            description: 'LABMMARK: Agencia de marketing digital especializada en branding, social media, diseño web y estrategia digital.',
         },
     },
     // {
@@ -23,18 +23,18 @@ export const routes: Routes = [
         path: 'nosotros',
         loadComponent: () => import('./pages/nosotros/nosotros').then(m => m.NosotrosComponent),
         data: {
-            title: 'Nosotros — LABMARK',
+            title: 'Nosotros',
             breadcrumb: 'Nosotros',
-            description: 'Conoce al equipo de LABMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores, proceso y trayectoria.',
+            description: 'Conoce al equipo de LABMMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores, proceso y trayectoria.',
         },
     },
     {
-        path: 'programas',
-        loadComponent: () => import('./pages/programas/programas').then(m => m.ProgramasComponent),
+        path: 'planes',
+        loadComponent: () => import('./pages/planes/planes').then(m => m.PlanesComponent),
         data: {
-            title: 'Programas — LABMARK',
-            breadcrumb: 'Programas',
-            description: 'Programas de crecimiento IMPULSO y XPANDE: gestión de redes, producción de contenido y publicidad digital con seguimiento y reportes mensuales.',
+            title: 'Planes',
+            breadcrumb: 'Planes',
+            description: 'Planes de crecimiento IMPULSO y XPANDE: gestión de redes, producción de contenido y publicidad digital con seguimiento y reportes mensuales.',
         },
     },
     {
@@ -59,11 +59,13 @@ export const routes: Routes = [
         path: 'contacto',
         loadComponent: () => import('./pages/contacto/contacto').then(m => m.ContactoComponent),
         data: {
-            title: 'Contacto — LABMARK',
+            title: 'Contacto',
             breadcrumb: 'Contacto',
             description: 'Contáctanos para transformar tu marca. Escríbenos por formulario o WhatsApp.',
         },
     },
+    // La dirección anterior sigue funcionando
+    { path: 'programas', redirectTo: 'planes', pathMatch: 'full' },
     {
         path: '**',
         redirectTo: '',

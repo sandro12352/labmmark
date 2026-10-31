@@ -11,12 +11,19 @@ export interface GalleryItem {
     height: number;
 }
 
-/** Duración (s) de una vuelta completa de cada columna; distintas para que no se muevan al unísono */
+/**
+ * Veces que se repite cada columna. Con solo dos copias, al avanzar una vuelta completa la ventana visible
+ * (que además está inclinada) se sale del final de la columna y quedan huecos; con cuatro, la ventana siempre
+ * queda dentro del contenido.
+ */
+const COPIES = 4;
+
+/** Duración (s) de una vuelta (el alto de una copia) de cada columna; distintas para que no se muevan al unísono */
 const DURATIONS = [58, 72, 64];
 
 /**
  * Columnas inclinadas de piezas que suben y bajan en bucle (las pares suben, las impares bajan).
- * Cada columna se pinta dos veces para que el bucle no tenga corte.
+ * Cada columna se pinta varias veces y se desplaza exactamente el alto de una copia, así el bucle no tiene corte.
  */
 @Component({
     selector: 'app-diagonal-gallery',
@@ -26,6 +33,7 @@ const DURATIONS = [58, 72, 64];
 })
 export class DiagonalGalleryComponent {
     columns = input.required<GalleryItem[][]>();
+    copies = Array.from({ length: COPIES }, (_, i) => i);
 
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
     private destroyRef = inject(DestroyRef);
@@ -40,8 +48,8 @@ export class DiagonalGalleryComponent {
             const ctx = gsap.context(() => {
                 gsap.utils.toArray<HTMLElement>('.gd-track', root).forEach((track, i) => {
                     const up = i % 2 === 0;
-                    tweens.push(gsap.fromTo(track, { yPercent: up ? 0 : -50 }, {
-                        yPercent: up ? -50 : 0,
+                    tweens.push(gsap.fromTo(track, { yPercent: up ? 0 : -100 / COPIES }, {
+                        yPercent: up ? -100 / COPIES : 0,
                         duration: DURATIONS[i % DURATIONS.length],
                         ease: 'none',
                         repeat: -1,

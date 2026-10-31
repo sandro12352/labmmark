@@ -2,19 +2,21 @@
     aria-label="Sección principal">
     
     <!-- Background Video -->
-    <video autoplay muted loop playsinline class="hero-video absolute inset-0 w-full h-full object-cover">
-        <source src="assets/videos/hero-video1.mp4" type="video/mp4">
-        <source src="assets/videos/hero-video1.mp4" type="video/webm">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/videos/hero-logo-poster.webp"
+        class="hero-video absolute inset-0 w-full h-full object-cover">
+        <source src="assets/videos/hero-logo.mp4" type="video/mp4">
     </video>
 
     <!-- Overlay gradient for better text readability -->
-    <div class="absolute inset-0 bg-linear-to-b from-lm-black/50 via-lm-black/40 to-lm-black/70"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-lm-black/60 via-lm-black/50 to-lm-black/75 lg:hidden"></div>
+    <div class="absolute inset-0 hidden lg:block bg-linear-to-r from-lm-black/85 via-lm-black/55 to-lm-black/10"></div>
+    <div class="absolute inset-0 hidden lg:block bg-linear-to-t from-lm-black/50 via-transparent to-lm-black/30"></div>
 
     <!-- Grain overlay -->
     <div class="grain-overlay absolute inset-0 pointer-events-none"></div>
 
     <!-- Content centered -->
-    <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-auto">
+    <div class="relative z-10 flex flex-col items-center lg:items-start justify-center text-center lg:text-left w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-auto">
         
         <!-- Tag -->
         <div class="hero-tag opacity-0 mb-6 sm:mb-8">
@@ -26,23 +28,24 @@
 
         <!-- Headline -->
         <h1 class="max-w-5xl">
-            <span class="block overflow-hidden pb-1">
+            <span class="block lg:inline-block overflow-hidden pb-1 lg:mr-5">
                 <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">CREAMOS</span>
             </span>
-            <span class="block overflow-hidden pb-1 mt-2 sm:mt-3">
+            <span class="block lg:inline-block overflow-hidden pb-1 mt-2 sm:mt-3 lg:mt-0 lg:mr-5">
                 <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-gray-100">MARCAS</span>
             </span>
-            <span class="block overflow-hidden pb-1 mt-2 sm:mt-3">
+            <br class="hidden lg:block">
+            <span class="block lg:inline-block overflow-hidden pb-1 mt-2 sm:mt-3 lg:mt-0 lg:mr-5">
                 <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] text-lm-white">QUE</span>
             </span>
-            <span class="block overflow-hidden pb-1 mt-2 sm:mt-3">
+            <span class="block lg:inline-block overflow-hidden pb-1 mt-2 sm:mt-3 lg:mt-0 lg:mr-5">
                 <span class="hero-word block opacity-0 font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-800 leading-[0.95] tracking-[-0.04em] hero-gradient-text">IMPACTAN</span>
             </span>
         </h1>
 
 
         <!-- Subtitle -->
-        <p class="text-lm-white text-base sm:text-lg lg:text-xl max-w-xl sm:max-w-2xl leading-relaxed hero-sub opacity-0 mt-6 sm:mt-8 px-2">
+        <p class="text-lm-white text-base sm:text-lg lg:text-xl max-w-xl sm:max-w-2xl leading-relaxed hero-sub opacity-0 mt-6 sm:mt-8 px-2 lg:px-0">
             Transformamos ideas en <span class="text-lm-accent font-semibold">experiencias digitales poderosas</span>. Estrategia,
             creatividad y datos al servicio de tu marca.
         </p>

@@ -1,8 +1,10 @@
+import { whatsappLink } from '../../config/contact';
+
 export interface Program {
     name: string;
     focus: string;
     description: string;
-    /** Qué busca el programa (se muestra en la página /programas) */
+    /** Qué busca el plan (se muestra en la página /planes) */
     objective: string;
     /** Dejar vacío para no mostrar el precio */
     price: string;
@@ -70,3 +72,11 @@ export const CONDITIONS: [string, string][] = [
     ['Pago por adelantado', 'El servicio se paga por adelantado, lo que permite programar y ejecutar las actividades del mes.'],
     ['Confidencialidad', 'Toda la información compartida entre ambas partes se trata de forma confidencial.'],
 ];
+
+/** WhatsApp con un mensaje listo para pedir la propuesta de un plan */
+export function planWhatsappUrl(program: Program): string {
+    return whatsappLink(`¡Hola! Me interesa el plan ${program.name}.`);
+}
+
+/** WhatsApp para quien aún no sabe qué plan le conviene */
+export const PLAN_ADVICE_URL = whatsappLink('¡Hola! Me gustaría que me recomienden el plan que mejor encaja con mi negocio.');

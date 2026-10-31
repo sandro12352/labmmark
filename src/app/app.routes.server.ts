@@ -19,7 +19,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'programas',
+    path: 'planes',
     renderMode: RenderMode.Prerender
   },
   {

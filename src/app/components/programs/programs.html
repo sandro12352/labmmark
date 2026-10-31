@@ -1,4 +1,4 @@
-<section id="programas" class="relative py-20 lg:py-28 bg-lm-charcoal" aria-labelledby="programs-title">
+<section id="planes" class="relative py-20 lg:py-28 bg-lm-charcoal" aria-labelledby="programs-title">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
         <!-- Section Header -->
@@ -9,7 +9,7 @@
             </div>
             <h2 id="programs-title"
                 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
-                PROGRAMAS<span class="text-lm-violet">.</span>
+                PLANES<span class="text-lm-violet">.</span>
             </h2>
             <p class="mt-6 text-lm-silver text-lg max-w-2xl leading-relaxed">
                 Dos caminos de crecimiento, según el momento de tu negocio.
@@ -60,7 +60,7 @@
                     }
                 </ul>
 
-                <a routerLink="/contacto"
+                <a [href]="planUrl(program)" target="_blank" rel="noopener noreferrer"
                     class="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:tracking-[0.15em] cursor-pointer"
                     [class]="program.popular
                         ? 'bg-lm-white text-lm-black hover:bg-lm-violet'
@@ -81,7 +81,7 @@
             <p class="text-xs text-lm-silver/70">
                 Contrato mínimo de 3 meses. Precios sin IGV. La inversión publicitaria (Meta Ads, TikTok Ads, Google Ads) no está incluida.
             </p>
-            <a routerLink="/programas"
+            <a routerLink="/planes"
                 class="group inline-flex items-center gap-2 shrink-0 text-sm text-lm-white hover:text-lm-violet transition-colors duration-300">
                 Ver comparación y condiciones
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"

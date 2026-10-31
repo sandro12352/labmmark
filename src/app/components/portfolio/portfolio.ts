@@ -112,7 +112,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                     'assets/gallery/martialcore-6.jpg',
                 ],
                 testimonial: {
-                    quote: 'LABMARK transformó nuestra marca por completo. Los resultados superaron todas nuestras expectativas.',
+                    quote: 'LABMMARK transformó nuestra marca por completo. Los resultados superaron todas nuestras expectativas.',
                     author: 'María González',
                     role: 'CEO, Renacer Cosmetics',
                 },
@@ -142,7 +142,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                     { value: '185%', label: 'Tráfico orgánico' },
                 ],
                 testimonial: {
-                    quote: 'El equipo de LABMARK entendió perfectamente lo que necesitábamos. La nueva web es otra cosa.',
+                    quote: 'El equipo de LABMMARK entendió perfectamente lo que necesitábamos. La nueva web es otra cosa.',
                     author: 'Carlos Ruiz',
                     role: 'CTO, TechPulse',
                 },
@@ -172,7 +172,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                     { value: '2.8x', label: 'ROAS campañas' },
                 ],
                 testimonial: {
-                    quote: 'Gracias a LABMARK nuestro café se llenó de clientes nuevos. Las redes sociales cambiaron todo.',
+                    quote: 'Gracias a LABMMARK nuestro café se llenó de clientes nuevos. Las redes sociales cambiaron todo.',
                     author: 'Ana Torres',
                     role: 'Fundadora, Alma Café',
                 },
@@ -180,7 +180,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
         },
         {
             slug: 'sabor-y-sason',
-            title: 'Sabory Sason',
+            title: 'Son y Sazón',
             category: 'Campaña Digital',
             size: 'small',
             gradient: 'from-lm-graphite to-lm-slate',
@@ -202,7 +202,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                     { value: '5.6x', label: 'ROAS general' },
                 ],
                 testimonial: {
-                    quote: 'Abrimos con el gimnasio lleno. La estrategia de LABMARK fue impecable desde el día uno.',
+                    quote: 'Abrimos con el gimnasio lleno. La estrategia de LABMMARK fue impecable desde el día uno.',
                     author: 'Diego Méndez',
                     role: 'Director, Nova Fitness',
                 },
@@ -232,7 +232,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                     { value: '8.2x', label: 'ROI de campaña' },
                 ],
                 testimonial: {
-                    quote: 'LABMARK nos ayudó a construir una marca que transmite exactamente lo que somos. Los resultados hablan solos.',
+                    quote: 'LABMMARK nos ayudó a construir una marca que transmite exactamente lo que somos. Los resultados hablan solos.',
                     author: 'Roberto Castillo',
                     role: 'Director Comercial, Urban Living',
                 },
@@ -262,7 +262,7 @@ export class PortfolioComponent implements AfterViewInit, OnDestroy {
                     { value: '3.5x', label: 'ROAS promedio' },
                 ],
                 testimonial: {
-                    quote: 'LABMARK logró lo que parecía imposible: hacer que un banco conecte con millennials sin perder seriedad.',
+                    quote: 'LABMMARK logró lo que parecía imposible: hacer que un banco conecte con millennials sin perder seriedad.',
                     author: 'Patricia Vega',
                     role: 'CMO, Meridian Bank',
                 },

@@ -18,7 +18,7 @@
                 <a routerLink="/"
                     class="text-xs text-lm-silver/60 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
                 <span class="text-lm-graphite">/</span>
-                <span class="text-xs text-lm-white tracking-widest uppercase font-body">Programas</span>
+                <span class="text-xs text-lm-white tracking-widest uppercase font-body">Planes</span>
             </div>
 
             <div class="flex items-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
@@ -27,7 +27,7 @@
             </div>
 
             <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-800 tracking-tight text-lm-white leading-[1.05] mb-8 overflow-hidden pb-2">
-                <span class="block" appReveal="rise" [revealDuration]="1100" [revealDelay]="200" revealEase="ease-out-cubic">PROGRAMAS</span>
+                <span class="block" appReveal="rise" [revealDuration]="1100" [revealDelay]="200" revealEase="ease-out-cubic">PLANES</span>
                 <span class="block text-lm-silver" appReveal="rise" [revealDuration]="1100" [revealDelay]="350" revealEase="ease-out-cubic">DE CRECIMIENTO<span class="text-lm-violet">.</span></span>
             </h1>
 
@@ -102,13 +102,13 @@
                         <td class="p-0"></td>
                         @for (program of programs; track program.name) {
                         <td class="p-6" [class]="program.popular ? 'bg-lm-black' : 'bg-lm-black/50'">
-                            <button type="button" (click)="goToContact()"
+                            <a [href]="planUrl(program)" target="_blank" rel="noopener noreferrer"
                                 class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:tracking-[0.15em] cursor-pointer"
                                 [class]="program.popular
                                     ? 'bg-lm-white text-lm-black hover:bg-lm-violet'
                                     : 'border border-lm-silver/40 text-lm-white hover:border-lm-violet hover:text-lm-violet'">
                                 Solicitar propuesta
-                            </button>
+                            </a>
                         </td>
                         }
                     </tr>
@@ -116,7 +116,7 @@
             </table>
         </div>
 
-        <!-- Qué busca cada programa -->
+        <!-- Qué busca cada plan -->
         <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mt-14">
             @for (program of programs; track program.name; let i = $index) {
             <div class="pl-6 border-l-2" [class]="program.popular ? 'border-lm-violet' : 'border-lm-graphite'"
@@ -169,10 +169,10 @@
         </h2>
 
         <p class="text-lm-silver text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-            Cuéntanos sobre tu negocio y te recomendamos el programa que mejor encaja con tus objetivos.
+            Cuéntanos sobre tu negocio y te recomendamos el plan que mejor encaja con tus objetivos.
         </p>
 
-        <button type="button" (click)="goToContact()"
+        <a [href]="adviceUrl" target="_blank" rel="noopener noreferrer"
             class="inline-flex items-center gap-3 px-10 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:bg-lm-violet hover:tracking-[0.15em] group cursor-pointer">
             Solicitar propuesta
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -181,6 +181,6 @@
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
             </svg>
-        </button>
+        </a>
     </div>
 </section>

@@ -1,5 +1,7 @@
-import { Component, signal, computed, HostListener, inject } from '@angular/core';
+import { Component, signal, computed, HostListener, inject, viewChild, ElementRef, DestroyRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { ADDRESS_LINES, EMAIL, FACEBOOK_URL, INSTAGRAM_URL, LINKEDIN_URL, HABLEMOS_URL, MAP_LINK, PHONE_DISPLAY, TIKTOK_URL, whatsappLink } from '../../config/contact';
 
 @Component({
     selector: 'app-navbar',
@@ -10,15 +12,43 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
     private router = inject(Router);
+    private doc = inject(DOCUMENT);
+    private destroyRef = inject(DestroyRef);
+
+    menuBtn = viewChild<ElementRef<HTMLButtonElement>>('menuBtn');
+    closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
+
+    email = EMAIL;
+    phone = PHONE_DISPLAY;
+    address = ADDRESS_LINES.join(', ');
+    mapLink = MAP_LINK;
+    hablemosUrl = HABLEMOS_URL;
+    whatsappUrl = whatsappLink('¡Hola! Me interesa saber más sobre los servicios de LABMMARK.');
+    socials = [
+        { name: 'Instagram', url: INSTAGRAM_URL },
+        { name: 'Facebook', url: FACEBOOK_URL },
+        { name: 'TikTok', url: TIKTOK_URL },
+        { name: 'LinkedIn', url: LINKEDIN_URL },
+    ];
 
     isScrolled = signal(false);
     isHidden = signal(false);
     private lastScrollY = 0;
-    mobileMenuOpen = signal(false);
+    menuOpen = signal(false);
+    /** Pasada la entrada escalonada, las opciones dejan de tener retraso para que el hover responda al instante */
+    menuReady = signal(false);
+    private readyTimer?: ReturnType<typeof setTimeout>;
+
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            clearTimeout(this.readyTimer);
+            this.doc.body.style.overflow = '';
+        });
+    }
 
     navLinks: { label: string; fragment: string; route?: string }[] = [
         { label: 'Inicio', fragment: '' },
-        { label: 'Programas', fragment: 'programas', route: '/programas' },
+        { label: 'Planes', fragment: 'planes', route: '/planes' },
         { label: 'Nosotros', fragment: 'nosotros', route: '/nosotros' },
         { label: 'Portafolio', fragment: 'portafolio', route: '/portafolio' },
         { label: 'Contacto', fragment: 'contacto', route: '/contacto' },
@@ -36,18 +66,42 @@ export class NavbarComponent {
         const y = window.scrollY;
         this.isScrolled.set(y > 50);
 
-        // Se oculta al bajar (pasado el hero) y reaparece al subir; con el menú móvil abierto siempre visible
+        // Se oculta al bajar (pasado el hero) y reaparece al subir; con el menú abierto siempre visible
         const goingDown = y > this.lastScrollY;
-        this.isHidden.set(goingDown && y > 200 && !this.mobileMenuOpen());
+        this.isHidden.set(goingDown && y > 200 && !this.menuOpen());
         this.lastScrollY = y;
     }
 
+    @HostListener('document:keydown.escape')
+    onEscape() {
+        if (this.menuOpen()) this.closeMenu();
+    }
+
     toggleMenu() {
-        this.mobileMenuOpen.update((v) => !v);
+        this.menuOpen() ? this.closeMenu() : this.openMenu();
+    }
+
+    openMenu() {
+        this.menuOpen.set(true);
+        this.doc.body.style.overflow = 'hidden';
+        clearTimeout(this.readyTimer);
+        this.readyTimer = setTimeout(() => this.menuReady.set(true), 1300);
+        setTimeout(() => this.closeBtn()?.nativeElement.focus(), 500);
     }
 
     closeMenu() {
-        this.mobileMenuOpen.set(false);
+        if (!this.menuOpen()) return;
+        this.menuOpen.set(false);
+        this.menuReady.set(false);
+        clearTimeout(this.readyTimer);
+        this.doc.body.style.overflow = '';
+        this.menuBtn()?.nativeElement.focus({ preventScroll: true });
+    }
+
+    /** Marca en el menú la página donde está el visitante */
+    isActive(link: { route?: string }): boolean {
+        const path = this.router.url.split(/[?#]/)[0];
+        return link.route ? path.startsWith(link.route) : path === '/';
     }
 
     navigateTo(link: { label: string; fragment: string; route?: string }) {
@@ -63,10 +117,12 @@ export class NavbarComponent {
         this.scrollTo(link.fragment);
     }
 
-    goToContact() {
+    /** Va a una página desde los enlaces pequeños del menú */
+    goTo(path: string) {
         this.closeMenu();
-        this.router.navigate(['/contacto']);
+        this.router.navigate([path]);
     }
+
 
     scrollTo(fragment: string) {
         this.closeMenu();

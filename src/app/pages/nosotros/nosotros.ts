@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { RevealDirective } from '../../directives/reveal';
+import { HABLEMOS_URL } from '../../config/contact';
 
 @Component({
     selector: 'app-nosotros',
@@ -12,6 +13,8 @@ import { RevealDirective } from '../../directives/reveal';
     styleUrl: './nosotros.css',
 })
 export class NosotrosComponent {
+    hablemosUrl = HABLEMOS_URL;
+
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
     private destroyRef = inject(DestroyRef);
 
@@ -155,7 +158,7 @@ export class NosotrosComponent {
         {
             year: '2021',
             title: 'El inicio',
-            description: 'LABMARK nace de la unión de dos mentes creativas que apostaron por un enfoque más estratégico, auténtico y disruptivo del marketing.',
+            description: 'LABMMARK nace de la unión de dos mentes creativas que apostaron por un enfoque más estratégico, auténtico y disruptivo del marketing.',
         },
         {
             year: '2022',

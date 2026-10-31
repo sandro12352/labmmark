@@ -1,7 +1,5 @@
 import { RevealDirective } from '../../directives/reveal';
-import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { whatsappLink } from '../../config/contact';
@@ -85,56 +83,4 @@ export class ServicesComponent {
         loop: true,
         slidesToScroll: 1,
     };
-
-    
-
-
-    
-
-    private destroyRef = inject(DestroyRef);
-    processStepsRef = viewChild<ElementRef<HTMLElement>>('processSteps');
-    lineProgress = signal(0);
-
-    constructor() {
-        afterNextRender(() => {
-            const el = this.processStepsRef()?.nativeElement;
-            const line = el?.querySelector('.process-line');
-            if (!el || !line) return;
-
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                gsap.set(line, { scaleX: 1 });
-                this.lineProgress.set(1);
-                return;
-            }
-
-            gsap.registerPlugin(ScrollTrigger);
-
-            // La línea se dibuja con el scroll; el progreso también enciende cada paso
-            const tween = gsap.fromTo(
-                line,
-                { scaleX: 0 },
-                {
-                    scaleX: 1,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%',
-                        end: 'top 35%',
-                        scrub: 0.5,
-                        onUpdate: (self) => this.lineProgress.set(self.progress),
-                    },
-                },
-            );
-
-            this.destroyRef.onDestroy(() => {
-                tween.scrollTrigger?.kill();
-                tween.kill();
-            });
-        });
-    }
-
-
-    isStepActive(stepIndex: number): boolean {
-        return this.lineProgress() >= (stepIndex + 0.5) / 4;
-    }
 }

@@ -9,14 +9,12 @@ export interface PortfolioItem {
     image: string;
 }
 
-export const PORTFOLIO_FILTERS = ['Todos', 'Branding', 'Social Media', 'Campañas', 'Estrategia'];
-
 // Los slugs deben coincidir con los de case-study.ts y con app.routes.server.ts
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     { slug: 'martial-core', title: 'Martialcore', category: 'Branding / Packaging', group: 'Branding', image: 'assets/portafolio/martialcore.webp' },
     { slug: 'grin-peru', title: 'Grin Perú', category: 'Campaña Digital', group: 'Campañas', image: 'assets/portafolio/grin-peru.webp' },
     { slug: 'opcion', title: 'Opción', category: 'Social Media', group: 'Social Media', image: 'assets/portafolio/opcion.webp' },
-    { slug: 'sabor-y-sason', title: 'Sabory Sason', category: 'Campaña Digital', group: 'Campañas', image: 'assets/portafolio/saborysason.webp' },
+    { slug: 'sabor-y-sason', title: 'Son y Sazón', category: 'Campaña Digital', group: 'Campañas', image: 'assets/portafolio/saborysason.webp' },
     { slug: 'tecnograss', title: 'Tecnograss', category: 'Branding Completo', group: 'Branding', image: 'assets/portafolio/tecnograss.webp' },
     { slug: 'tismartial', title: 'Tismartial', category: 'Estrategia Digital', group: 'Estrategia', image: 'assets/portafolio/tismartial.webp' },
 ];

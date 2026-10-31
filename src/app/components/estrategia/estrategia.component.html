@@ -6,155 +6,88 @@
 
             <!-- COLUMNA IZQUIERDA: VIDEO PREVIEW -->
             <div class="relative group" appReveal="fade-right" [revealDuration]="800">
-                <!-- Resplandor decorativo de fondo -->
-                <div
-                    class="absolute -inset-1 bg-gradient-to-r from-lm-violet/40 to-lm-silver/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500">
-                </div>
+                <div class="bg-lm-graphite/60 group-hover:bg-lm-violet/70 p-px transition-colors duration-500 [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]">
+                    <div class="relative aspect-video overflow-hidden bg-lm-charcoal [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]">
+                        <img src="assets/videos/metodologia-poster.webp" alt="Presentadora de LABMMARK explicando cómo trabajan" loading="lazy"
+                            width="1280" height="720"
+                            class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out" />
 
-                <!-- Card de Previsualización del Video -->
-                <div
-                    class="relative aspect-video rounded-2xl overflow-hidden bg-lm-charcoal border border-lm-graphite/60 shadow-2xl">
-                    <img src="assets/prueba.jpg" alt="Vista previa del método LABMARK"
-                        class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700 ease-out" />
+                        <!-- Degradado -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-lm-black via-lm-black/30 to-transparent"></div>
 
-                    <!-- Overlay de degradado -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-lm-black via-lm-black/30 to-transparent"></div>
-
-                    <!-- Botón Play Central (Pulsante & Interactivo) -->
-                    <button (click)="openModal()" type="button" aria-label="Reproducir video de metodología"
-                        class="absolute inset-0 m-auto w-20 h-20 rounded-full flex items-center justify-center cursor-pointer group/btn focus:outline-none">
-                        <!-- Onda pulsante exterior -->
-                        <span class="absolute inset-0 rounded-full bg-lm-violet/40 animate-ping"></span>
-                        <!-- Anillo contenedor -->
-                        <span
-                            class="absolute inset-0 rounded-full bg-lm-black/80 backdrop-blur-md border border-lm-violet/60 group-hover/btn:border-lm-violet group-hover/btn:scale-110 transition-all duration-300"></span>
-                        <!-- Icono Play -->
-                        <svg class="w-8 h-8 text-lm-white group-hover/btn:text-lm-violet transition-colors duration-300 relative z-10 translate-x-0.5"
-                            fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                    </button>
-
-                    <!-- Badge inferior en la imagen -->
-                    <div
-                        class="absolute bottom-4 left-4 right-4 flex items-center justify-between px-4 py-2 bg-lm-black/70 backdrop-blur-md rounded-xl border border-lm-graphite/40">
-                        <span class="text-xs text-lm-white font-medium flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-lm-violet animate-pulse"></span>
-                            Conoce nuestro proceso
-                        </span>
-                        <span class="text-[10px] text-lm-silver tracking-widest uppercase font-mono">1:45 MIN</span>
+                        <!-- Toda la portada es el botón de reproducir; el play va abajo a la izquierda, sin tapar a la presentadora -->
+                        <button (click)="openModal()" type="button" aria-label="Reproducir video de metodología"
+                            class="group/btn absolute inset-0 w-full h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-lm-violet">
+                            <span class="absolute bottom-0 left-0 flex items-center gap-4 px-5 py-4">
+                                <span
+                                    class="w-10 h-10 rounded-full flex items-center justify-center bg-lm-black/70 backdrop-blur-sm border border-lm-violet/70 text-lm-white group-hover/btn:bg-lm-violet group-hover/btn:border-lm-violet group-hover/btn:text-lm-black transition-colors duration-300">
+                                    <svg class="w-4 h-4 translate-x-px" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </span>
+                                <span class="text-xs text-lm-white tracking-[0.25em] uppercase font-body">Conoce nuestro proceso</span>
+                            </span>
+                            <span class="absolute bottom-4 right-4 px-2 py-1 bg-lm-black/80 text-[11px] tracking-[0.15em] font-body text-lm-white">1:19</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: TEXTO Y PASOS DE LA METODOLOGÍA -->
-            <div class="flex flex-col" appReveal="fade-left" [revealDuration]="800">
-                <!-- Section Badge -->
+            <!-- COLUMNA DERECHA: TEXTO -->
+            <div class="flex flex-col items-start" appReveal="fade-left" [revealDuration]="800">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-px bg-lm-silver"></div>
                     <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Nuestra Metodología</span>
                 </div>
 
-                <!-- Título -->
                 <h2 id="methodology-title"
-                    class="font-display text-4xl sm:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
+                    class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
                     CÓMO TRANSFORMAMOS <br>
                     <span class="text-lm-silver">IDEAS EN RESULTADOS</span><span class="text-lm-violet">.</span>
                 </h2>
 
-                <p class="text-lm-silver text-base leading-relaxed mb-8">
+                <p class="text-lm-silver text-lg leading-relaxed mb-8 max-w-xl">
                     No creemos en fórmulas genéricas. Combinamos análisis de datos en tiempo real, diseño estratégico y
                     ejecución creativa para construir marcas escalables.
                 </p>
 
-                <!-- Lista de Pasos -->
-                <div class="space-y-6">
-                    <div
-                        class="flex gap-4 p-4 rounded-xl bg-lm-charcoal/50 border border-lm-graphite/30 hover:border-lm-violet/40 transition-colors duration-300">
-                        <span class="font-display text-lg font-bold text-lm-violet">01</span>
-                        <div>
-                            <h3 class="text-lm-white text-sm font-semibold mb-1">Diagnóstico & Estrategia</h3>
-                            <p class="text-lm-silver text-xs leading-relaxed">Audita la marca y detecta oportunidades de
-                                mercado antes de invertir.</p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="flex gap-4 p-4 rounded-xl bg-lm-charcoal/50 border border-lm-graphite/30 hover:border-lm-violet/40 transition-colors duration-300">
-                        <span class="font-display text-lg font-bold text-lm-violet">02</span>
-                        <div>
-                            <h3 class="text-lm-white text-sm font-semibold mb-1">Ejecución Multicanal</h3>
-                            <p class="text-lm-silver text-xs leading-relaxed">Despliegue de campañas optimizadas en Meta
-                                Ads, Google Ads y contenido de alto impacto.</p>
-                        </div>
-                    </div>
-                </div>
+                <a [href]="hablemosUrl" target="_blank" rel="noopener noreferrer"
+                    class="group/cta inline-flex items-center justify-between gap-6 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-violet transition-colors duration-300 [clip-path:polygon(0_0,calc(100%-16px)_0,100%_16px,100%_100%,0_100%)]">
+                    HABLEMOS DE TU PROYECTO
+                    <svg class="w-4 h-4 transition-transform duration-300 group-hover/cta:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
             </div>
-
         </div>
-    </div>
 
-    <!-- Subsección Marcas -->
-    <div class="mt-10 pt-12 ">
+        <!-- LOS 4 PASOS: una línea que se dibuja con el scroll enciende cada paso -->
+        <div #processSteps class="relative mt-20 lg:mt-28">
+            <div class="absolute top-0 left-0 right-0 h-px bg-lm-graphite/60 hidden lg:block"></div>
+            <div class="process-line absolute top-0 left-0 right-0 h-px bg-lm-violet hidden lg:block origin-left"></div>
 
-        <!-- Carrusel Infinito con Máscara de Difuminado Lateral -->
-        <div class="relative w-full overflow-hidden py-4 select-none [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
-            appReveal="fade-up" [revealDuration]="800">
-
-            <div class="flex items-center gap-8 w-max animate-scroll-left hover:[animation-play-state:paused]">
-
-                <!-- LOOP PRINCIPAL -->
-                @for (brand of brands; track brand.name) {
-                <div class="flex items-center gap-8 shrink-0 group cursor-pointer">
-                    <!-- Cápsula de Marca -->
-                    <div class="flex items-center gap-4 px-8 py-4">
-                        @if (brand.logo) {
-                        <img [src]="brand.logo" [alt]="brand.name"
-                            class="h-16 w-auto object-cover filter  group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                        }
-                        <span
-                            class="text-xs font-mono tracking-widest text-lm-white transition-colors duration-500 uppercase">
-                            {{ brand.name }}
-                        </span>
-                    </div>
-
-                    <!-- Separador Ticker (Punto Brillante) -->
-                    <span
-                        class="w-1.5 h-1.5 rounded-full bg-lm-graphite/40 group-hover:bg-lm-violet transition-colors duration-500"></span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
+                @for (step of steps; track step.title; let i = $index) {
+                <div class="relative group pt-8 lg:px-6 lg:first:pl-0 lg:border-l lg:border-lm-graphite/60 lg:first:border-l-0"
+                    appReveal="fade-up" [revealDelay]="i * 120" [revealDuration]="800">
+                    <span class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
+                        [ngClass]="isStepActive(i) ? 'text-lm-violet/70' : 'text-lm-silver/40 group-hover:text-lm-violet/70'">0{{ i + 1 }}</span>
+                    <h3 class="font-display text-xl font-700 text-lm-white mt-6 mb-3 tracking-[-0.02em]">{{ step.title }}</h3>
+                    <p class="text-sm text-lm-silver leading-relaxed">{{ step.text }}</p>
                 </div>
                 }
-
-                <!-- LOOP DUPLICADO PARA CONTINUIDAD SÍNCRONA -->
-                @for (brand of brands; track brand.name + '-dup') {
-                <div class="flex items-center gap-8 shrink-0 group cursor-pointer">
-                    <!-- Cápsula de Marca -->
-                    <div class="flex items-center gap-4 px-8 py-4">
-                        @if (brand.logo) {
-                        <img [src]="brand.logo" [alt]="brand.name"
-                            class="h-16 w-auto object-cover filter  group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
-                        }
-                        <span
-                            class="text-xs font-mono tracking-widest text-lm-white transition-colors duration-500 uppercase">
-                            {{ brand.name }}
-                        </span>
-                    </div>
-
-                    <!-- Separador Ticker (Punto Brillante) -->
-                    <span
-                        class="w-1.5 h-1.5 rounded-full bg-lm-graphite/40 group-hover:bg-lm-violet transition-colors duration-500"></span>
-                </div>
-                }
-
             </div>
         </div>
     </div>
-
 </section>
 
 <!-- ========================================== -->
 <!-- MODAL DE VIDEO CON EFECTO LOCO 3D / SPRING -->
 <!-- ========================================== -->
-<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-transform duration-500"
+<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-transform duration-500"
     [class.opacity-100]="isModalOpen()" [class.pointer-events-auto]="isModalOpen()" [class.opacity-0]="!isModalOpen()"
     [class.pointer-events-none]="!isModalOpen()" role="dialog" aria-modal="true">
 
@@ -168,7 +101,7 @@
         </svg>
     </button>
     <!-- Contenedor del Modal con animación de escala 3D elástica -->
-    <div class="relative w-full max-w-5xl bg-lm-black rounded-2xl border border-lm-violet/40 shadow-[0_0_50px_rgba(139,92,246,0.3)] overflow-hidden transition-all duration-500 modal-spring-box"
+    <div class="relative w-full max-w-5xl bg-lm-black border border-lm-violet/40 shadow-[0_0_50px_rgba(139,92,246,0.3)] overflow-hidden transition-all duration-500 modal-spring-box"
         [class.scale-100]="isModalOpen()" [class.rotate-x-0]="isModalOpen()" [class.scale-50]="!isModalOpen()"
         [class.rotate-x-45]="!isModalOpen()">
 
@@ -177,10 +110,9 @@
         <!-- Reproductor de Video -->
         <div class="relative aspect-video w-full bg-black">
             @if (isModalOpen()) {
-            <iframe [src]="videoUrl" class="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+            <video src="assets/videos/metodologia.mp4" poster="assets/videos/metodologia-poster.webp" controls autoplay
+                playsinline preload="auto" class="w-full h-full">
+            </video>
             }
         </div>
     </div>

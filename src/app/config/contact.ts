@@ -19,3 +19,12 @@ export const MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${OFFIC
 export function whatsappLink(message: string): string {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+/**
+ * Clave pública de Web3Forms (https://web3forms.com) para que el formulario de Contacto llegue al correo de la agencia.
+ * TODO: pegar aquí la clave que Web3Forms envía por correo. Mientras esté vacía, el formulario abre WhatsApp con el mensaje.
+ */
+export const WEB3FORMS_KEY = '';
+
+/** Enlace de los botones "HABLEMOS": abre un chat de WhatsApp */
+export const HABLEMOS_URL = whatsappLink('¡Hola! Me gustaría conversar sobre un proyecto.');

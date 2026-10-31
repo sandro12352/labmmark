@@ -60,25 +60,12 @@
     </div>
 </section>
 
-<!-- Filtros + cuadrícula -->
+<!-- Cuadrícula de casos -->
 <section class="relative bg-lm-black py-16 lg:py-24" aria-label="Casos de éxito">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <!-- Filtros -->
-        <div class="flex flex-wrap gap-3 mb-14 lg:mb-20" role="tablist" aria-label="Filtrar por categoría" appReveal="fade-up">
-            @for (f of filters; track f) {
-            <button type="button" role="tab" [attr.aria-selected]="active() === f" (click)="setFilter(f)"
-                class="px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-body border transition-colors duration-300 cursor-pointer"
-                [class]="active() === f
-                    ? 'bg-lm-white text-lm-black border-lm-white'
-                    : 'text-lm-silver border-lm-graphite hover:border-lm-violet hover:text-lm-violet'">
-                {{ f }}
-            </button>
-            }
-        </div>
-
-        <div #grid class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-14 lg:gap-y-10">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-14 lg:gap-y-10">
             @for (item of items; track item.slug; let i = $index) {
-            <div data-card [attr.data-group]="item.group" [class]="i % 3 === 1 ? 'lg:mt-24' : i % 3 === 2 ? 'lg:mt-12' : ''">
+            <div data-card [class]="i % 3 === 1 ? 'lg:mt-24' : i % 3 === 2 ? 'lg:mt-12' : ''">
                 <a [routerLink]="['/portafolio', item.slug]" class="group block" [attr.aria-label]="'Ver caso ' + item.title">
                     <!-- Marco con esquina cortada -->
                     <div
@@ -157,7 +144,7 @@
 </section>
 
 <!-- Casos apilados: cada banner se queda fijo y el siguiente sube por encima -->
-<section class="relative bg-lm-black pt-20 lg:pt-28 pb-24 lg:pb-32" aria-labelledby="stack-title">
+<section class="relative bg-lm-black pt-20 lg:pt-28" aria-labelledby="stack-title">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="mb-12 lg:mb-16" appReveal="fade-up">
             <div class="flex items-center gap-4 mb-6">
@@ -174,7 +161,7 @@
     <!-- A todo el ancho de la pantalla -->
     <div>
             @for (item of stack; track item.slug; let i = $index) {
-            <div class="stack-card sticky mb-[18vh] last:mb-0 will-change-transform" [style.top]="'max(0px, min(' + (80 + i * 10) + 'px, calc(100vh - 56.25vw)))'"
+            <div class="stack-card sticky mb-[18vh] last:mb-0 will-change-transform" [style.top.px]="6 + i * 6" [style.--stack-top]="(6 + i * 6) + 'px'"
                 [style.z-index]="i + 1">
                 <a [routerLink]="['/portafolio', item.slug]" [attr.aria-label]="'Ver caso ' + item.title"
                     class="group relative block w-full">
@@ -182,19 +169,25 @@
                         <picture>
                             <source media="(max-width: 767px)" [srcset]="item.mobile" width="800" height="720">
                             <img [src]="item.desktop" [alt]="item.title + ' — ' + item.category" width="1400" height="788"
-                                loading="lazy" class="block w-full h-auto">
+                                loading="lazy"
+                                class="block w-full h-auto md:h-[calc(100vh-var(--stack-top))] md:object-cover md:object-[50%_30%]">
                         </picture>
 
+                        <!-- Título grande y botón, abajo sobre el banner -->
                         <div
-                            class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 px-6 pb-4 pt-14 lg:pb-6 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))] bg-gradient-to-t from-lm-black/75 via-lm-black/25 to-transparent">
-                            <div class="flex items-baseline gap-4">
-                                <span class="font-display text-xs font-700 tracking-[0.2em] text-lm-violet">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }} / {{ stack.length < 10 ? '0' + stack.length : stack.length }}</span>
-                                <h3 class="font-display text-xl lg:text-2xl font-700 tracking-tight text-lm-white">{{ item.title }}</h3>
-                                <span class="hidden sm:inline text-xs text-lm-silver tracking-[0.2em] uppercase font-body">{{ item.category }}</span>
+                            class="absolute inset-x-0 bottom-0 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between px-6 pb-10 pt-28 lg:pb-[9vh] lg:pt-44 lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))] bg-gradient-to-t from-lm-black/90 via-lm-black/50 to-transparent">
+                            <div>
+                                <div class="flex items-center gap-3 mb-2 lg:mb-3">
+                                    <span class="font-display text-xs lg:text-sm font-700 tracking-[0.25em] text-lm-violet">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }} / {{ stack.length < 10 ? '0' + stack.length : stack.length }}</span>
+                                    <span class="w-8 h-px bg-lm-violet/70"></span>
+                                    <span class="text-xs lg:text-sm text-lm-light tracking-[0.2em] uppercase font-body">{{ item.category }}</span>
+                                </div>
+                                <h3 class="font-display text-4xl sm:text-5xl lg:text-7xl font-800 uppercase tracking-tight leading-none text-lm-white [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]">{{ item.title }}</h3>
                             </div>
-                            <span class="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-body text-lm-white group-hover:text-lm-violet transition-colors">
-                                Ver caso
-                                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                            <span
+                                class="group/btn inline-flex items-center justify-between gap-4 self-start sm:self-auto px-6 py-3.5 lg:px-9 lg:py-5 border border-lm-white/80 text-lm-white font-display font-700 text-sm lg:text-base tracking-[0.15em] hover:border-lm-violet hover:text-lm-violet transition-colors duration-300">
+                                VER CASO
+                                <svg class="w-4 h-4 lg:w-5 lg:h-5 transition-transform duration-300 group-hover/btn:translate-x-1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                                     stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 12h14" />

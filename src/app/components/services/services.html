@@ -1,5 +1,5 @@
 <section id="servicios"
-    class="relative py-20 lg:py-28 bg-lm-black bg-[url('/assets/team2.webp')] bg-fixed bg-cover bg-center bg-no-repeat"
+    class="relative py-20 lg:py-28 bg-lm-black bg-[url('/assets/equipo-mesa.webp')] bg-fixed bg-cover bg-center bg-no-repeat"
     aria-labelledby="services-title">
 
     <div class="absolute inset-0 bg-lm-black/80 pointer-events-none"></div>
@@ -37,7 +37,7 @@
                             <div
                                 class="relative overflow-hidden h-80 w-full bg-linear-to-br from-lm-graphite/20 to-lm-black/50 flex-shrink-0">
                                 <img [src]="service.imageUrl" [alt]="service.title" loading="lazy"
-                                    class="w-full h-full object-cover grayscale brightness-[0.8] group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition-[filter,transform] duration-500" />
+                                    class="w-full h-full object-cover saturate-[0.85] brightness-[0.8] group-hover:saturate-100 group-hover:brightness-100 group-hover:scale-110 transition-[filter,transform] duration-500" />
                                 <div
                                     class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent">
                                 </div>
@@ -82,18 +82,18 @@
 
                 <!-- Navigation Arrows -->
                 <button hlmCarouselPrevious aria-label="Slide anterior"
-                    class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Prev</button>
+                    class="hidden lg:block bg-transparent dark:bg-transparent border-0 shadow-none text-lm-white text-lg hover:scale-125 transition-all duration-300 hover:bg-transparent dark:hover:bg-transparent hover:text-lm-violet cursor-pointer">Prev</button>
                 <button hlmCarouselNext aria-label="Siguiente slide"
-                    class="hidden lg:block bg-lm-black border-0 text-white text-lg hover:scale-150 transition-all duration-300 hover:bg-lm-black hover:text-lm-white hover:border-none cursor-pointer">Next</button>
+                    class="hidden lg:block bg-transparent dark:bg-transparent border-0 shadow-none text-lm-white text-lg hover:scale-125 transition-all duration-300 hover:bg-transparent dark:hover:bg-transparent hover:text-lm-violet cursor-pointer">Next</button>
             </hlm-carousel>
 
-            <!-- Enlace a los programas -->
+            <!-- Enlace a los planes -->
             <div class="mt-14 pt-8 border-t border-lm-graphite/40 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
                 appReveal="fade-up" [revealDuration]="700">
                 <p class="text-lm-light text-base lg:text-lg">
-                    Todo esto se combina en nuestros programas de crecimiento.
+                    Todo esto se combina en nuestros planes de crecimiento.
                 </p>
-                <a routerLink="/programas"
+                <a routerLink="/planes"
                     class="group inline-flex items-center gap-2 shrink-0 text-sm font-display font-700 tracking-widest uppercase text-lm-white hover:text-lm-violet transition-colors duration-300">
                     Conoce IMPULSO y XPANDE
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -103,105 +103,6 @@
                         <path d="m12 5 7 7-7 7" />
                     </svg>
                 </a>
-            </div>
-
-            <!-- Process Section -->
-            <div class="mt-12 pt-10 ">
-                <!-- Section Header -->
-                <div class="mb-16 text-center" appReveal="fade-up">
-                    <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body mb-4 inline-block">Nuestro
-                        Proceso</span>
-                    <h2
-                        class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">
-                        Proceso Probado<span class="text-lm-violet">.</span>
-                    </h2>
-                    <p class="text-lm-silver text-lg max-w-2xl mx-auto leading-relaxed">
-                        Aplicamos una metodología sólida que nos permite alcanzar resultados sobresalientes en cada
-                        proyecto.
-                    </p>
-                </div>
-
-                <!-- Process Steps -->
-                <div #processSteps class="relative">
-                    <!-- Background line -->
-                    <div class="absolute top-0 left-0 right-0 h-px bg-lm-graphite/60 hidden lg:block"></div>
-                    <!-- Progressive line -->
-                    <div class="process-line absolute top-0 left-0 right-0 h-px bg-lm-accent hidden lg:block origin-left"></div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
-                        <!-- Step 1 -->
-                        <div class="relative group pt-8 lg:pt-0 lg:px-6">
-                            <div class="flex flex-col h-full">
-                                <div class="mb-6">
-                                    <span
-                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                        [ngClass]="isStepActive(0) ? 'text-lm-accent/60' : 'text-lm-silver/40 group-hover:text-lm-accent/60'">01</span>
-                                </div>
-                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
-                                    Descubrimiento</h3>
-                                <p class="text-sm text-lm-silver leading-relaxed grow">
-                                    Entendemos profundamente tu negocio, audiencia y objetivos para crear una estrategia
-                                    personalizada.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/60">
-                            <div class="flex flex-col h-full">
-                                <div class="mb-6">
-                                    <span
-                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                        [ngClass]="isStepActive(1) ? 'text-lm-accent/60' : 'text-lm-silver/40 group-hover:text-lm-accent/60'">02</span>
-                                </div>
-                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
-                                    Estrategia
-                                </h3>
-                                <p class="text-sm text-lm-silver leading-relaxed grow">
-                                    Desarrollamos un plan detallado basado en datos, insights de mercado y mejores
-                                    prácticas
-                                    de la industria.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/60">
-                            <div class="flex flex-col h-full">
-                                <div class="mb-6">
-                                    <span
-                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                        [ngClass]="isStepActive(2) ? 'text-lm-accent/60' : 'text-lm-silver/40 group-hover:text-lm-accent/60'">03</span>
-                                </div>
-                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
-                                    Ejecución
-                                </h3>
-                                <p class="text-sm text-lm-silver leading-relaxed grow">
-                                    Nuestro equipo creativo implementa la estrategia con diseño de calidad premium y
-                                    tecnología de punta.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="relative group pt-8 lg:pt-0 lg:px-6 lg:border-l lg:border-lm-graphite/60">
-                            <div class="flex flex-col h-full">
-                                <div class="mb-6">
-                                    <span
-                                        class="font-display text-5xl lg:text-6xl font-800 transition-colors duration-500"
-                                        [ngClass]="isStepActive(3) ? 'text-lm-accent/60' : 'text-lm-silver/40 group-hover:text-lm-accent/60'">04</span>
-                                </div>
-                                <h3 class="font-display text-xl font-700 text-lm-white mb-3 tracking-[-0.02em]">
-                                    Optimización
-                                </h3>
-                                <p class="text-sm text-lm-silver leading-relaxed grow">
-                                    Monitoreamos resultados, analizamos métricas y optimizamos continuamente para máximo
-                                    impacto.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 </section>

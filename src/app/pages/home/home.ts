@@ -50,7 +50,7 @@ import { ProgramsComponent } from '../../components/programs/programs';
       @defer {
         <app-programs />
       } @placeholder {
-        <div id="programas" class="min-h-[70vh]"></div>
+        <div id="planes" class="min-h-[70vh]"></div>
       }
 
       @defer {

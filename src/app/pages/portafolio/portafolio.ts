@@ -1,15 +1,11 @@
-import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { afterNextRender, Component, DestroyRef, ElementRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Flip } from 'gsap/Flip';
 import { RevealDirective } from '../../directives/reveal';
 import { whatsappLink } from '../../config/contact';
 import { DiagonalGalleryComponent } from '../../components/diagonal-gallery/diagonal-gallery';
-import { GALLERY_COLUMNS, PORTFOLIO_FILTERS, PORTFOLIO_ITEMS, RECENT_WORKS, STACK_CASES } from './portafolio.data';
-
-/** Desfase vertical de las tarjetas según su columna, para una cuadrícula escalonada */
-const OFFSETS = ['', 'lg:mt-24', 'lg:mt-12'];
+import { GALLERY_COLUMNS, PORTFOLIO_ITEMS, RECENT_WORKS, STACK_CASES } from './portafolio.data';
 
 @Component({
     selector: 'app-portafolio',
@@ -21,9 +17,6 @@ export class PortafolioComponent {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
     private destroyRef = inject(DestroyRef);
 
-    grid = viewChild.required<ElementRef<HTMLElement>>('grid');
-
-    filters = PORTFOLIO_FILTERS;
     items = PORTFOLIO_ITEMS;
     stack = STACK_CASES;
     galleryColumns = GALLERY_COLUMNS;
@@ -33,15 +26,10 @@ export class PortafolioComponent {
     titleLine2 = 'HABLAN'.split('');
     whatsappUrl = whatsappLink('¡Hola! Vi su portafolio y me gustaría conversar sobre un proyecto.');
 
-    active = signal('Todos');
-
-    private reduceMotion = false;
-
     constructor() {
         afterNextRender(() => {
-            gsap.registerPlugin(ScrollTrigger, Flip);
-            this.reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (this.reduceMotion) return;
+            gsap.registerPlugin(ScrollTrigger);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
             const root = this.host.nativeElement;
             const q = gsap.utils.selector(root);
@@ -126,47 +114,6 @@ export class PortafolioComponent {
             }, root);
 
             this.destroyRef.onDestroy(() => ctx.revert());
-        });
-    }
-
-    setFilter(filter: string) {
-        if (filter === this.active()) return;
-        this.active.set(filter);
-
-        const grid = this.grid().nativeElement;
-        const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-card]'));
-        const state = this.reduceMotion ? null : Flip.getState(cards);
-        const startHeight = grid.offsetHeight;
-
-        let visibleIndex = 0;
-        cards.forEach((card) => {
-            const show = filter === 'Todos' || card.dataset['group'] === filter;
-            card.classList.toggle('hidden', !show);
-            OFFSETS.forEach(o => o && card.classList.remove(...o.split(' ')));
-            if (show) {
-                const offset = OFFSETS[visibleIndex % OFFSETS.length];
-                if (offset) card.classList.add(...offset.split(' '));
-                visibleIndex++;
-            }
-        });
-
-        if (!state) return;
-
-        // Flip saca las tarjetas del flujo y la cuadrícula se encogería de golpe, subiendo las secciones de abajo.
-        // Se mantiene el alto anterior y se anima hasta el nuevo.
-        grid.style.minHeight = '0px';
-        const endHeight = grid.offsetHeight;
-        gsap.killTweensOf(grid);
-        gsap.fromTo(grid, { minHeight: startHeight }, { minHeight: endHeight, duration: 0.8, ease: 'power3.inOut', onComplete: () => { gsap.set(grid, { clearProps: 'minHeight' }); ScrollTrigger.refresh(); } });
-
-        Flip.from(state, {
-            duration: 0.8,
-            ease: 'power3.inOut',
-            absolute: true,
-            stagger: 0.05,
-            onEnter: (els) => gsap.fromTo(els, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.25 }),
-            onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.9, duration: 0.3 }),
-            onComplete: () => ScrollTrigger.refresh(),
         });
     }
 }

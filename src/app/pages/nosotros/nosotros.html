@@ -7,12 +7,6 @@
         </div>
     </div>
 
-    <!-- Large decorative text -->
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <img src="https://aviiperu.com/wp-content/uploads/2021/12/Marketing-Digital.jpg" alt="Logo LABMARK"
-            class="w-full h-full object-cover opacity-25 grayscale   transition-all duration-700">
-    </div>
-
     <!-- Decorative corners -->
     <div class="absolute top-8 left-8 w-24 h-24 border-t border-l border-lm-graphite/40"></div>
     <div class="absolute bottom-8 right-8 w-24 h-24 border-b border-r border-lm-graphite/40"></div>
@@ -63,8 +57,8 @@
             <div class="relative">
                 <div class="relative aspect-4/5 bg-lm-black overflow-hidden border border-lm-graphite/30 shadow-2xl">
                     <div class="absolute inset-0" appReveal="zoom-in" [revealDuration]="1400" revealEase="ease-out-cubic">
-                        <img src="assets/nosotros.webp" alt="Equipo LABMARK en acción"
-                        class="absolute inset-0 w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition-all duration-1000">
+                        <img src="assets/equipo-oficina.webp" alt="Equipo LABMMARK en acción" width="1200" height="1200" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 saturate-[0.85] brightness-95 hover:saturate-100 hover:brightness-100 transition-all duration-1000">
                     </div>
 
                     <!-- Overlay gradient -->
@@ -97,7 +91,7 @@
 
                 <div class="space-y-5">
                     <p class="text-lm-silver text-base lg:text-lg leading-relaxed">
-                        En <strong class="text-lm-white font-600">LABMARK</strong> no seguimos fórmulas predefinidas.
+                        En <strong class="text-lm-white font-600">LABMMARK</strong> no seguimos fórmulas predefinidas.
                         Cada marca es un universo único que merece una estrategia diseñada desde cero. Fusionamos
                         creatividad e inteligencia de datos para construir marcas que no solo se ven bien 
                         <strong class="text-lm-white font-600">generan resultados.</strong>
@@ -305,8 +299,8 @@
             <!-- Izquierda, bajo el texto: foto del equipo. Mismo estilo que la foto del manifiesto: marco, sombra, degradado inferior y esquinas. Fondo gris liso para que la ropa negra no se pierda. Cuadrada en escritorio para no alargar la columna -->
             <div class="relative w-full max-w-md lg:max-w-none lg:col-start-1 lg:row-start-2 lg:self-start">
             <div class="relative aspect-4/5 lg:aspect-square bg-linear-to-b from-lm-slate to-lm-graphite overflow-hidden border border-lm-graphite/30 shadow-2xl" appReveal="reveal-up" [revealDuration]="1100" revealEase="ease-out-cubic">
-                <img src="assets/equipo.webp" alt="Equipo LABMARK" loading="lazy" width="1100" height="1347"
-                    class="absolute inset-0 w-full h-full object-contain object-bottom grayscale opacity-90">
+                <img src="assets/equipo.webp" alt="Equipo LABMMARK" loading="lazy" width="1100" height="1347"
+                    class="absolute inset-0 w-full h-full object-contain object-bottom saturate-[0.9] opacity-95">
 
                 <!-- Overlay gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-lm-charcoal/60 to-transparent"></div>
@@ -384,7 +378,7 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a routerLink="/contacto"
+            <a [href]="hablemosUrl" target="_blank" rel="noopener noreferrer"
                 class="inline-flex items-center gap-3 px-10 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-widest uppercase transition-all duration-500 hover:bg-lm-accent hover:tracking-[0.15em] group cursor-pointer">
                 HABLEMOS
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"

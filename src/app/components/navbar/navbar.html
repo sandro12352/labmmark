@@ -3,72 +3,112 @@
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
             <a routerLink="/" (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
-                <img src="assets/logotipo.webp" alt="LABMARK Producciones"
+                <img src="assets/logotipo.webp" alt="LABMMARK Producciones"
                     class="h-35 w-auto transition-all duration-300 group-hover:opacity-80 pt-2."
                     style="filter: invert(0) brightness(1.5); mix-blend-mode: screen;">
             </a>
 
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center gap-1">
-                @for (link of navLinks; track link.label) {
-                <a (click)="navigateTo(link)"
-                    class="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-lm-white transition-all duration-300 cursor-pointer relative group">
-                    {{ link.label }}
-                    <span
-                        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-lm-white transition-all duration-300 group-hover:w-3/4"></span>
-                </a>
-                }
-            </div>
-
-            <!-- CTA Button Desktop -->
-            <a (click)="goToContact()"
-                class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-lm-white text-lm-black font-display font-700 text-sm tracking-wide rounded-none hover:bg-lm-accent transition-all duration-300 cursor-pointer hover:tracking-[0.05em]">
-                HABLEMOS
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                </svg>
-            </a>
-
-            <!-- Mobile Menu Button -->
-            <button (click)="toggleMenu()" class="md:hidden p-2 text-lm-white hover:text-lm-accent transition-colors"
-                [attr.aria-expanded]="mobileMenuOpen()" aria-label="Abrir menú">
-                @if (!mobileMenuOpen()) {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" x2="21" y1="6" y2="6" />
-                    <line x1="3" x2="21" y1="12" y2="12" />
-                    <line x1="3" x2="21" y1="18" y2="18" />
-                </svg>
-                } @else {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 6 6 18" />
-                    <path d="m6 6 12 12" />
-                </svg>
-                }
-            </button>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    @if (mobileMenuOpen()) {
-    <div class="md:hidden bg-lm-black/98 backdrop-blur-xl border-t border-lm-graphite animate-fade-in">
-        <div class="px-6 py-8 space-y-1">
-            @for (link of navLinks; track link.label) {
-            <a (click)="navigateTo(link)"
-                class="block px-4 py-3 text-lg font-display font-600 text-lm-silver hover:text-lm-white hover:pl-6 transition-all duration-300 cursor-pointer border-b border-lm-graphite/30">
-                {{ link.label }}
-            </a>
-            }
-            <div class="pt-4">
-                <a (click)="goToContact()"
-                    class="block w-full text-center px-6 py-3 bg-lm-white text-lm-black font-display font-700 text-sm tracking-wide cursor-pointer hover:bg-lm-accent transition-all duration-300">
+            <div class="flex items-center gap-5 sm:gap-6">
+                <!-- CTA Desktop -->
+                <a [href]="hablemosUrl" target="_blank" rel="noopener noreferrer"
+                    class="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-lm-white text-lm-black font-display font-700 text-sm tracking-wide rounded-none hover:bg-lm-accent transition-all duration-300 cursor-pointer hover:tracking-[0.05em]">
                     HABLEMOS
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
                 </a>
+
+                <!-- Botón de menú: dos líneas -->
+                <button #menuBtn type="button" (click)="toggleMenu()"
+                    class="group relative w-11 h-11 cursor-pointer text-lm-white hover:text-lm-violet transition-colors duration-300"
+                    aria-label="Abrir menú" aria-controls="main-menu" [attr.aria-expanded]="menuOpen()">
+                    <span class="absolute inset-0 flex flex-col items-end justify-center gap-[7px]">
+                        <i class="block h-px w-8 bg-current transition-all duration-300 group-hover:w-6"></i>
+                        <i class="block h-px w-8 bg-current transition-all duration-300 group-hover:w-10"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
-    }
 </nav>
+
+<!-- Menú a pantalla completa: se abre con una cortina desde arriba y las opciones suben una por una -->
+<div id="main-menu" role="dialog" aria-modal="true" aria-label="Menú principal"
+    class="fixed inset-0 z-[10000] bg-lm-black text-lm-white overflow-y-auto transition-[clip-path] duration-[700ms] ease-[cubic-bezier(0.77,0,0.175,1)]"
+    [class]="menuOpen() ? '[clip-path:inset(0_0_0_0)]' : '[clip-path:inset(0_0_100%_0)] pointer-events-none'"
+    [attr.inert]="menuOpen() ? null : ''">
+    <div class="min-h-full flex flex-col">
+        <!-- Cabecera: el logo y la X quedan en el mismo sitio que en la barra -->
+        <div class="w-full max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a routerLink="/" (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
+                    <img src="assets/logotipo.webp" alt="LABMMARK Producciones"
+                        class="h-35 w-auto transition-all duration-300 group-hover:opacity-80 pt-2."
+                        style="filter: invert(0) brightness(1.5); mix-blend-mode: screen;">
+                </a>
+                <button #closeBtn type="button" (click)="closeMenu()"
+                    class="group relative w-11 h-11 cursor-pointer text-lm-white hover:text-lm-violet transition-colors duration-300"
+                    aria-label="Cerrar menú">
+                    <svg class="absolute inset-0 m-auto w-7 h-7 transition-transform duration-500 group-hover:rotate-90"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.25" stroke-linecap="round" aria-hidden="true">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-6 pb-10 lg:pb-14 flex flex-col-reverse gap-12 lg:flex-row lg:items-end lg:justify-between">
+            <!-- Enlaces pequeños, abajo a la izquierda -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-8 lg:w-[620px] text-sm transition-all duration-700 ease-out"
+                [class]="menuOpen() ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+                [style.transition-delay]="menuOpen() ? '800ms' : '0ms'">
+                <div>
+                    <h3 class="text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet mb-4">Conecta con nosotros</h3>
+                    <ul class="space-y-2">
+                        @for (social of socials; track social.name) {
+                        <li><a [href]="social.url" target="_blank" rel="noopener noreferrer"
+                                class="text-lm-light hover:text-lm-violet transition-colors">{{ social.name }}</a></li>
+                        }
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet mb-4">Contacto</h3>
+                    <ul class="space-y-2 text-lm-light">
+                        <li><a [href]="'mailto:' + email" class="hover:text-lm-violet transition-colors break-all">{{ email }}</a></li>
+                        <li><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer"
+                                class="hover:text-lm-violet transition-colors">{{ phone }}</a></li>
+                        <li><a [href]="mapLink" target="_blank" rel="noopener noreferrer"
+                                class="hover:text-lm-violet transition-colors">{{ address }}</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet mb-4">Empieza</h3>
+                    <ul class="space-y-2">
+                        <li><a (click)="goTo('/planes')" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Ver planes</a></li>
+                        <li><a (click)="goTo('/portafolio')" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Ver portafolio</a></li>
+                        <li><a (click)="goTo('/contacto')" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Escríbenos</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Opciones grandes, a la derecha: suben una por una; al pasar el mouse, las demás se apagan -->
+            <nav class="group/links flex flex-col items-end" aria-label="Menú principal">
+                @for (link of navLinks; track link.label; let i = $index) {
+                <div class="overflow-hidden pb-[0.08em]">
+                    <a (click)="navigateTo(link)"
+                        class="flex items-start justify-end gap-3 cursor-pointer font-display font-800 uppercase tracking-tight leading-[0.95] text-[clamp(2.75rem,10vw,7.5rem)] transition-[transform,opacity,color] duration-700 ease-out group-hover/links:opacity-30 hover:opacity-100! hover:text-lm-violet"
+                        [class]="(menuOpen() ? '' : 'translate-y-full ') + (isActive(link) ? 'text-lm-violet' : 'text-lm-white')"
+                        [style.transition-delay]="menuOpen() && !menuReady() ? (300 + i * 80) + 'ms' : '0ms'">
+                        <span class="mt-[0.35em] font-body font-400 text-xs tracking-[0.2em] text-lm-silver">0{{ i + 1 }}</span>
+                        {{ link.label }}
+                    </a>
+                </div>
+                }
+            </nav>
+        </div>
+    </div>
+</div>

@@ -6,10 +6,10 @@
             @for (column of columns(); track $index) {
             <div class="w-[42vw] max-w-[300px] lg:w-[300px] shrink-0">
                 <div class="gd-track will-change-transform">
-                    @for (copy of [0, 1]; track copy) {
-                    <div class="flex flex-col gap-4 pb-4" [attr.aria-hidden]="copy === 1 ? 'true' : null">
+                    @for (copy of copies; track copy) {
+                    <div class="flex flex-col gap-4 pb-4" [attr.aria-hidden]="copy > 0 ? 'true' : null">
                         @for (item of column; track item.image) {
-                        <a [routerLink]="['/portafolio', item.slug]" data-cursor [attr.tabindex]="copy === 1 ? -1 : null"
+                        <a [routerLink]="['/portafolio', item.slug]" [attr.tabindex]="copy > 0 ? -1 : null"
                             [attr.aria-label]="'Ver caso ' + item.title"
                             class="group relative block bg-lm-graphite/60 hover:bg-lm-violet/70 p-px transition-colors duration-500">
                             <div class="relative overflow-hidden bg-lm-black">
