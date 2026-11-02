@@ -5,11 +5,13 @@
         @if (project.image) {
         <!-- Banner liviano (1400 px en escritorio, 800 px en celular): se ve al 50 % bajo un degradado, no necesita más -->
         <picture>
-            <source media="(max-width: 767px)" [srcset]="'assets/portafolio/miniaturas/' + project.slug + '-banner-cel.webp'">
+            <source media="(max-width: 767px)" [srcset]="'assets/portafolio/miniaturas/' + project.slug + '-banner-movil.webp'">
             <img #heroImg [src]="'assets/portafolio/miniaturas/' + project.slug + '-banner-xl.webp'" [alt]="project.title"
                 width="1400" height="788" fetchpriority="high" decoding="async"
-                class="absolute inset-0 w-full h-full object-cover object-top opacity-50">
+                class="absolute inset-0 w-full h-full object-contain md:object-cover object-top opacity-50">
         </picture>
+        <!-- Solo celular: la imagen vertical se funde con el negro por abajo, sin dejar un corte -->
+        <div class="md:hidden absolute inset-x-0 top-0 aspect-[9/16] bg-linear-to-t from-lm-black via-lm-black/15 to-transparent"></div>
         }
         <div class="absolute inset-0 bg-linear-to-t from-lm-black via-lm-black/20 to-transparent"></div>
         <!-- Cortina: arranca negra y se desvanece para revelar la imagen -->
