@@ -36,6 +36,9 @@
 html {
 scroll-behavior: smooth;
 scroll-padding-top: 5rem;
+/* Los efectos de entrada desplazan elementos 40 px hacia un lado; sin esto, en celular ensanchan la página.
+   "clip" (a diferencia de "hidden") no crea un contenedor de scroll, así que position: sticky sigue funcionando */
+overflow-x: clip;
 }
 
 html:active-view-transition {
@@ -48,7 +51,8 @@ background-color: var(--color-lm-white);
 color: var(--color-lm-white);
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
-overflow-x: hidden;
+overflow-x: hidden; /* navegadores antiguos */
+overflow-x: clip;
 }
 
 /* ===== Scrollbar ===== */

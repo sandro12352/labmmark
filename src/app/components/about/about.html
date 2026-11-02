@@ -19,39 +19,34 @@
                 </h2>
 
                 <!-- Description -->
-                <p class="text-lm-silver text-base leading-relaxed max-w-md mb-8">
+                <p class="text-lm-silver text-base leading-relaxed max-w-md mb-10">
                     Somos una agencia creativa dedicada a desarrollar marcas con propósito y conexión. Integramos
                     estrategia, diseño y análisis de datos para crear experiencias memorables que generan impacto y
                     perduran en el tiempo.
                 </p>
 
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-10">
-                    @for (tag of tags; track tag) {
-                    <span
-                        class="px-4 py-1.5 rounded-full bg-lm-charcoal border border-lm-graphite/60 text-xs text-lm-silver hover:text-lm-violet hover:border-lm-violet/40 transition-colors duration-300 cursor-default">
-                        {{ tag }}
-                    </span>
-                    }
-                </div>
-
-                <!-- Separator -->
-                <div class="w-full h-px bg-lm-graphite/40 mb-8"></div>
-
-                <!-- Experience table -->
-                <div class="space-y-6">
-                    @for (exp of experience; track exp.client) {
-                    <div class="grid grid-cols-3 gap-4 items-center">
-                        <span class="text-sm text-lm-white font-500 tracking-tight">{{ exp.role }}</span>
-                        <span class="text-sm text-lm-silver">{{ exp.client }}</span>
-                        <span class="text-sm text-lm-silver text-right inline-flex items-center justify-end gap-2">
-                            @if (exp.current) {
-                            <span class="w-1.5 h-1.5 rounded-full bg-lm-violet animate-pulse"></span>
-                            }
-                            {{ exp.period }}
-                        </span>
-                    </div>
-                    }
+                <!-- Enlaces a las páginas que cuentan el detalle -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a routerLink="/nosotros"
+                        class="group inline-flex items-center justify-between gap-6 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-violet transition-colors duration-300">
+                        CONOCE AL EQUIPO
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a routerLink="/portafolio"
+                        class="group inline-flex items-center justify-between gap-6 px-8 py-4 border border-lm-silver/40 text-lm-white font-display font-700 text-sm tracking-[0.1em] hover:border-lm-violet hover:text-lm-violet transition-colors duration-300">
+                        VER TODOS LOS CASOS
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
                 </div>
             </div>
 
@@ -80,34 +75,24 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             @for (work of recentWorks; track work.title ; let i = $index) {
             <!-- Forma con dos esquinas cortadas (arriba derecha, abajo izquierda). El contorno es el fondo del <a> asomando 1px alrededor del contenido interior, así también se ve en las diagonales -->
-            <a [routerLink]="work.link"
-                class="group relative aspect-4/5 block bg-lm-graphite/50 hover:bg-lm-violet/60 transition-colors duration-300 [--c:32px] [clip-path:polygon(0_0,calc(100%_-_var(--c))_0,100%_var(--c),100%_100%,var(--c)_100%,0_calc(100%_-_var(--c)))]"
+            <article
+                class="relative aspect-4/5 block bg-lm-graphite/50 transition-colors duration-300 [--c:32px] [clip-path:polygon(0_0,calc(100%_-_var(--c))_0,100%_var(--c),100%_100%,var(--c)_100%,0_calc(100%_-_var(--c)))]"
                 appReveal="zoom-in"
                 [revealDuration]="900">
                 <div
                     class="absolute inset-px overflow-hidden bg-lm-charcoal [--c:31px] [clip-path:polygon(0_0,calc(100%_-_var(--c))_0,100%_var(--c),100%_100%,var(--c)_100%,0_calc(100%_-_var(--c)))]">
                     <img [src]="work.image" [alt]="work.title"
-                        class="w-full h-full object-cover brightness-[0.7] saturate-[0.85] group-hover:brightness-90 group-hover:saturate-100 group-hover:scale-105 transition-[filter,transform] duration-500" />
+                        class="w-full h-full object-cover brightness-[0.7] saturate-[0.85] transition-[filter,transform] duration-500" />
                     <div
                         class="absolute inset-0 bg-linear-to-t from-lm-black/90 via-lm-black/30 to-transparent">
                     </div>
-                    <div class="absolute bottom-6 left-6 right-20">
+                    <div class="absolute bottom-6 left-6 right-6">
                         <span class="block mb-2 text-[11px] text-lm-violet tracking-[0.2em] uppercase font-body">{{ work.service }}</span>
                         <h4 class="font-display text-2xl font-700 tracking-[-0.02em] text-lm-white">{{ work.title }}</h4>
                         <p class="mt-1 text-sm text-lm-silver leading-snug line-clamp-2">{{ work.description }}</p>
                     </div>
-                    <span
-                        class="absolute bottom-6 right-6 w-10 h-10 flex items-center justify-center border border-lm-silver/40 text-lm-white group-hover:bg-lm-violet group-hover:border-lm-violet group-hover:text-lm-black transition-colors duration-300"
-                        aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                            <path d="M7 17 17 7" />
-                            <path d="M7 7h10v10" />
-                        </svg>
-                    </span>
                 </div>
-            </a>
+            </article>
             }
         </div>
     </div>

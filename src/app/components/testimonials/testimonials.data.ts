@@ -13,7 +13,6 @@ export interface VideoTestimonial {
 export const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@labmmarkagency';
 
 // Videos del canal "Labmmark Agency". Las miniaturas están en assets/testimonios/<id>.webp
-// TODO: los dos últimos videos no traen el nombre del cliente en la descripción de YouTube
 export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     { id: 'rT6i0EqiZg8', client: 'Tecnograss', quote: 'Por primera vez empezamos a recibir leads con intención de compra', seconds: 209, start: 88 },
     { id: 'dTzP0QFeIRc', client: 'Catalina', quote: 'No teníamos ni redes sociales y las campañas explotaron el primer mes', seconds: 94 },
@@ -31,6 +30,6 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     { id: 'WbPSzNTJEJ4', client: 'SGA', quote: 'Venimos trabajando 2 años y realmente han transformado nuestros resultados', seconds: 22 },
     { id: 'HYtfK2iKevU', client: 'HELPMED', quote: 'Hemos mejorado enormemente las ventas en tan solo 4 meses', seconds: 22 },
     { id: '0J5C6jY5VVE', client: 'Lima Barber', quote: 'La gente nos reconoce, pero lo más importante es que nuestras reservas se han incrementado', seconds: 20 },
-    { id: 'IpiRbfm-YkA', client: 'Cliente de LABMMARK', quote: 'Nosotros crecimos en todo: seguidores, alcance, y eso nos ha posicionado mucho mejor', seconds: 106 },
-    { id: 'oKBgxKq83GM', client: 'Cliente de LABMMARK', quote: 'Nunca tuvimos resultados con otras agencias, pero con ustedes los tuvimos desde el día uno', seconds: 79 },
+    { id: 'IpiRbfm-YkA', client: 'Profe al Toque', quote: 'Nosotros crecimos en todo: seguidores, alcance, y eso nos ha posicionado mucho mejor', seconds: 106 },
+    { id: 'oKBgxKq83GM', client: 'One Track', quote: 'Nunca tuvimos resultados con otras agencias, pero con ustedes los tuvimos desde el día uno', seconds: 79 },
 ];

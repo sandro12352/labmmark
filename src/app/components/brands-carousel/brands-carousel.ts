@@ -16,7 +16,7 @@ export interface Brand {
 export class BrandsCarouselComponent {
     brands: Brand[] = [
         { name: 'Martialcore', logo: 'brands/martial.webp' },
-        { name: 'Profe Altoque', logo: 'brands/profe.webp' },
+        { name: 'Profe al Toque', logo: 'brands/profe.webp' },
         { name: 'Oigo Salud', logo: 'brands/oigo.webp' },
         { name: 'Tis Martial', logo: 'brands/tis.webp' },
         { name: 'Tecnograss', logo: 'brands/tecnograss.webp' },

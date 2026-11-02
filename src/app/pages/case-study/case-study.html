@@ -3,8 +3,13 @@
     <!-- Background Image -->
     <div class="absolute inset-0" [class]="'bg-linear-to-br ' + project.gradient">
         @if (project.image) {
-        <img [src]="project.image" [alt]="project.title"
-            class="absolute inset-0 w-full h-full object-cover object-top opacity-50">
+        <!-- Banner liviano (1400 px en escritorio, 800 px en celular): se ve al 50 % bajo un degradado, no necesita más -->
+        <picture>
+            <source media="(max-width: 767px)" [srcset]="'assets/portafolio/miniaturas/' + project.slug + '-banner-cel.webp'">
+            <img #heroImg [src]="'assets/portafolio/miniaturas/' + project.slug + '-banner-xl.webp'" [alt]="project.title"
+                width="1400" height="788" fetchpriority="high" decoding="async"
+                class="absolute inset-0 w-full h-full object-cover object-top opacity-50">
+        </picture>
         }
         <div class="absolute inset-0 bg-linear-to-t from-lm-black via-lm-black/20 to-transparent"></div>
         <!-- Cortina: arranca negra y se desvanece para revelar la imagen -->
@@ -78,13 +83,56 @@
             </h2>
         </div>
 
-        <div class="relative w-full aspect-video border border-lm-graphite/30 overflow-hidden" appReveal="zoom-in-up"
-            [revealDuration]="1000" [revealDelay]="200">
-            <iframe [src]="videoUrl" class="w-full h-full" frameborder="0" allow="autoplay" allowfullscreen>
-            </iframe>
-        </div>
+        <!-- Miniatura con botón: el reproductor de YouTube solo se carga al abrirla -->
+        <button type="button" (click)="openVideo()" [attr.aria-label]="'Ver el video de ' + project.title"
+            class="group relative block w-full aspect-video border border-lm-graphite/30 hover:border-lm-violet/60 overflow-hidden cursor-pointer transition-colors duration-500"
+            appReveal="zoom-in-up" [revealDuration]="1000" [revealDelay]="200">
+            <img [src]="'assets/testimonios/' + videoId + '.webp'" [alt]="'Video de ' + project.title" width="640" height="360"
+                loading="lazy" decoding="async"
+                class="absolute inset-0 w-full h-full object-cover brightness-[0.8] saturate-[0.9] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out">
+            <div class="absolute inset-0 bg-gradient-to-t from-lm-black/60 via-transparent to-transparent"></div>
+            <span
+                class="absolute inset-0 m-auto w-20 h-20 rounded-full flex items-center justify-center bg-lm-black/70 backdrop-blur-sm border border-lm-violet/60 text-lm-white group-hover:bg-lm-violet group-hover:border-lm-violet group-hover:text-lm-black transition-colors duration-300">
+                <svg class="w-8 h-8 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+            </span>
+        </button>
     </div>
 </section>
+
+<!-- Visor del video -->
+<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-10 transition-opacity duration-300"
+    [class]="videoOpen() ? 'opacity-100' : 'opacity-0 pointer-events-none'" role="dialog" aria-modal="true"
+    [attr.aria-hidden]="videoOpen() ? null : 'true'" [attr.aria-label]="videoOpen() ? 'Video de ' + project.title : null">
+    <div class="absolute inset-0 bg-lm-black/85 backdrop-blur-sm" (click)="closeVideo()"></div>
+
+    <div class="relative w-full max-w-5xl transition-all duration-500 ease-out"
+        [class]="videoOpen() ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'">
+        <div class="flex items-center justify-between gap-4 mb-4">
+            <div>
+                <span class="block text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet">Video</span>
+                <span class="block font-display text-xl font-700 text-lm-white">{{ project.title }}</span>
+            </div>
+            <button type="button" (click)="closeVideo()" aria-label="Cerrar video"
+                class="w-11 h-11 border border-lm-graphite text-lm-silver hover:text-lm-violet hover:border-lm-violet flex items-center justify-center cursor-pointer transition-colors duration-300">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="relative aspect-video w-full bg-black border border-lm-violet/40">
+            @if (videoSrc(); as url) {
+            <iframe [src]="url" [title]="'Video de ' + project.title" class="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            }
+        </div>
+    </div>
+</div>
 }
 
 <!-- Challenge / Solution / Results -->
@@ -175,7 +223,7 @@
                 </div>
 
                 <div class="w-full h-full" appReveal="zoom-in" [revealDuration]="1500" revealEase="ease-out-cubic">
-                    <img [src]="image" [alt]="project.title + ' - galería'"
+                    <img [src]="image" [alt]="project.title + ' - galería'" width="1081" height="1351" loading="lazy" decoding="async"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ">
                 </div>
 

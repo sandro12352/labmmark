@@ -17,7 +17,7 @@
         </div>
 
         <!-- Cards -->
-        <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
             @for (program of programs; track program.name; let i = $index) {
             <article appReveal="fade-up" [revealDuration]="800" [revealDelay]="i * 120" revealEase="ease-out-cubic"
                 class="group relative flex flex-col p-8 lg:p-10 border transition-colors duration-500"
@@ -77,7 +77,7 @@
             }
         </div>
 
-        <div class="mt-8 max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <p class="text-xs text-lm-silver/70">
                 Contrato mínimo de 3 meses. Precios sin IGV. La inversión publicitaria (Meta Ads, TikTok Ads, Google Ads) no está incluida.
             </p>

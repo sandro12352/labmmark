@@ -30,7 +30,7 @@
         </div>
 
         <!-- Videos de clientes -->
-        <hlm-carousel [options]="carouselOptions" class="w-full">
+        <hlm-carousel [options]="carouselOptions" [plugins]="plugins" class="w-full">
             <hlm-carousel-content class="-ml-4">
                 @for (video of videos; track video.id; let i = $index) {
                 <div hlmCarouselItem class="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">

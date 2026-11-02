@@ -1,5 +1,6 @@
 import { RevealDirective } from '../../directives/reveal';
-import { afterNextRender, Component, ElementRef, inject, OnInit, viewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { afterNextRender, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, signal, viewChild } from '@angular/core';
 import { gsap } from 'gsap';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Project } from '../../components/portfolio/portfolio';
@@ -18,13 +19,21 @@ export class CaseStudyComponent implements OnInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
     private sanitizer = inject(DomSanitizer);
-    videoUrl!: SafeResourceUrl;
+    private doc = inject(DOCUMENT);
+    /** Id del video de YouTube del caso (su miniatura está en assets/testimonios/<id>.webp) */
+    videoId = '';
+    /** Visor abierto y su dirección; el reproductor solo existe mientras está abierto */
+    videoOpen = signal(false);
+    videoSrc = signal<SafeResourceUrl | null>(null);
 
     project!: Project;
 
     private heroCurtain = viewChild<ElementRef<HTMLElement>>('heroCurtain');
+    private heroImg = viewChild<ElementRef<HTMLImageElement>>('heroImg');
 
     constructor() {
+        inject(DestroyRef).onDestroy(() => (this.doc.body.style.overflow = ''));
+
         afterNextRender(() => {
             const curtain = this.heroCurtain()?.nativeElement;
             if (!curtain) return;
@@ -33,13 +42,30 @@ export class CaseStudyComponent implements OnInit {
                 return;
             }
             // Solo opacidad: no toca la imagen, así que no repinta el banner
-            gsap.to(curtain, {
-                opacity: 0,
-                duration: 1.2,
-                delay: 0.15,
-                ease: 'power2.inOut',
-                onComplete: () => curtain.remove(),
-            });
+            const reveal = () =>
+                gsap.to(curtain, {
+                    opacity: 0,
+                    duration: 1.2,
+                    delay: 0.15,
+                    ease: 'power2.inOut',
+                    onComplete: () => curtain.remove(),
+                });
+
+            // La cortina se abre cuando el banner ya cargó (o a los 2.5 s como máximo), para no mostrar un fondo vacío
+            const img = this.heroImg()?.nativeElement;
+            if (!img || img.complete) {
+                reveal();
+            } else {
+                let opened = false;
+                const open = () => {
+                    if (opened) return;
+                    opened = true;
+                    reveal();
+                };
+                img.addEventListener('load', open, { once: true });
+                img.addEventListener('error', open, { once: true });
+                setTimeout(open, 2500);
+            }
         });
     }
 
@@ -288,11 +314,29 @@ export class CaseStudyComponent implements OnInit {
         }
         this.project = found;
 
-        if (this.project.caseStudy.videoUrl) {
-            this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-                this.project.caseStudy.videoUrl
-            );
-        }
+        this.videoId = this.project.caseStudy.videoUrl?.match(/embed\/([\w-]+)/)?.[1] ?? '';
+    }
+
+    openVideo() {
+        // youtube-nocookie: no deja cookies de YouTube hasta que el visitante reproduce el video
+        this.videoSrc.set(
+            this.sanitizer.bypassSecurityTrustResourceUrl(
+                `https://www.youtube-nocookie.com/embed/${this.videoId}?autoplay=1&rel=0&modestbranding=1`,
+            ),
+        );
+        this.videoOpen.set(true);
+        this.doc.body.style.overflow = 'hidden';
+    }
+
+    closeVideo() {
+        this.videoOpen.set(false);
+        this.videoSrc.set(null); // se quita el reproductor para que el video deje de sonar
+        this.doc.body.style.overflow = '';
+    }
+
+    @HostListener('document:keydown.escape')
+    onEscape() {
+        if (this.videoOpen()) this.closeVideo();
     }
 
     getServiceIcon(icon: string): string {

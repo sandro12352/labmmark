@@ -2,6 +2,7 @@ import { RevealDirective } from '../../directives/reveal';
 import { Component, DestroyRef, HostListener, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HlmCarouselImports } from '@ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import { VIDEO_TESTIMONIALS, VideoTestimonial, YOUTUBE_CHANNEL_URL } from './testimonials.data';
 
 @Component({
@@ -19,9 +20,18 @@ export class TestimonialsComponent {
 
     carouselOptions = {
         align: 'start' as const,
-        loop: false,
+        loop: true,
         slidesToScroll: 1,
     };
+
+    /** Avanza solo cada pocos segundos; se detiene con el mouse encima y mientras hay un video abierto */
+    private autoplay = Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true });
+
+    // Sin movimiento automático si el visitante pidió reducir animaciones (y en el servidor no hay ventana)
+    plugins =
+        typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? []
+            : [this.autoplay];
 
     /** Video abierto en el visor (null = cerrado) */
     current = signal<VideoTestimonial | null>(null);
@@ -46,12 +56,14 @@ export class TestimonialsComponent {
         );
         this.current.set(video);
         document.body.style.overflow = 'hidden';
+        this.autoplay.stop();
     }
 
     close() {
         this.current.set(null);
         this.videoUrl.set(null); // se quita el reproductor para que el video deje de sonar
         document.body.style.overflow = '';
+        if (this.plugins.length) this.autoplay.play();
     }
 
     @HostListener('document:keydown.escape')

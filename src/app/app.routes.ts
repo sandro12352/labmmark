@@ -1,13 +1,28 @@
-import { Routes } from '@angular/router';
+import { ResolveFn, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home';
+
+/** Título y descripción de cada caso según su nombre (se cargan solo al entrar a un caso) */
+const caseTitle: ResolveFn<string> = async (route) => {
+    const { PORTFOLIO_ITEMS } = await import('./pages/portafolio/portafolio.data');
+    const item = PORTFOLIO_ITEMS.find((i) => i.slug === route.paramMap.get('slug'));
+    return item ? `${item.title} — Caso de éxito` : 'Caso de éxito';
+};
+
+const caseDescription: ResolveFn<string> = async (route) => {
+    const { PORTFOLIO_ITEMS } = await import('./pages/portafolio/portafolio.data');
+    const item = PORTFOLIO_ITEMS.find((i) => i.slug === route.paramMap.get('slug'));
+    return item
+        ? `Conoce el proyecto de ${item.title} con LABMMARK (${item.category}): qué necesitaba, qué hicimos y cómo lo trabajamos.`
+        : 'Conoce los detalles de nuestro caso de éxito.';
+};
 
 export const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
+        // Sin "title": el inicio usa el título completo de la marca (ver SeoService)
         data: {
-            title: 'Inicio',
-            description: 'LABMMARK: Agencia de marketing digital especializada en branding, social media, diseño web y estrategia digital.',
+            description:'LABMMARK: Agencia de marketing digital especializada en branding, social media, diseño web y estrategia digital.',
         },
     },
     // {
@@ -25,7 +40,7 @@ export const routes: Routes = [
         data: {
             title: 'Nosotros',
             breadcrumb: 'Nosotros',
-            description: 'Conoce al equipo de LABMMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores, proceso y trayectoria.',
+            description: 'Conoce al equipo de LABMMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores y proceso.',
         },
     },
     {
@@ -49,10 +64,9 @@ export const routes: Routes = [
     {
         path: 'portafolio/:slug',
         loadComponent: () => import('./pages/case-study/case-study').then(m => m.CaseStudyComponent),
+        resolve: { title: caseTitle, description: caseDescription },
         data: {
-            title: 'Caso de Éxito',
             breadcrumb: 'Caso de Éxito',
-            description: 'Conoce los detalles de nuestro caso de éxito y los resultados obtenidos.',
         },
     },
     {
@@ -64,8 +78,7 @@ export const routes: Routes = [
             description: 'Contáctanos para transformar tu marca. Escríbenos por formulario o WhatsApp.',
         },
     },
-    // La dirección anterior sigue funcionando
-    { path: 'programas', redirectTo: 'planes', pathMatch: 'full' },
+    // Cualquier dirección que no exista lleva al inicio
     {
         path: '**',
         redirectTo: '',
