@@ -1,6 +1,7 @@
 import { Component, signal, computed, HostListener, inject, viewChild, ElementRef, DestroyRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { onPlainClick } from '../../utils/plain-click';
 import { ADDRESS_LINES, EMAIL, FACEBOOK_URL, INSTAGRAM_URL, LINKEDIN_URL, HABLEMOS_URL, MAP_LINK, PHONE_DISPLAY, TIKTOK_URL, whatsappLink } from '../../config/contact';
 
 @Component({
@@ -116,6 +117,9 @@ export class NavbarComponent {
 
         this.scrollTo(link.fragment);
     }
+
+    /** Los enlaces llevan su dirección real (href) para que Google pueda seguirlos */
+    onLink = onPlainClick;
 
     /** Va a una página desde los enlaces pequeños del menú */
     goTo(path: string) {

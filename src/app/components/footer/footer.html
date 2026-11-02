@@ -41,7 +41,7 @@
 
             <!-- Navegación -->
             <div>
-                <h4 class="font-display text-sm font-700 text-lm-white tracking-[0.1em] uppercase mb-4">Navegación</h4>
+                <h3 class="font-display text-sm font-700 text-lm-white tracking-[0.1em] uppercase mb-4">Navegación</h3>
                 <ul class="space-y-2.5">
                     @for (link of navLinks; track link.path) {
                     <li><a [routerLink]="link.path" class="text-sm text-lm-silver hover:text-lm-violet transition-colors duration-300">{{ link.label }}</a></li>
@@ -51,7 +51,7 @@
 
             <!-- Servicios -->
             <div>
-                <h4 class="font-display text-sm font-700 text-lm-white tracking-[0.1em] uppercase mb-4">Servicios</h4>
+                <h3 class="font-display text-sm font-700 text-lm-white tracking-[0.1em] uppercase mb-4">Servicios</h3>
                 <ul class="space-y-2.5">
                     @for (service of services; track service) {
                     <li><a href="/#servicios" (click)="goToServices($event)" class="text-sm text-lm-silver hover:text-lm-violet transition-colors duration-300">{{ service }}</a></li>
@@ -61,7 +61,7 @@
 
             <!-- Contacto -->
             <div>
-                <h4 class="font-display text-sm font-700 text-lm-white tracking-[0.1em] uppercase mb-4">Contacto</h4>
+                <h3 class="font-display text-sm font-700 text-lm-white tracking-[0.1em] uppercase mb-4">Contacto</h3>
                 <ul class="space-y-2.5">
                     <li><a [href]="'mailto:' + email" class="break-all text-sm text-lm-silver hover:text-lm-violet transition-colors duration-300">{{ email }}</a></li>
                     <li><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" class="text-sm text-lm-silver hover:text-lm-violet transition-colors duration-300">{{ phone }}</a></li>
@@ -72,10 +72,10 @@
 
         <!-- Bottom bar -->
         <div class="py-6 border-t border-lm-graphite/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span class="text-xs text-lm-silver/60">
+            <span class="text-xs text-lm-silver/80">
                 © {{ currentYear }} LABMMARK. Todos los derechos reservados.
             </span>
-            <span class="text-xs text-lm-silver/40">
+            <span class="text-xs text-lm-silver/80">
                 Diseñado con precisión en Lima, Perú.
             </span>
         </div>

@@ -1,6 +1,7 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap';
+import { onPlainClick } from '../../utils/plain-click';
 
 @Component({
     selector: 'app-hero',
@@ -35,6 +36,9 @@ export class HeroComponent {
             this.destroyRef.onDestroy(() => ctx.revert());
         });
     }
+
+    /** Los botones llevan su dirección real (href) para que Google pueda seguirlos */
+    onLink = onPlainClick;
 
     goToContact() {
         this.router.navigate(['/contacto']);

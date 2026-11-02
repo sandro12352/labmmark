@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
             <a routerLink="/" (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
-                <img src="assets/logotipo.webp" alt="LABMMARK"
+                <img src="assets/logotipo.webp" alt="LABMMARK" width="851" height="852"
                     class="relative -left-[13.6px] h-35 w-auto transition-all duration-300 group-hover:opacity-80 pt-2."
                     style="filter: invert(0) brightness(1.5); mix-blend-mode: screen;">
             </a>
@@ -44,7 +44,7 @@
         <div class="w-full max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a routerLink="/" (click)="scrollTo('')" class="cursor-pointer flex items-center gap-2 group">
-                    <img src="assets/logotipo.webp" alt="LABMMARK"
+                    <img src="assets/logotipo.webp" alt="LABMMARK" width="851" height="852"
                         class="relative -left-[13.6px] h-35 w-auto transition-all duration-300 group-hover:opacity-80 pt-2."
                         style="filter: invert(0) brightness(1.5); mix-blend-mode: screen;">
                 </a>
@@ -88,9 +88,9 @@
                 <div>
                     <h3 class="text-[11px] tracking-[0.25em] uppercase font-body text-lm-violet mb-4">Empieza</h3>
                     <ul class="space-y-2">
-                        <li><a (click)="goTo('/planes')" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Ver planes</a></li>
-                        <li><a (click)="goTo('/portafolio')" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Ver portafolio</a></li>
-                        <li><a (click)="goTo('/contacto')" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Escríbenos</a></li>
+                        <li><a href="/planes" (click)="onLink($event, () => goTo('/planes'))" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Ver planes</a></li>
+                        <li><a href="/portafolio" (click)="onLink($event, () => goTo('/portafolio'))" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Ver portafolio</a></li>
+                        <li><a href="/contacto" (click)="onLink($event, () => goTo('/contacto'))" class="cursor-pointer text-lm-light hover:text-lm-violet transition-colors">Escríbenos</a></li>
                     </ul>
                 </div>
             </div>
@@ -99,7 +99,7 @@
             <nav class="group/links flex flex-col items-end" aria-label="Menú principal">
                 @for (link of navLinks; track link.label; let i = $index) {
                 <div class="overflow-hidden pb-[0.08em]">
-                    <a (click)="navigateTo(link)"
+                    <a [attr.href]="link.route ?? '/'" (click)="onLink($event, () => navigateTo(link))"
                         class="flex items-start justify-end gap-3 cursor-pointer font-display font-800 uppercase tracking-tight leading-[0.95] text-[clamp(2.75rem,10vw,7.5rem)] transition-[transform,opacity,color] duration-700 ease-out group-hover/links:opacity-30 hover:opacity-100! hover:text-lm-violet"
                         [class]="(menuOpen() ? '' : 'translate-y-full ') + (isActive(link) ? 'text-lm-violet' : 'text-lm-white')"
                         [style.transition-delay]="menuOpen() && !menuReady() ? (300 + i * 80) + 'ms' : '0ms'">

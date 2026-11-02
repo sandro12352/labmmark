@@ -16,7 +16,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-lm-black via-lm-black/30 to-transparent"></div>
 
                         <!-- Toda la portada es el botón de reproducir; el play va abajo a la izquierda, sin tapar a la presentadora -->
-                        <button (click)="openModal()" type="button" aria-label="Reproducir video de metodología"
+                        <button (click)="openModal()" type="button" aria-label="Conoce nuestro proceso 1:19 - reproducir video de metodología"
                             class="group/btn absolute inset-0 w-full h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-lm-violet">
                             <span class="absolute bottom-0 left-0 flex items-center gap-4 px-5 py-4">
                                 <span
@@ -89,7 +89,7 @@
 <!-- ========================================== -->
 <div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-transform duration-500"
     [class.opacity-100]="isModalOpen()" [class.pointer-events-auto]="isModalOpen()" [class.opacity-0]="!isModalOpen()"
-    [class.pointer-events-none]="!isModalOpen()" role="dialog" aria-modal="true">
+    [class.pointer-events-none]="!isModalOpen()" role="dialog" aria-modal="true" aria-label="Video de metodología">
 
     <!-- Backdrop con desenfoque de cristal -->
     <div class="absolute inset-0 bg-lm-black/80  transition-opacity duration-500" (click)="closeModal()"></div>
