@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { SHARE_IMAGE_ALT, SHARE_IMAGE_PATH, SITE_URL } from '../config/site';
+import { SERVICES } from '../components/services/services.data';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -52,6 +53,7 @@ export class SeoService {
           this.meta.updateTag({ name: 'twitter:image', content: image });
 
           this.setBreadcrumbs(path, data);
+          this.setHomeStructuredData(path);
         }
       });
   }
@@ -71,6 +73,35 @@ export class SeoService {
       this.doc.head.appendChild(link);
     }
     link.setAttribute('href', href);
+  }
+
+  /**
+   * Datos del inicio para buscadores (no dibuja nada en la página): los servicios que ofrece LABMMARK.
+   * Solo se escriben en el inicio, que es donde está esa sección.
+   */
+  private setHomeStructuredData(path: string) {
+    const id = 'home-jsonld';
+    this.doc.getElementById(id)?.remove();
+    if (path !== '/') return;
+
+    const provider = { '@type': 'ProfessionalService', name: 'LABMMARK', url: `${SITE_URL}/` };
+    const script = this.doc.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        ...SERVICES.map((service) => ({
+          '@type': 'Service',
+          name: service.title,
+          description: service.description,
+          serviceType: service.title,
+          areaServed: 'PE',
+          provider,
+        })),
+      ],
+    });
+    this.doc.head.appendChild(script);
   }
 
   /** Migas de pan para buscadores (no dibuja nada en la página) */

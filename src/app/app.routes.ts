@@ -22,7 +22,7 @@ export const routes: Routes = [
         component: HomeComponent,
         // Sin "title": el inicio usa el título completo de la marca (ver SeoService)
         data: {
-            description:'LABMMARK: Agencia de marketing digital especializada en branding, social media, diseño web y estrategia digital.',
+            description: 'LABMMARK es una agencia de marketing digital en Lima: branding, redes sociales, diseño web, publicidad y estrategia para que tu marca venda más.',
         },
     },
     // {
@@ -38,7 +38,7 @@ export const routes: Routes = [
         path: 'nosotros',
         loadComponent: () => import('./pages/nosotros/nosotros').then(m => m.NosotrosComponent),
         data: {
-            title: 'Nosotros',
+            title: 'Nosotros, agencia de marketing en Lima',
             breadcrumb: 'Nosotros',
             description: 'Conoce al equipo de LABMMARK. Fusionamos creatividad e inteligencia de datos para construir marcas que trascienden. Descubre nuestros valores y proceso.',
         },
@@ -47,7 +47,7 @@ export const routes: Routes = [
         path: 'planes',
         loadComponent: () => import('./pages/planes/planes').then(m => m.PlanesComponent),
         data: {
-            title: 'Planes',
+            title: 'Planes de marketing digital',
             breadcrumb: 'Planes',
             description: 'Planes de crecimiento IMPULSO y XPANDE: gestión de redes, producción de contenido y publicidad digital con seguimiento y reportes mensuales.',
         },
@@ -56,9 +56,9 @@ export const routes: Routes = [
         path: 'portafolio',
         loadComponent: () => import('./pages/portafolio/portafolio').then(m => m.PortafolioComponent),
         data: {
-            title: 'Portafolio',
+            title: 'Portafolio y casos de éxito',
             breadcrumb: 'Portafolio',
-            description: 'Explora nuestros proyectos de branding, diseño web, social media y estrategia digital.',
+            description: 'Casos de éxito de LABMMARK: branding, campañas y redes sociales para marcas como Martialcore, Grin Perú, Opción y Tecnograss. Mira los resultados.',
         },
     },
     {
@@ -73,9 +73,9 @@ export const routes: Routes = [
         path: 'contacto',
         loadComponent: () => import('./pages/contacto/contacto').then(m => m.ContactoComponent),
         data: {
-            title: 'Contacto',
+            title: 'Contacto, cotiza tu proyecto',
             breadcrumb: 'Contacto',
-            description: 'Contáctanos para transformar tu marca. Escríbenos por formulario o WhatsApp.',
+            description: 'Escríbenos por WhatsApp o desde el formulario y cuéntanos tu proyecto. Agencia de marketing digital en Lima: armamos tu propuesta a medida.',
         },
     },
     // Cualquier dirección que no exista lleva al inicio
