@@ -37,6 +37,13 @@ export class SeoService {
 
         this.meta.updateTag({ property: 'og:title', content: pageTitle });
 
+        // Páginas que aún no deben aparecer en buscadores (por ejemplo, con datos de ejemplo)
+        if (data['noindex']) {
+          this.meta.updateTag({ name: 'robots', content: 'noindex, follow' });
+        } else {
+          this.meta.removeTag("name='robots'");
+        }
+
         // Lo siguiente necesita enlaces completos, así que solo se escribe cuando se conoce el dominio
         if (SITE_URL) {
           const path = this.cleanPath(this.router.url);
@@ -112,7 +119,12 @@ export class SeoService {
 
     const items: { name: string; url: string }[] = [{ name: 'Inicio', url: `${SITE_URL}/` }];
     const caseSlug = path.match(/^\/portafolio\/[^/]+$/);
-    if (caseSlug) {
+    const blogSlug = path.match(/^\/blog\/[^/]+$/);
+    if (blogSlug) {
+      // Artículo: Inicio > Blog > título del artículo
+      items.push({ name: 'Blog', url: `${SITE_URL}/blog` });
+      items.push({ name: String(data['title'] ?? 'Artículo'), url: `${SITE_URL}${path}` });
+    } else if (caseSlug) {
       // Caso: Inicio > Portafolio > nombre del caso (el título viene como "Nombre — Caso de éxito")
       items.push({ name: 'Portafolio', url: `${SITE_URL}/portafolio` });
       items.push({ name: String(data['title'] ?? 'Caso de éxito').split(' — ')[0], url: `${SITE_URL}${path}` });

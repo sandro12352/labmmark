@@ -92,8 +92,8 @@
 </section>
 
 <!-- Visor del video -->
-<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-10 transition-opacity duration-300"
-    [class]="current() ? 'opacity-100' : 'opacity-0 pointer-events-none'" role="dialog" aria-modal="true"
+<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-10 transition-opacity duration-300 opacity-0 pointer-events-none data-open:opacity-100 data-open:pointer-events-auto"
+    [attr.data-open]="current() ? '' : null" role="dialog" aria-modal="true"
     [attr.aria-hidden]="current() ? null : 'true'" [attr.aria-label]="current() ? 'Testimonio de ' + current()?.client : 'Visor de video'">
     <div class="absolute inset-0 bg-lm-black/85 backdrop-blur-sm" (click)="close()"></div>
 

@@ -103,7 +103,6 @@
                         class="flex items-start justify-end gap-3 cursor-pointer font-display font-800 uppercase tracking-tight leading-[0.95] text-[clamp(2.75rem,10vw,7.5rem)] transition-[transform,opacity,color] duration-700 ease-out group-hover/links:opacity-30 hover:opacity-100! hover:text-lm-violet"
                         [class]="(menuOpen() ? '' : 'translate-y-full ') + (isActive(link) ? 'text-lm-violet' : 'text-lm-white')"
                         [style.transition-delay]="menuOpen() && !menuReady() ? (300 + i * 80) + 'ms' : '0ms'">
-                        <span class="mt-[0.35em] font-body font-400 text-xs tracking-[0.2em] text-lm-silver">0{{ i + 1 }}</span>
                         {{ link.label }}
                     </a>
                 </div>

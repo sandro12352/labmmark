@@ -16,6 +16,17 @@ const caseDescription: ResolveFn<string> = async (route) => {
         : 'Conoce los detalles de nuestro caso de éxito.';
 };
 
+/** Título y descripción de cada artículo del blog según su dirección */
+const blogTitle: ResolveFn<string> = async (route) => {
+    const { BLOG_POSTS } = await import('./pages/blog/blog.data');
+    return BLOG_POSTS.find((p) => p.slug === route.paramMap.get('slug'))?.title ?? 'Blog de marketing digital';
+};
+
+const blogDescription: ResolveFn<string> = async (route) => {
+    const { BLOG_POSTS } = await import('./pages/blog/blog.data');
+    return BLOG_POSTS.find((p) => p.slug === route.paramMap.get('slug'))?.excerpt ?? 'Guías y consejos de marketing digital de LABMMARK.';
+};
+
 export const routes: Routes = [
     {
         path: '',
@@ -76,6 +87,27 @@ export const routes: Routes = [
             title: 'Contacto, cotiza tu proyecto',
             breadcrumb: 'Contacto',
             description: 'Escríbenos por WhatsApp o desde el formulario y cuéntanos tu proyecto. Agencia de marketing digital en Lima: armamos tu propuesta a medida.',
+        },
+    },
+    {
+        path: 'blog',
+        loadComponent: () => import('./pages/blog/blog').then(m => m.BlogComponent),
+        data: {
+            title: 'Blog de marketing digital',
+            breadcrumb: 'Blog',
+            description: 'Guías y consejos de marketing digital: publicidad, redes sociales, diseño web y branding, desde la experiencia real de LABMMARK en Lima.',
+            // EJEMPLO: mientras el blog lleve artículos de relleno no debe aparecer en Google. Quitar esta línea al publicar los reales y añadir /blog al sitemap.
+            noindex: true,
+        },
+    },
+    {
+        path: 'blog/:slug',
+        loadComponent: () => import('./pages/blog/blog-article').then(m => m.BlogArticleComponent),
+        resolve: { title: blogTitle, description: blogDescription },
+        data: {
+            breadcrumb: 'Blog',
+            // EJEMPLO: igual que el listado, quitar al publicar artículos reales.
+            noindex: true,
         },
     },
     // Cualquier dirección que no exista lleva al inicio

@@ -87,9 +87,8 @@
 <!-- ========================================== -->
 <!-- MODAL DE VIDEO CON EFECTO LOCO 3D / SPRING -->
 <!-- ========================================== -->
-<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-transform duration-500"
-    [class.opacity-100]="isModalOpen()" [class.pointer-events-auto]="isModalOpen()" [class.opacity-0]="!isModalOpen()"
-    [class.pointer-events-none]="!isModalOpen()" role="dialog" aria-modal="true" aria-label="Video de metodología">
+<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 lg:p-8 transition-transform duration-500 opacity-0 pointer-events-none data-open:opacity-100 data-open:pointer-events-auto"
+    [attr.data-open]="isModalOpen() ? '' : null" role="dialog" aria-modal="true" aria-label="Video de metodología">
 
     <!-- Backdrop con desenfoque de cristal -->
     <div class="absolute inset-0 bg-lm-black/80  transition-opacity duration-500" (click)="closeModal()"></div>

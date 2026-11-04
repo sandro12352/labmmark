@@ -1,0 +1,231 @@
+<!-- Hero -->
+<section class="relative bg-lm-black overflow-hidden pt-40 pb-16 lg:pt-48 lg:pb-20">
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;">
+        </div>
+    </div>
+    <div class="absolute top-8 left-8 w-24 h-24 border-t border-l border-lm-graphite/40"></div>
+    <div class="absolute bottom-8 right-8 w-24 h-24 border-b border-r border-lm-graphite/40"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center gap-3 mb-8" appReveal="fade-up" [revealDuration]="700">
+            <a routerLink="/"
+                class="text-xs text-lm-silver/80 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
+            <span class="text-lm-graphite">/</span>
+            <span class="text-xs text-lm-white tracking-widest uppercase font-body">Blog</span>
+        </div>
+
+        <div class="flex items-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
+            <div class="w-16 h-px bg-lm-silver"></div>
+            <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Blog de LABMMARK</span>
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-7xl lg:text-9xl font-800 tracking-tight text-lm-white leading-[1.02] mb-8 pb-2">
+            <span class="block overflow-hidden pb-1">
+                <span class="block" appReveal="rise" [revealDuration]="1100" [revealDelay]="200" revealEase="ease-out-cubic">IDEAS QUE</span>
+            </span>
+            <span class="block overflow-hidden pb-1 text-lm-silver">
+                <span class="block" appReveal="rise" [revealDuration]="1100" [revealDelay]="350" revealEase="ease-out-cubic">HACEN CRECER<span class="text-lm-violet">.</span></span>
+            </span>
+        </h1>
+
+        <p class="text-lm-silver text-lg lg:text-xl leading-relaxed max-w-2xl" appReveal="fade-up" [revealDuration]="800" [revealDelay]="600">
+            Guías, consejos y aprendizajes de nuestro trabajo con marcas reales, para que tomes mejores decisiones en tu marketing.
+        </p>
+    </div>
+</section>
+
+<!-- Composiciones: imágenes superpuestas, bloques de color detrás y texto que se mete entre ellas -->
+<section class="relative bg-lm-black pb-24 lg:pb-36 overflow-hidden" aria-label="Artículos destacados">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 space-y-32 lg:space-y-48">
+
+        <!-- A: imagen grande a la izquierda, imagen pequeña abajo a la izquierda y el texto a la derecha -->
+        <article class="group grid lg:grid-cols-12 items-center">
+            <div class="relative lg:col-span-6 mb-16 lg:mb-0">
+                <div class="hidden lg:block absolute -top-10 -right-6 w-2/5 h-2/3 bg-lm-violet/20" appReveal="fade" [revealDuration]="1400" [revealDelay]="300"></div>
+                <div class="relative z-10" appReveal="reveal-up" [revealDuration]="1200">
+                <div class="relative bg-lm-graphite/60 p-px [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                        <img [src]="a.image" [alt]="a.imageAlt" width="800" height="534" fetchpriority="high"
+                            class="absolute inset-0 w-full h-full object-cover brightness-[0.75] saturate-[0.85] ">
+                        <div class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent"></div>
+                        <a [routerLink]="['/blog', a.slug]" tabindex="-1" aria-hidden="true" class="absolute inset-0"></a>
+                        <span class="pointer-events-none absolute top-4 left-4 px-3 py-1.5 bg-lm-black/80 backdrop-blur-sm text-[11px] tracking-[0.2em] uppercase font-body text-lm-white">{{ a.category }}</span>
+                    </div>
+                </div>
+                </div>
+                <div class="absolute z-20 -bottom-12 left-4 sm:left-8 lg:-left-12 w-[48%] sm:w-[40%] bg-lm-black p-1 shadow-2xl" appReveal="fade-up" [revealDuration]="1000" [revealDelay]="400">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal">
+                        <img [src]="a.image2" [alt]="a.image2Alt" width="800" height="534" loading="lazy" decoding="async"
+                            class="absolute inset-0 w-full h-full object-cover ">
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-30 lg:col-span-6 lg:ml-20 mt-10 lg:mt-0 [text-shadow:0_2px_24px_rgba(10,10,10,0.9)]"
+                appReveal="fade-left" [revealDuration]="900" [revealDelay]="200">
+                <div class="flex items-center gap-3 mb-5 text-[11px] tracking-[0.25em] uppercase font-body">
+                    <span class="text-lm-violet">Destacado</span>
+                    <span class="text-lm-graphite">/</span>
+                    <span class="text-lm-silver">{{ a.category }}</span>
+                </div>
+                <h2 class="font-display text-3xl lg:text-5xl font-800 tracking-[-0.02em] text-lm-white leading-[1.1] mb-5 group-hover:text-lm-violet transition-colors duration-300"><a [routerLink]="['/blog', a.slug]" class="after:absolute after:inset-0">{{ a.title }}</a></h2>
+                <p class="text-lm-silver leading-relaxed mb-8">{{ a.excerpt }}</p>
+                <div class="flex items-center gap-4 text-xs text-lm-silver tracking-[0.15em] uppercase font-body">
+                    <span>{{ formatDate(a) }}</span>
+                    <span class="w-1 h-1 rounded-full bg-lm-violet"></span>
+                    <span>{{ a.readMinutes }} min de lectura</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- B: igual, pero invertida: texto a la izquierda, imagen grande a la derecha y la pequeña abajo a la derecha -->
+        <article class="group grid lg:grid-cols-12 items-center">
+            <div class="relative lg:col-span-6 lg:col-start-7 lg:row-start-1 mb-16 lg:mb-0">
+                <div class="hidden lg:block absolute -top-10 -left-10 w-1/2 h-2/3 bg-lm-violet/20" appReveal="fade" [revealDuration]="1400" [revealDelay]="300"></div>
+                <div class="relative z-10" appReveal="reveal-up" [revealDuration]="1200">
+                <div class="relative bg-lm-graphite/60 p-px [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                        <img [src]="b.image" [alt]="b.imageAlt" width="800" height="534" loading="lazy" decoding="async"
+                            class="absolute inset-0 w-full h-full object-cover brightness-[0.75] saturate-[0.85] ">
+                        <div class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent"></div>
+                        <a [routerLink]="['/blog', b.slug]" tabindex="-1" aria-hidden="true" class="absolute inset-0"></a>
+                        <span class="pointer-events-none absolute top-4 left-4 px-3 py-1.5 bg-lm-black/80 backdrop-blur-sm text-[11px] tracking-[0.2em] uppercase font-body text-lm-white">{{ b.category }}</span>
+                    </div>
+                </div>
+                </div>
+                <div class="absolute z-20 -bottom-12 right-4 sm:right-8 lg:-right-12 w-[48%] sm:w-[40%] bg-lm-black p-1 shadow-2xl" appReveal="fade-up" [revealDuration]="1000" [revealDelay]="400">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal">
+                        <img [src]="b.image2" [alt]="b.image2Alt" width="800" height="534" loading="lazy" decoding="async"
+                            class="absolute inset-0 w-full h-full object-cover scale-[1.4] origin-[100%_42%]">
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-30 lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:mr-20 mt-10 lg:mt-0 [text-shadow:0_2px_24px_rgba(10,10,10,0.9)]"
+                appReveal="fade-right" [revealDuration]="900" [revealDelay]="200">
+                <div class="flex items-center gap-3 mb-5 text-[11px] tracking-[0.25em] uppercase font-body">
+                    <span class="text-lm-violet">{{ b.category }}</span>
+                </div>
+                <h2 class="font-display text-3xl lg:text-5xl font-800 tracking-[-0.02em] text-lm-white leading-[1.1] mb-5 group-hover:text-lm-violet transition-colors duration-300"><a [routerLink]="['/blog', b.slug]" class="after:absolute after:inset-0">{{ b.title }}</a></h2>
+                <p class="text-lm-silver leading-relaxed mb-8">{{ b.excerpt }}</p>
+                <div class="flex items-center gap-4 text-xs text-lm-silver tracking-[0.15em] uppercase font-body">
+                    <span>{{ formatDate(b) }}</span>
+                    <span class="w-1 h-1 rounded-full bg-lm-violet"></span>
+                    <span>{{ b.readMinutes }} min de lectura</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- C: dos imágenes que se tocan, escalonadas, y el texto centrado entre las dos -->
+        <article class="group grid lg:grid-cols-12 gap-y-0">
+            <div class="relative lg:col-span-5 lg:col-start-2 lg:row-start-1">
+                <div class="hidden lg:block absolute z-[15] top-24 -bottom-6 -right-20 w-[32%] bg-[#302834]" appReveal="fade" [revealDuration]="1400" [revealDelay]="300"></div>
+                <div class="relative z-10" appReveal="reveal-up" [revealDuration]="1200">
+                <div class="relative bg-lm-graphite/60 p-px [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal [clip-path:polygon(0_0,calc(100%-32px)_0,100%_32px,100%_100%,0_100%)]">
+                        <img [src]="c.image" [alt]="c.imageAlt" width="800" height="534" loading="lazy" decoding="async"
+                            class="absolute inset-0 w-full h-full object-cover brightness-[0.75] saturate-[0.85] ">
+                        <div class="absolute inset-0 bg-linear-to-t from-lm-black/60 via-transparent to-transparent"></div>
+                        <a [routerLink]="['/blog', c.slug]" tabindex="-1" aria-hidden="true" class="absolute inset-0"></a>
+                        <span class="pointer-events-none absolute top-4 left-4 px-3 py-1.5 bg-lm-black/80 backdrop-blur-sm text-[11px] tracking-[0.2em] uppercase font-body text-lm-white">{{ c.category }}</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="relative z-20 lg:col-span-4 lg:col-start-7 lg:row-start-1 lg:mt-28 -mt-10 ml-auto w-[80%] lg:w-full lg:-ml-12" appReveal="reveal-up" [revealDuration]="1200" [revealDelay]="150">
+                <div class="bg-lm-black p-1 shadow-2xl">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-lm-charcoal">
+                        <img [src]="c.image2" [alt]="c.image2Alt" width="800" height="534" loading="lazy" decoding="async"
+                            class="absolute inset-0 w-full h-full object-cover ">
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-30 lg:col-span-6 lg:col-start-4 lg:row-start-2 mt-10 lg:mt-14 text-center"
+                appReveal="fade-up" [revealDuration]="900" [revealDelay]="250">
+                <div class="flex items-center justify-center gap-3 mb-5 text-[11px] tracking-[0.25em] uppercase font-body">
+                    <span class="text-lm-violet">{{ c.category }}</span>
+                </div>
+                <h2 class="font-display text-3xl lg:text-5xl font-800 tracking-[-0.02em] text-lm-white leading-[1.1] mb-5 group-hover:text-lm-violet transition-colors duration-300"><a [routerLink]="['/blog', c.slug]" class="after:absolute after:inset-0">{{ c.title }}</a></h2>
+                <p class="text-lm-silver leading-relaxed mb-8">{{ c.excerpt }}</p>
+                <div class="flex items-center justify-center gap-4 text-xs text-lm-silver tracking-[0.15em] uppercase font-body">
+                    <span>{{ formatDate(c) }}</span>
+                    <span class="w-1 h-1 rounded-full bg-lm-violet"></span>
+                    <span>{{ c.readMinutes }} min de lectura</span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- Más artículos -->
+<section class="relative bg-lm-charcoal py-16 lg:py-24 overflow-hidden" aria-label="Más artículos del blog">
+    <div class="absolute top-0 right-0 w-32 h-32 border-t border-r border-lm-graphite/20"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center gap-4 mb-12 lg:mb-16" appReveal="fade-up" [revealDuration]="700">
+            <div class="w-12 h-px bg-lm-silver"></div>
+            <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Más artículos</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
+            @for (post of more; track post.slug; let i = $index) {
+            <article class="group relative {{ offsets[i] }}" appReveal="fade-up" [revealDuration]="900" [revealDelay]="(i % 3) * 120">
+                <div
+                    class="bg-lm-graphite/60 p-px [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]">
+                    <div
+                        class="relative aspect-[4/5] overflow-hidden bg-lm-black [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]">
+                        <img [src]="post.image" [alt]="post.imageAlt" width="800" height="534" loading="lazy" decoding="async"
+                            class="absolute inset-0 w-full h-full object-cover brightness-[0.75] saturate-[0.85] ">
+                        <div class="absolute inset-0 bg-linear-to-t from-lm-black/50 via-transparent to-transparent"></div>
+                        <span
+                            class="absolute top-4 left-4 px-3 py-1.5 bg-lm-black/80 backdrop-blur-sm text-[11px] tracking-[0.2em] uppercase font-body text-lm-white">{{ post.category }}</span>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="flex items-center gap-3 mb-3 text-[11px] tracking-[0.15em] uppercase font-body text-lm-silver">
+                        <span>{{ formatDate(post) }}</span>
+                        <span class="w-1 h-1 rounded-full bg-lm-violet"></span>
+                        <span>{{ post.readMinutes }} min</span>
+                    </div>
+                    <h3 class="font-display text-xl lg:text-2xl font-700 tracking-[-0.02em] text-lm-white leading-[1.15] mb-3 group-hover:text-lm-violet transition-colors duration-300">
+                        <a [routerLink]="['/blog', post.slug]" class="after:absolute after:inset-0">{{ post.title }}</a>
+                    </h3>
+                    <p class="text-sm text-lm-silver leading-relaxed line-clamp-2">{{ post.excerpt }}</p>
+                </div>
+            </article>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Cierre -->
+<section class="relative bg-lm-black py-20 lg:py-28 overflow-hidden">
+    <div class="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-lm-graphite/20"></div>
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div class="flex items-center justify-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700">
+            <div class="w-12 h-px bg-lm-silver"></div>
+            <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Hablemos</span>
+            <div class="w-12 h-px bg-lm-silver"></div>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6" appReveal="fade-up" [revealDuration]="800" [revealDelay]="100">
+            ¿TIENES UNA IDEA <br>
+            <span class="text-lm-silver">PARA TU MARCA</span><span class="text-lm-violet">?</span>
+        </h2>
+        <p class="text-lm-silver text-lg leading-relaxed mb-10 max-w-2xl mx-auto" appReveal="fade-up" [revealDuration]="800" [revealDelay]="200">
+            Cuéntanos qué quieres lograr y armamos una propuesta a tu medida.
+        </p>
+        <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer"
+            class="group/cta inline-flex items-center justify-between gap-6 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] hover:bg-lm-violet transition-colors duration-300 [clip-path:polygon(0_0,calc(100%-16px)_0,100%_16px,100%_100%,0_100%)]"
+            appReveal="fade-up" [revealDuration]="800" [revealDelay]="300">
+            HABLEMOS DE TU PROYECTO
+            <svg class="w-4 h-4 transition-transform duration-300 group-hover/cta:translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+            </svg>
+        </a>
+    </div>
+</section>
