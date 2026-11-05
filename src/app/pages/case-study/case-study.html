@@ -316,8 +316,56 @@
 </section>
 }
 
+<!-- Otros casos -->
+<section class="relative py-24 lg:py-32 bg-lm-charcoal border-t border-lm-graphite/30" aria-labelledby="otros-casos-title">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+            <div appReveal="fade-up">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-px bg-lm-silver"></div>
+                    <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Portafolio</span>
+                </div>
+                <h2 id="otros-casos-title"
+                    class="font-display text-3xl sm:text-4xl lg:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1]">
+                    OTROS CASOS<span class="text-lm-violet">.</span>
+                </h2>
+            </div>
+            <a routerLink="/portafolio"
+                class="group inline-flex items-center gap-3 font-display font-700 text-sm tracking-[0.1em] text-lm-white hover:text-lm-violet transition-colors duration-300">
+                VER TODOS
+                <svg class="transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <hlm-carousel [options]="carouselOptions" class="w-full">
+            <hlm-carousel-content class="-ml-4 lg:-ml-5">
+                @for (other of others; track other.slug) {
+                <div hlmCarouselItem class="pl-4 lg:pl-5 basis-[85%] sm:basis-1/2 lg:basis-1/3">
+                    <article class="group relative">
+                        <div class="relative aspect-video overflow-hidden bg-lm-black mb-5">
+                            <img [src]="'assets/portafolio/miniaturas/' + other.slug + '-banner.webp'" [alt]="other.title"
+                                width="720" height="406" loading="lazy" decoding="async"
+                                class="absolute inset-0 w-full h-full object-cover" />
+                        </div>
+                        <p class="text-xs text-lm-silver tracking-[0.2em] uppercase font-body mb-3">{{ other.category }}</p>
+                        <h3 class="font-display text-xl lg:text-2xl font-700 tracking-[-0.02em] text-lm-white leading-[1.2] group-hover:text-lm-violet transition-colors duration-300">
+                            <a [routerLink]="['/portafolio', other.slug]" class="after:absolute after:inset-0">{{ other.title }}</a>
+                        </h3>
+                    </article>
+                </div>
+                }
+            </hlm-carousel-content>
+
+            <button hlmCarouselPrevious aria-label="Caso anterior"
+                class="hidden lg:block bg-transparent dark:bg-transparent border-0 shadow-none text-lm-white text-lg hover:scale-125 transition-all duration-300 hover:bg-transparent dark:hover:bg-transparent hover:text-lm-violet cursor-pointer">Prev</button>
+            <button hlmCarouselNext aria-label="Siguiente caso"
+                class="hidden lg:block bg-transparent dark:bg-transparent border-0 shadow-none text-lm-white text-lg hover:scale-125 transition-all duration-300 hover:bg-transparent dark:hover:bg-transparent hover:text-lm-violet cursor-pointer">Next</button>
+        </hlm-carousel>
+    </div>
+</section>
+
 <!-- CTA Section -->
-<section class="relative py-24 lg:py-32 bg-lm-charcoal border-t border-lm-graphite/30">
+<section class="relative py-24 lg:py-32 bg-lm-black border-t border-lm-graphite/30">
     <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center" appReveal="fade-up" [revealDuration]="800">
         <h2
             class="font-display text-3xl sm:text-4xl lg:text-5xl font-800 tracking-[-0.03em] text-lm-white leading-[1.1] mb-6">

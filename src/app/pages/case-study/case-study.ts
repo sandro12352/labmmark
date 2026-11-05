@@ -1,17 +1,19 @@
 import { RevealDirective } from '../../directives/reveal';
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, signal, viewChild } from '@angular/core';
+import { afterNextRender, Component, computed, DestroyRef, ElementRef, HostListener, inject, OnInit, signal, viewChild } from '@angular/core';
 import { gsap } from 'gsap';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Project } from '../../components/portfolio/portfolio';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LucideSearch } from '@lucide/angular';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HlmCarouselImports } from '@ui/carousel';
 
 
 @Component({
     selector: 'app-case-study',
     standalone: true,
-    imports: [RouterLink, LucideSearch, RevealDirective],
+    imports: [RouterLink, LucideSearch, RevealDirective, ...HlmCarouselImports],
     templateUrl: './case-study.html',
     styleUrl: './case-study.css',
 })
@@ -20,13 +22,32 @@ export class CaseStudyComponent implements OnInit {
     private router = inject(Router);
     private sanitizer = inject(DomSanitizer);
     private doc = inject(DOCUMENT);
-    /** Id del video de YouTube del caso (su miniatura está en assets/testimonios/<id>.webp) */
-    videoId = '';
     /** Visor abierto y su dirección; el reproductor solo existe mientras está abierto */
     videoOpen = signal(false);
     videoSrc = signal<SafeResourceUrl | null>(null);
 
-    project!: Project;
+    /** Posición del caso actual; al ser una señal, la pantalla se actualiza con seguridad cuando cambia de caso */
+    private index = signal(0);
+
+    get project(): Project {
+        return this.allProjects[this.index()];
+    }
+
+    /** Todos los casos menos el actual, empezando por el que le sigue (el último vuelve al primero) */
+    private othersList = computed(() => {
+        const i = this.index();
+        return this.allProjects.map((_, n) => this.allProjects[(i + n + 1) % this.allProjects.length]).slice(0, -1);
+    });
+
+    get others(): Project[] {
+        return this.othersList();
+    }
+
+    /** Id del video de YouTube del caso (su miniatura está en assets/testimonios/<id>.webp) */
+    get videoId(): string {
+        return this.project.caseStudy.videoUrl?.match(/embed\/([\w-]+)/)?.[1] ?? '';
+    }
+    carouselOptions = { align: 'start' as const, loop: false, slidesToScroll: 1 };
 
     private heroCurtain = viewChild<ElementRef<HTMLElement>>('heroCurtain');
     private heroImg = viewChild<ElementRef<HTMLImageElement>>('heroImg');
@@ -305,16 +326,19 @@ export class CaseStudyComponent implements OnInit {
         },
     ];
 
-    ngOnInit() {
-        const slug = this.route.snapshot.paramMap.get('slug');
-        const found = this.allProjects.find(p => p.slug === slug);
-        if (!found) {
-            this.router.navigate(['/']);
-            return;
-        }
-        this.project = found;
+    private destroyRef = inject(DestroyRef);
 
-        this.videoId = this.project.caseStudy.videoUrl?.match(/embed\/([\w-]+)/)?.[1] ?? '';
+    ngOnInit() {
+        // Se escucha el cambio de dirección: al pasar de un caso a otro Angular reutiliza este componente
+        this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
+            const index = this.allProjects.findIndex(p => p.slug === params.get('slug'));
+            if (index === -1) {
+                this.router.navigate(['/']);
+                return;
+            }
+            this.index.set(index);
+            if (this.videoOpen()) this.closeVideo();
+        });
     }
 
     openVideo() {

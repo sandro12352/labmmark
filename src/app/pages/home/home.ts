@@ -9,6 +9,7 @@ import { TestimonialsComponent } from '../../components/testimonials/testimonial
 import { BrandsCarouselComponent } from '../../components/brands-carousel/brands-carousel';
 import { EstrategiaComponent } from '../../components/estrategia/estrategia.component';
 import { ProgramsComponent } from '../../components/programs/programs';
+import { BlogTeaserComponent } from '../../components/blog-teaser/blog-teaser';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import { ProgramsComponent } from '../../components/programs/programs';
     BrandsCarouselComponent,
     EstrategiaComponent,
     ProgramsComponent,
+    BlogTeaserComponent,
     RouterLink,
   ],
   template: `
@@ -63,6 +65,12 @@ import { ProgramsComponent } from '../../components/programs/programs';
 
       @defer  {
         <app-testimonials />
+      } @placeholder {
+        <div class="min-h-[60vh]"></div>
+      }
+
+      @defer {
+        <app-blog-teaser />
       } @placeholder {
         <div class="min-h-[60vh]"></div>
       }

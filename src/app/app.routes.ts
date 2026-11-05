@@ -110,6 +110,15 @@ export const routes: Routes = [
             noindex: true,
         },
     },
+    {
+        path: 'privacidad',
+        loadComponent: () => import('./pages/privacidad/privacidad').then(m => m.PrivacidadComponent),
+        data: {
+            title: 'Política de privacidad',
+            breadcrumb: 'Política de privacidad',
+            description: 'Cómo LABMMARK recoge, usa y protege tus datos personales cuando nos contactas desde el sitio web.',
+        },
+    },
     // Cualquier dirección que no exista lleva al inicio
     {
         path: '**',

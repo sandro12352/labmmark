@@ -3,6 +3,10 @@ export const WHATSAPP_NUMBER = '51933024824';
 
 export const PHONE_DISPLAY = '+51 933 024 824';
 
+/** Datos de la empresa que aparecen en la política de privacidad */
+export const LEGAL_NAME = 'LABORATORIO DE MARKETING S.A.C.';
+export const RUC = '20614397081';
+
 export const EMAIL = 'labmmarkperu@gmail.com';
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/labmmarkagency/';

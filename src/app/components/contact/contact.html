@@ -47,13 +47,19 @@
                             <span class="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-lm-violet origin-left scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 ease-out"></span>
                         </div>
 
+                        <label class="flex items-start gap-3 text-sm text-lm-silver leading-relaxed cursor-pointer">
+                            <input type="checkbox" name="privacy" required [checked]="accepted()" (change)="accepted.set($any($event.target).checked)"
+                                class="mt-1 h-4 w-4 shrink-0 accent-[#C9A0DC] cursor-pointer">
+                            <span id="privacy-hint">Autorizo a LABORATORIO DE MARKETING S.A.C. (LABMMARK) a tratar mi nombre, correo, teléfono y mensaje para atender mi consulta y gestionar propuestas de servicios. He leído la <a routerLink="/privacidad" target="_blank" class="text-lm-violet underline underline-offset-4">Política de privacidad</a>.</span>
+                        </label>
+
                         <!-- Campo trampa para bots (las personas no lo ven) -->
                         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
                             class="absolute -left-[9999px] w-px h-px opacity-0" [ngModel]="honeypot()" (ngModelChange)="honeypot.set($event)">
 
-                        <button type="submit" [disabled]="status() === 'sending'"
-                            class="relative overflow-hidden w-full flex items-center justify-between gap-3 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] group [clip-path:polygon(0_0,calc(100%-16px)_0,100%_16px,100%_100%,0_100%)]">
-                            <span aria-hidden="true" class="absolute inset-0 bg-lm-violet origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                        <button type="submit" [disabled]="status() === 'sending' || !accepted()" [attr.aria-describedby]="accepted() ? null : 'privacy-hint'"
+                            class="relative overflow-hidden w-full flex items-center justify-between gap-3 px-8 py-4 bg-lm-white text-lm-black font-display font-700 text-sm tracking-[0.1em] group disabled:opacity-40 disabled:cursor-not-allowed [clip-path:polygon(0_0,calc(100%-16px)_0,100%_16px,100%_100%,0_100%)]">
+                            <span aria-hidden="true" class="absolute inset-0 bg-lm-violet origin-left scale-x-0 group-enabled:group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                             @switch (status()) {
                             @case ('sending') {
                             <span class="relative">ENVIANDO…</span>

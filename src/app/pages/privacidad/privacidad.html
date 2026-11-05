@@ -1,0 +1,102 @@
+<!-- Cabecera -->
+<section class="relative bg-lm-black overflow-hidden pt-40 pb-12 lg:pt-48 lg:pb-16">
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;">
+        </div>
+    </div>
+    <div class="absolute top-8 left-8 w-24 h-24 border-t border-l border-lm-graphite/40"></div>
+    <div class="absolute bottom-8 right-8 w-24 h-24 border-b border-r border-lm-graphite/40"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <nav aria-label="Ruta de navegación" class="flex items-center gap-3 mb-8" appReveal="fade-up" [revealDuration]="700">
+            <a routerLink="/" class="text-xs text-lm-silver/80 tracking-widest uppercase font-body hover:text-lm-white transition-colors">Inicio</a>
+            <span class="text-lm-graphite">/</span>
+            <span class="text-xs text-lm-white tracking-widest uppercase font-body">Política de privacidad</span>
+        </nav>
+
+        <div class="flex items-center gap-4 mb-6" appReveal="fade-up" [revealDuration]="700" [revealDelay]="100">
+            <div class="w-16 h-px bg-lm-silver"></div>
+            <span class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body">Documento legal</span>
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-800 tracking-tight text-lm-white leading-[1.05] mb-8"
+            appReveal="fade-up" [revealDuration]="900" [revealDelay]="200">
+            POLÍTICA DE <br>
+            <span class="text-lm-silver">PRIVACIDAD</span><span class="text-lm-violet">.</span>
+        </h1>
+
+        <p class="text-lm-silver text-sm tracking-[0.15em] uppercase font-body" appReveal="fade-up" [revealDuration]="800" [revealDelay]="400">
+            Última actualización: {{ updated }}
+        </p>
+    </div>
+</section>
+
+<!-- Texto -->
+<section class="relative bg-lm-black pb-20 lg:pb-28">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <!-- Índice -->
+        <nav aria-label="Secciones de la política" class="lg:col-span-3 hidden lg:block">
+            <div class="sticky top-28">
+                <p class="text-xs text-lm-silver tracking-[0.3em] uppercase font-body mb-5">Contenido</p>
+                <ol class="space-y-3 border-l border-lm-graphite/50">
+                    @for (section of sections; track section.id; let i = $index) {
+                    <li>
+                        <a [href]="'#' + section.id" (click)="goTo($event, section.id)"
+                            class="block -ml-px pl-4 border-l border-transparent text-sm text-lm-silver hover:text-lm-white hover:border-lm-violet transition-colors">
+                            {{ i + 1 }}. {{ section.title }}
+                        </a>
+                    </li>
+                    }
+                </ol>
+            </div>
+        </nav>
+
+        <article class="lg:col-span-8 lg:col-start-5 max-w-3xl">
+            @for (section of sections; track section.id; let i = $index) {
+            <section [id]="section.id" class="scroll-mt-28 mb-14 lg:mb-16">
+                <h2 class="font-display text-2xl lg:text-3xl font-700 tracking-[-0.02em] text-lm-white leading-[1.15] mb-6">
+                    <span class="text-lm-violet">{{ i + 1 }}.</span> {{ section.title }}
+                </h2>
+
+                <div class="space-y-5">
+                    @for (block of section.blocks; track $index) {
+                        @switch (block.type) {
+                            @case ('p') {
+                            <p class="text-lm-silver text-base lg:text-lg leading-8">{{ block.text }}</p>
+                            }
+                            @case ('list') {
+                            <ul class="space-y-3 text-lm-silver text-base lg:text-lg leading-8">
+                                @for (item of block.items; track item) {
+                                <li class="flex gap-3">
+                                    <span class="mt-3.5 w-1.5 h-1.5 shrink-0 rounded-full bg-lm-violet"></span>
+                                    <span>{{ item }}</span>
+                                </li>
+                                }
+                            </ul>
+                            }
+                            @case ('facts') {
+                            <dl class="border border-lm-graphite/40 bg-lm-charcoal divide-y divide-lm-graphite/40">
+                                @for (fact of block.facts; track fact.label) {
+                                <div class="grid sm:grid-cols-3 gap-1 sm:gap-4 px-5 py-4">
+                                    <dt class="text-xs text-lm-silver tracking-[0.2em] uppercase font-body">{{ fact.label }}</dt>
+                                    <dd class="sm:col-span-2 text-lm-white">{{ fact.value }}</dd>
+                                </div>
+                                }
+                            </dl>
+                            }
+                        }
+                    }
+                </div>
+            </section>
+            }
+
+            <div class="mt-4 p-6 bg-lm-violet/10 border border-lm-violet/30">
+                <p class="text-lm-white leading-relaxed">
+                    ¿Dudas sobre tus datos? Escríbenos a
+                    <a [href]="'mailto:' + email" class="text-lm-violet underline underline-offset-4">{{ email }}</a>.
+                </p>
+            </div>
+        </article>
+    </div>
+</section>

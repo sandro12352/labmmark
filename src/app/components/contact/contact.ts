@@ -1,13 +1,14 @@
 import { RevealDirective } from '../../directives/reveal';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { LocationMapComponent } from '../location-map/location-map';
 import { ADDRESS_LINES, HOURS_LINES, MAP_LINK, OFFICE_COORDS, PHONE_DISPLAY, WEB3FORMS_KEY, whatsappLink } from '../../config/contact';
 
 @Component({
     selector: 'app-contact',
     standalone: true,
-    imports: [FormsModule, RevealDirective, LocationMapComponent],
+    imports: [FormsModule, RouterLink, RevealDirective, LocationMapComponent],
     templateUrl: './contact.html',
     styleUrl: './contact.css',
 })
@@ -25,6 +26,9 @@ export class ContactComponent {
         phone: '',
         message: '',
     });
+
+    /** Casilla de la política de privacidad (obligatoria, empieza sin marcar) */
+    accepted = signal(false);
 
     /** Campo oculto: los bots lo llenan y las personas no */
     honeypot = signal('');
@@ -84,6 +88,7 @@ export class ContactComponent {
     private finish() {
         this.status.set('sent');
         this.formData.set({ name: '', email: '', phone: '', message: '' });
+        this.accepted.set(false);
         setTimeout(() => this.status.set('idle'), 4000);
     }
 }
