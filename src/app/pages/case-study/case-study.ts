@@ -421,6 +421,7 @@ export class CaseStudyComponent implements OnInit {
             }
             this.index.set(index);
             if (this.videoOpen()) this.closeVideo();
+            if (this.lightboxIndex() !== null) this.closeImage();
         });
     }
 
@@ -441,9 +442,40 @@ export class CaseStudyComponent implements OnInit {
         this.doc.body.style.overflow = '';
     }
 
+    /** Posición de la imagen abierta en el visor de la galería (null = cerrado) */
+    lightboxIndex = signal<number | null>(null);
+
+    openImage(i: number) {
+        this.lightboxIndex.set(i);
+        this.doc.body.style.overflow = 'hidden';
+    }
+
+    closeImage() {
+        this.lightboxIndex.set(null);
+        this.doc.body.style.overflow = '';
+    }
+
+    stepImage(direction: 1 | -1) {
+        const current = this.lightboxIndex();
+        const total = this.project.caseStudy.gallery?.length ?? 0;
+        if (current === null || !total) return;
+        this.lightboxIndex.set((current + direction + total) % total);
+    }
+
     @HostListener('document:keydown.escape')
     onEscape() {
         if (this.videoOpen()) this.closeVideo();
+        if (this.lightboxIndex() !== null) this.closeImage();
+    }
+
+    @HostListener('document:keydown.arrowright')
+    onNext() {
+        this.stepImage(1);
+    }
+
+    @HostListener('document:keydown.arrowleft')
+    onPrev() {
+        this.stepImage(-1);
     }
 
     getServiceIcon(icon: string): string {

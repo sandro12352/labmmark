@@ -220,9 +220,11 @@
             @for (image of project.caseStudy.gallery; track image; let i = $index) {
             <div appReveal="reveal-up" [revealDuration]="1100" [revealDelay]="(i % 3) * 100" revealEase="ease-out-cubic"
                 [class.lg:col-span-2]="i === 0" [class.lg:row-span-2]="i === 0"
-                class="group relative overflow-hidden border border-lm-graphite/30 hover:border-lm-silver/30 transition-colors duration-500 w-full h-full aspect-auto hover:cursor-pointer">
+                class="group relative overflow-hidden border border-lm-graphite/30 hover:border-lm-silver/30 transition-colors duration-500 w-full h-full aspect-auto cursor-pointer"
+                role="button" tabindex="0" [attr.aria-label]="'Ampliar imagen ' + (i + 1) + ' de ' + project.title"
+                (click)="openImage(i)" (keydown.enter)="openImage(i)" (keydown.space)="$event.preventDefault(); openImage(i)">
 
-                <div class="absolute w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                <div class="absolute w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500 z-10 pointer-events-none">
                     <svg lucideSearch class="w-6 h-6 text-black"></svg>
                 </div>
 
@@ -244,6 +246,44 @@
 
     </div>
 </section>
+
+<!-- Visor de imágenes de la galería -->
+<div class="fixed inset-0 z-[10001] flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 opacity-0 pointer-events-none data-open:opacity-100 data-open:pointer-events-auto"
+    [attr.data-open]="lightboxIndex() !== null ? '' : null" role="dialog" aria-modal="true"
+    [attr.aria-hidden]="lightboxIndex() === null ? 'true' : null" aria-label="Imagen de la galería">
+    <div class="absolute inset-0 bg-lm-black/90 backdrop-blur-sm" (click)="closeImage()"></div>
+
+    @if (lightboxIndex() !== null) {
+    <img [src]="project.caseStudy.gallery![lightboxIndex()!]" [alt]="project.title + ' - galería'"
+        class="relative max-h-[85vh] max-w-full w-auto object-contain border border-lm-graphite/40">
+    }
+
+    <button type="button" (click)="closeImage()" aria-label="Cerrar imagen"
+        class="absolute top-4 right-4 w-11 h-11 border border-lm-graphite text-lm-silver hover:text-lm-violet hover:border-lm-violet bg-lm-black/60 flex items-center justify-center cursor-pointer transition-colors duration-300">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+        </svg>
+    </button>
+
+    @if (project.caseStudy.gallery!.length > 1) {
+    <button type="button" (click)="stepImage(-1)" aria-label="Imagen anterior"
+        class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 border border-lm-graphite text-lm-silver hover:text-lm-violet hover:border-lm-violet bg-lm-black/60 flex items-center justify-center cursor-pointer transition-colors duration-300">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m15 18-6-6 6-6" />
+        </svg>
+    </button>
+    <button type="button" (click)="stepImage(1)" aria-label="Imagen siguiente"
+        class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 border border-lm-graphite text-lm-silver hover:text-lm-violet hover:border-lm-violet bg-lm-black/60 flex items-center justify-center cursor-pointer transition-colors duration-300">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6" />
+        </svg>
+    </button>
+    }
+</div>
 }
 
 <!-- Services Used -->

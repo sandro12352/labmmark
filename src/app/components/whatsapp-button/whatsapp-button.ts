@@ -8,10 +8,10 @@ import { WHATSAPP_NUMBER } from '../../config/contact';
 })
 export class WhatsappButtonComponent {
     isHovered = signal(false);
-    showTooltip = signal(true);
+    showTooltip = signal(false);
 
     readonly whatsappNumber = WHATSAPP_NUMBER;
-    readonly defaultMessage = '¡Hola! Me interesa saber más sobre los servicios de LABMMARK.';
+    readonly defaultMessage = '¡Hola! Quiero hablar con ustedes sobre mi marca.';
 
     get whatsappUrl(): string {
         const msg = encodeURIComponent(this.defaultMessage);
@@ -19,7 +19,7 @@ export class WhatsappButtonComponent {
     }
 
     constructor() {
-        // Auto-hide tooltip after 5 seconds
-        setTimeout(() => this.showTooltip.set(false), 5000);
+        // El mensaje aparece a los 4 segundos y se queda fijo
+        setTimeout(() => this.showTooltip.set(true), 4000);
     }
 }
