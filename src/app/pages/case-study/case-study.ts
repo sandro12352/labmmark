@@ -324,6 +324,89 @@ export class CaseStudyComponent implements OnInit {
                 },
             },
         },
+        // TODO: texto provisional armado con lo que sabemos del proyecto (sin cifras). Confirmar con el equipo y, si hay datos reales, agregar metrics y testimonial.
+        {
+            slug: 'tayta',
+            title: 'Tayta',
+            category: 'Fotografía · Redes sociales',
+            size: 'medium',
+            gradient: 'from-lm-graphite to-lm-black',
+            image: 'assets/portafolio/tayta/banner.webp',
+            caseStudy: {
+                challenge: 'Tayta es una marca de fermentos artesanales (kombucha, kéfir, chucrut y kimchi) que necesitaba una imagen atractiva y coherente para destacar frente a otras bebidas y alimentos naturales, y para explicar los beneficios de sus productos en redes sociales.',
+                solution: 'Construimos una línea visual de colores vivos y fondos naturales, con fotografía de producto y piezas pensadas para cada sabor y cada ocasión, como las promociones por pack y las campañas de temporada. Cada publicación mantiene la misma identidad para que la marca se reconozca de un vistazo.',
+                results: 'La marca cuenta con una imagen reconocible y con una colección de piezas listas para su comunicación en redes sociales, que presenta cada producto de forma apetitosa y consistente.',
+                services: [
+                    { icon: 'camera', name: 'Fotografía de producto', description: 'Imágenes de botellas y frascos con ingredientes naturales para resaltar el sabor y la frescura.' },
+                    { icon: 'palette', name: 'Dirección visual', description: 'Paleta, composición y estilo gráfico coherentes para toda la comunicación.' },
+                    { icon: 'instagram', name: 'Social Media', description: 'Diseño de publicaciones, promociones y campañas de temporada para redes.' },
+                ],
+                metrics: [],
+                gallery: [
+                    'assets/portafolio/tayta/1.webp',
+                    'assets/portafolio/tayta/2.webp',
+                    'assets/portafolio/tayta/3.webp',
+                    'assets/portafolio/tayta/4.webp',
+                    'assets/portafolio/tayta/5.webp',
+                    'assets/portafolio/tayta/6.webp',
+                ],
+            },
+        },
+        // TODO: texto provisional armado con lo que sabemos del proyecto (sin cifras). Confirmar con el equipo y con el cliente (varias piezas muestran precios y condiciones de la promoción). Si hay datos reales, agregar metrics y testimonial.
+        {
+            slug: 'montepinar',
+            title: 'Montepinar',
+            category: 'Campaña Digital',
+            size: 'medium',
+            gradient: 'from-lm-graphite to-lm-black',
+            image: 'assets/portafolio/montepinar/banner.webp',
+            caseStudy: {
+                challenge: 'Palmeras de Montepinar es un proyecto inmobiliario de lotes cerca de Bahía Salinas y del megapuerto de Chancay. Necesitaba darse a conocer, generar confianza en quienes compran un terreno por primera vez y atraer interesados dispuestos a agendar una cita con un asesor.',
+                solution: 'Creamos una campaña digital con piezas para redes que comunican lo esencial de forma clara: la ubicación, las facilidades de pago y financiamiento, y cómo separar un lote. Cada pieza mantiene los colores y el logo del proyecto, y todas invitan a reservar una cita con un asesor.',
+                results: 'El proyecto cuenta con una comunicación coherente y reconocible, con piezas listas para sus campañas en redes, que explican la propuesta de valor y facilitan que el interesado dé el siguiente paso.',
+                services: [
+                    { icon: 'trending-up', name: 'Estrategia Digital', description: 'Mensajes y ofertas pensados para atraer a compradores de terrenos.' },
+                    { icon: 'palette', name: 'Diseño de piezas', description: 'Publicaciones con la identidad del proyecto, claras y fáciles de entender.' },
+                    { icon: 'meta', name: 'Campaña en Redes', description: 'Piezas para anuncios y redes orientadas a conseguir citas con asesores.' },
+                ],
+                metrics: [],
+                gallery: [
+                    'assets/portafolio/montepinar/1.webp',
+                    'assets/portafolio/montepinar/2.webp',
+                    'assets/portafolio/montepinar/3.webp',
+                    'assets/portafolio/montepinar/4.webp',
+                    'assets/portafolio/montepinar/5.webp',
+                    'assets/portafolio/montepinar/6.webp',
+                ],
+            },
+        },
+        // TODO: texto provisional armado con lo que sabemos del proyecto (sin cifras). Confirmar con el equipo, el permiso de las personas que aparecen en las fotos y los servicios reales (la tarjeta de "recientes" dice "Contenido · Meta Ads"). Si hay datos reales, agregar metrics y testimonial.
+        {
+            slug: 'alpina',
+            title: 'Alpina',
+            category: 'Contenido · Redes sociales',
+            size: 'medium',
+            gradient: 'from-lm-graphite to-lm-black',
+            image: 'assets/portafolio/alpina/banner.webp',
+            caseStudy: {
+                challenge: 'Grupo Alpina distribuye maquinaria y productos complementarios de jardinería: podadoras, sopladoras, motoguadañas y tractores cortacésped. Necesitaba mostrar sus equipos de forma atractiva y explicar para qué sirve cada uno, para llegar a quienes cuidan jardines y grandes áreas verdes.',
+                solution: 'Desarrollamos una línea de contenido con fotografía de los equipos en uso y piezas gráficas con mensajes claros y directos, como "Hecho para grandes terrenos" o "La herramienta correcta hace la diferencia". Todas siguen el mismo estilo verde y limpio, con la marca siempre visible y una invitación a pedir información.',
+                results: 'La marca cuenta con una comunicación coherente y reconocible, con piezas listas para sus redes sociales, que presentan cada equipo y sus usos de forma clara.',
+                services: [
+                    { icon: 'camera', name: 'Producción de contenido', description: 'Fotografía de los equipos en uso, en jardines y áreas verdes.' },
+                    { icon: 'palette', name: 'Diseño de piezas', description: 'Publicaciones con la identidad de la marca y mensajes claros por producto.' },
+                    { icon: 'instagram', name: 'Social Media', description: 'Contenido para redes que presenta los equipos y sus beneficios.' },
+                ],
+                metrics: [],
+                gallery: [
+                    'assets/portafolio/alpina/1.webp',
+                    'assets/portafolio/alpina/2.webp',
+                    'assets/portafolio/alpina/4.webp',
+                    'assets/portafolio/alpina/5.webp',
+                    'assets/portafolio/alpina/6.webp',
+                ],
+            },
+        },
     ];
 
     private destroyRef = inject(DestroyRef);

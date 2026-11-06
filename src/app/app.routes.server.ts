@@ -8,6 +8,9 @@ const PORTFOLIO_SLUGS = [
   'sabor-y-sason',
   'tecnograss',
   'tismartial',
+  'tayta',
+  'montepinar',
+  'alpina',
 ];
 
 export const serverRoutes: ServerRoute[] = [

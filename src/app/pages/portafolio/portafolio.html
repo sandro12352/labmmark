@@ -221,6 +221,10 @@
             <div class="group bg-lm-graphite/60 hover:bg-lm-violet/70 p-px transition-colors duration-500 [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]"
                 appReveal="fade-up" [revealDelay]="i * 150" [revealDuration]="900" revealEase="ease-out-cubic">
                 <div class="relative aspect-[4/5] overflow-hidden bg-lm-black [clip-path:polygon(0_0,calc(100%-28px)_0,100%_28px,100%_100%,0_100%)]">
+                    @if (work.slug) {
+                    <a [routerLink]="['/portafolio', work.slug]" [attr.aria-label]="'Ver el caso de ' + work.name"
+                        class="absolute inset-0 z-10"></a>
+                    }
                     <img [src]="work.image" [alt]="work.name" loading="lazy" width="880" height="1101"
                         class="absolute inset-0 w-full h-full object-cover brightness-[0.8] saturate-[0.9] group-hover:brightness-100 group-hover:saturate-100 group-hover:scale-105 transition-all duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-lm-black/85 via-lm-black/10 to-transparent"></div>

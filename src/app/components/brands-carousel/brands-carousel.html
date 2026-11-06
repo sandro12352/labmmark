@@ -20,7 +20,7 @@
             @for (brand of brands; track brand.name; let i = $index) {
             <div class="shrink-0">
                 <div
-                    class="flex items-center gap-5 px-12 py-8  hover:border-lm-silver/30 transition-all duration-500 group">
+                    class="flex flex-col items-center gap-2 px-12 py-8  hover:border-lm-silver/30 transition-all duration-500 group">
                     <img [src]="brand.logo" [alt]="brand.name"
                         class="h-auto w-auto object-contain opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
                     <span
@@ -32,7 +32,7 @@
             @for (brand of brands; track brand.name + '-dup') {
             <div class="shrink-0">
                 <div
-                    class="flex items-center gap-5 px-12 py-8  hover:border-lm-silver/30 transition-all duration-500 group">
+                    class="flex flex-col items-center gap-2 px-12 py-8  hover:border-lm-silver/30 transition-all duration-500 group">
                     <img [src]="brand.logo" [alt]="brand.name"
                         class="h-auto w-auto object-contain opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
                     <span

@@ -21,6 +21,9 @@ export class BrandsCarouselComponent {
         { name: 'Tis Martial', logo: 'brands/tis.webp' },
         { name: 'Tecnograss', logo: 'brands/tecnograss.webp' },
         { name: 'Grin Perú', logo: 'brands/grin.webp' },
+        { name: 'Tayta', logo: 'brands/tayta.webp' },
+        { name: 'Montepinar', logo: 'brands/montepinar.webp' },
+        { name: 'Alpina', logo: 'brands/alpina.webp' },
 
     ];
 }

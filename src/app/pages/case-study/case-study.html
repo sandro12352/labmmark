@@ -49,7 +49,8 @@
 
 </section>
 
-<!-- Metrics Bar -->
+<!-- Metrics Bar (solo si el caso tiene métricas) -->
+@if (project.caseStudy.metrics.length) {
 <section class="relative bg-lm-charcoal border-y border-lm-graphite/30 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-lm-graphite/30">
@@ -70,6 +71,7 @@
         </div>
     </div>
 </section>
+}
 
 <!-- Brand Video -->
 @if (project.caseStudy.videoUrl) {

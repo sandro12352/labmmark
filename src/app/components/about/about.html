@@ -81,6 +81,10 @@
                 [revealDuration]="900">
                 <div
                     class="absolute inset-px overflow-hidden bg-lm-charcoal [--c:31px] [clip-path:polygon(0_0,calc(100%_-_var(--c))_0,100%_var(--c),100%_100%,var(--c)_100%,0_calc(100%_-_var(--c)))]">
+                    @if (work.slug) {
+                    <a [routerLink]="['/portafolio', work.slug]" [attr.aria-label]="'Ver el caso de ' + work.title"
+                        class="absolute inset-0 z-10"></a>
+                    }
                     <img [src]="work.image" [alt]="work.title"
                         class="w-full h-full object-cover brightness-[0.7] saturate-[0.85] transition-[filter,transform] duration-500" />
                     <div

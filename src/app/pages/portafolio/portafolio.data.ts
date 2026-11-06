@@ -7,6 +7,8 @@ export interface PortfolioItem {
     /** Grupo para los filtros de la página */
     group: string;
     image: string;
+    /** false = no aparece en el scroll de banners apilados (sí en el resto de la página). Por defecto aparece. */
+    inStack?: boolean;
 }
 
 // Los slugs deben coincidir con los de case-study.ts y con app.routes.server.ts
@@ -17,10 +19,13 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     { slug: 'sabor-y-sason', title: 'Son y Sazón', category: 'Campaña Digital', group: 'Campañas', image: 'assets/portafolio/saborysason.webp' },
     { slug: 'tecnograss', title: 'Tecnograss', category: 'Branding Completo', group: 'Branding', image: 'assets/portafolio/tecnograss.webp' },
     { slug: 'tismartial', title: 'Tismartial', category: 'Estrategia Digital', group: 'Estrategia', image: 'assets/portafolio/tismartial.webp' },
+    { slug: 'tayta', title: 'Tayta', category: 'Fotografía · Redes sociales', group: 'Social Media', image: 'assets/portafolio/tayta.webp', inStack: false },
+    { slug: 'montepinar', title: 'Montepinar', category: 'Campaña Digital', group: 'Campañas', image: 'assets/portafolio/montepinar.webp', inStack: false },
+    { slug: 'alpina', title: 'Alpina', category: 'Contenido · Redes sociales', group: 'Social Media', image: 'assets/portafolio/alpina.webp', inStack: false },
 ];
 
 // Banners de cada caso para las tarjetas apiladas (versión ancha para escritorio y casi cuadrada para móvil)
-export const STACK_CASES = PORTFOLIO_ITEMS.map(item => ({
+export const STACK_CASES = PORTFOLIO_ITEMS.filter(item => item.inStack !== false).map(item => ({
     slug: item.slug,
     title: item.title,
     category: item.category,
@@ -30,9 +35,9 @@ export const STACK_CASES = PORTFOLIO_ITEMS.map(item => ({
 
 // TODO: los servicios son provisionales (igual que en about.ts)
 export const RECENT_WORKS = [
-    { name: 'Montepinar', service: 'Campaña digital', image: 'assets/about/montepinar.webp' },
-    { name: 'Tayta', service: 'Fotografía · Redes sociales', image: 'assets/about/tayta.webp' },
-    { name: 'Alpina', service: 'Contenido · Meta Ads', image: 'assets/about/podadora.webp' },
+    { name: 'Montepinar', service: 'Campaña digital', image: 'assets/about/montepinar.webp', slug: 'montepinar' as string | undefined },
+    { name: 'Tayta', service: 'Fotografía · Redes sociales', image: 'assets/about/tayta.webp', slug: 'tayta' as string | undefined },
+    { name: 'Alpina', service: 'Contenido · Meta Ads', image: 'assets/about/podadora.webp', slug: 'alpina' as string | undefined },
 ];
 
 // Galería diagonal: una pieza de campaña por caso (banner horizontal y publicación vertical).
@@ -49,9 +54,15 @@ const piece = (slug: string, kind: 'banner' | 'foto'): GalleryItem => {
     };
 };
 
-// Cada columna alterna banner y publicación; las tres juntas usan las 12 piezas sin repetir
+// Publicaciones de la galería de los casos nuevos (cuadro 4:5, miniaturas "<slug>-<n>-post")
+const post = (slug: string, n: number): GalleryItem => {
+    const item = PORTFOLIO_ITEMS.find(i => i.slug === slug)!;
+    return { slug, title: item.title, category: item.category, image: `assets/portafolio/miniaturas/${slug}-${n}-post.webp`, width: 420, height: 525 };
+};
+
+// Cada columna alterna banner y publicación; las tres juntas usan 17 piezas sin repetir
 export const GALLERY_COLUMNS: GalleryItem[][] = [
-    [piece('martial-core', 'banner'), piece('grin-peru', 'foto'), piece('tecnograss', 'banner'), piece('sabor-y-sason', 'foto')],
-    [piece('grin-peru', 'banner'), piece('opcion', 'foto'), piece('sabor-y-sason', 'banner'), piece('tismartial', 'foto')],
-    [piece('opcion', 'banner'), piece('tecnograss', 'foto'), piece('tismartial', 'banner'), piece('martial-core', 'foto')],
+    [piece('martial-core', 'banner'), piece('grin-peru', 'foto'), piece('tecnograss', 'banner'), piece('sabor-y-sason', 'foto'), post('montepinar', 1), post('tayta', 1)],
+    [piece('grin-peru', 'banner'), piece('opcion', 'foto'), piece('sabor-y-sason', 'banner'), piece('tismartial', 'foto'), post('tayta', 2), post('alpina', 1)],
+    [piece('opcion', 'banner'), piece('tecnograss', 'foto'), piece('tismartial', 'banner'), piece('martial-core', 'foto'), post('montepinar', 2)],
 ];
