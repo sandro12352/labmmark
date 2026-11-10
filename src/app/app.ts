@@ -21,8 +21,14 @@ export class App implements OnInit {
     afterNextRender(() => {
       // Cada cambio de ruta altera el alto de la página: se recalculan las posiciones de los triggers
       this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(async () => {
+        .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+        .subscribe(async (event) => {
+          // La página nueva empieza arriba. Se sube al instante y antes del refresh: ScrollTrigger guarda la posición
+          // actual y la vuelve a poner, así que con la posición vieja deshacía la subida (y no depende de que el
+          // navegador ejecute la transición entre páginas). Si la ruta lleva ancla (#), la subida la hace cada enlace.
+          if (!event.urlAfterRedirects.includes('#')) {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }
           const { ScrollTrigger } = await import('gsap/ScrollTrigger');
           setTimeout(() => ScrollTrigger.refresh(), 100);
         });
